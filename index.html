@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Nikhil Karthik | Research Portfolio</title>
+<title>Nikhil Karthik | Portfolio</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 
 <link rel="stylesheet" href="style.css">
 
 </head>
 
-<body class="bg-slate-950 text-gray-200 font-sans">
+<body class="bg-black text-gray-200">
 
-<!-- NAVBAR -->
+<div id="particles-js"></div>
 
-<header class="fixed w-full bg-slate-950/80 backdrop-blur border-b border-slate-800 z-50">
+<header class="fixed w-full bg-black/60 backdrop-blur border-b border-gray-800 z-50">
 
 <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
 
@@ -26,120 +28,67 @@ Nikhil Karthik
 
 <nav class="space-x-6 text-sm">
 
-<a href="#about" class="hover:text-cyan-400">About</a>
-<a href="#research" class="hover:text-cyan-400">Research</a>
-<a href="#projects" class="hover:text-cyan-400">Projects</a>
-<a href="#skills" class="hover:text-cyan-400">Skills</a>
-<a href="#contact" class="hover:text-cyan-400">Contact</a>
+<a href="#about">About</a>
+<a href="#research">Research</a>
+<a href="#projects">Projects</a>
+<a href="#skills">Skills</a>
+<a href="#contact">Contact</a>
 
 </nav>
 
 </div>
 </header>
 
-<!-- HERO -->
 
-<section class="min-h-screen flex items-center justify-center text-center">
+<section class="hero">
 
-<div>
-
-<h1 class="text-5xl font-bold mb-6">
-
-Computer Science Researcher
-
+<h1 class="hero-title">
+Computer Science Researcher & Systems Developer
 </h1>
 
-<p class="text-gray-400 text-lg max-w-xl mx-auto">
+<p class="hero-subtitle">
 
-Interested in Algorithms, Machine Learning, NLP, Image Processing,
-Computer Networks and Cyber Security.
-
-</p>
-
-<div class="mt-8 space-x-4">
-
-<a href="#projects"
-class="bg-cyan-500 px-6 py-3 rounded-lg text-black font-semibold hover:bg-cyan-400">
-
-View Work
-
-</a>
-
-<a href="#contact"
-class="border border-cyan-500 px-6 py-3 rounded-lg hover:bg-cyan-500 hover:text-black">
-
-Contact
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ABOUT -->
-
-<section id="about" class="max-w-5xl mx-auto py-20 px-6">
-
-<h2 class="section-title">About</h2>
-
-<p class="text-gray-400 leading-relaxed">
-
-Computer Science undergraduate focusing on research in
-Machine Learning, Algorithms, and Multimodal AI.
-My work includes visual question answering systems,
-abusive language detection for Tamil NLP, optimization
-algorithm benchmarking, and IoT-based safety systems.
-
-I enjoy building systems that combine theory, algorithms,
-and practical deployment.
+Algorithms • Machine Learning • NLP • Computer Networks
 
 </p>
 
 </section>
 
-<!-- RESEARCH -->
 
-<section id="research" class="bg-slate-900 py-20 px-6">
+<section id="about" class="section">
 
-<div class="max-w-5xl mx-auto">
+<h2>About</h2>
 
-<h2 class="section-title">Publications</h2>
+<p>
 
-<div class="space-y-6">
+Computer Science undergraduate focused on research and systems development.
+My work spans machine learning, algorithms, networking tools, and IoT systems.
+I enjoy combining theoretical ideas with practical engineering.
+
+</p>
+
+</section>
+
+
+<section id="research" class="section">
+
+<h2>Publications</h2>
+
+<div class="grid md:grid-cols-2 gap-6">
 
 <div class="card">
 
-<h3 class="card-title">
+<h3>BLIP-2 Visual Question Answering with Multimodal Explanations</h3>
 
-BLIP-2 based Visual Question Answering with Multimodal Explanations
-
-</h3>
-
-<p class="card-text">
-
-MediaEval 2025 — CEUR Workshop Proceedings
-
-</p>
+<p>MediaEval 2025 — CEUR Proceedings</p>
 
 </div>
 
 <div class="card">
 
-<h3 class="card-title">
+<h3>IndicBERT for Abusive Tamil Comment Classification</h3>
 
-IndicBERT for Abusive Tamil Comment Classification
-
-</h3>
-
-<p class="card-text">
-
-DravidianLangTech 2026 (ACL Workshop)
-
-</p>
-
-</div>
+<p>DravidianLangTech 2026 ACL Workshop</p>
 
 </div>
 
@@ -147,20 +96,18 @@ DravidianLangTech 2026 (ACL Workshop)
 
 </section>
 
-<!-- PROJECTS -->
 
-<section id="projects" class="max-w-6xl mx-auto py-20 px-6">
+<section id="projects" class="section">
 
-<h2 class="section-title">Projects</h2>
+<h2>Projects</h2>
 
-<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="grid md:grid-cols-3 gap-6">
 
 <div class="project-card">
 
 <h3>QR Guard</h3>
 
-<p>Malicious QR detection system using URL analysis
-and machine learning classification.</p>
+<p>Malicious QR code detection system.</p>
 
 </div>
 
@@ -168,8 +115,7 @@ and machine learning classification.</p>
 
 <h3>Silent Loop Detector</h3>
 
-<p>Network monitoring tool detecting routing loops
-via packet TTL analysis using Scapy.</p>
+<p>Network routing loop detection tool.</p>
 
 </div>
 
@@ -177,8 +123,7 @@ via packet TTL analysis using Scapy.</p>
 
 <h3>Real-Time Accident Detection</h3>
 
-<p>IoT system using Raspberry Pi, sensors and GSM alerts
-to notify emergency services.</p>
+<p>IoT crash detection with emergency alerting.</p>
 
 </div>
 
@@ -186,8 +131,7 @@ to notify emergency services.</p>
 
 <h3>Legal Assistant</h3>
 
-<p>Police station management system with Neo4j
-and an LLM legal chatbot.</p>
+<p>Police station management system with AI chatbot.</p>
 
 </div>
 
@@ -195,17 +139,15 @@ and an LLM legal chatbot.</p>
 
 <h3>U-Net Change Detection</h3>
 
-<p>Deep learning segmentation system detecting
-pixel-level image changes.</p>
+<p>Image segmentation change detection system.</p>
 
 </div>
 
 <div class="project-card">
 
-<h3>Optimization Benchmark System</h3>
+<h3>Optimization Benchmark</h3>
 
-<p>PyTorch comparison of optimization algorithms
-across benchmark functions.</p>
+<p>Evaluation of optimizers on benchmark functions.</p>
 
 </div>
 
@@ -213,45 +155,58 @@ across benchmark functions.</p>
 
 </section>
 
-<!-- SKILLS -->
 
-<section id="skills" class="bg-slate-900 py-20 px-6">
+<section id="skills" class="section">
 
-<div class="max-w-5xl mx-auto">
+<h2>Technical Skills</h2>
 
-<h2 class="section-title">Skills</h2>
+<div class="grid md:grid-cols-3 gap-6">
 
-<div class="grid md:grid-cols-3 gap-6 text-gray-400">
+<div class="skill-card">
 
-<div>
-<h3 class="skill-title">Languages</h3>
+<h3>Languages</h3>
+
 <p>C, C++, Python, Java</p>
+
 </div>
 
-<div>
-<h3 class="skill-title">Frameworks</h3>
+<div class="skill-card">
+
+<h3>Frameworks</h3>
+
 <p>Django, Spring Boot, Vue.js</p>
+
 </div>
 
-<div>
-<h3 class="skill-title">Data & ML</h3>
-<p>NumPy, Pandas, scikit-learn, PyTorch</p>
+<div class="skill-card">
+
+<h3>Machine Learning</h3>
+
+<p>PyTorch, scikit-learn, NumPy, Pandas</p>
+
 </div>
 
-<div>
-<h3 class="skill-title">Databases</h3>
+<div class="skill-card">
+
+<h3>Databases</h3>
+
 <p>PostgreSQL, MongoDB, Neo4j, Cassandra</p>
+
 </div>
 
-<div>
-<h3 class="skill-title">Big Data</h3>
+<div class="skill-card">
+
+<h3>Big Data</h3>
+
 <p>Hadoop, PySpark, Redis</p>
+
 </div>
 
-<div>
-<h3 class="skill-title">Research Areas</h3>
-<p>Algorithms, NLP, Image Processing, ML</p>
-</div>
+<div class="skill-card">
+
+<h3>Research Areas</h3>
+
+<p>Algorithms, NLP, Image Processing, Networks</p>
 
 </div>
 
@@ -259,35 +214,46 @@ across benchmark functions.</p>
 
 </section>
 
-<!-- CONTACT -->
 
-<section id="contact" class="max-w-4xl mx-auto py-20 text-center px-6">
+<section id="github" class="section">
 
-<h2 class="section-title">Contact</h2>
+<h2>GitHub Projects</h2>
 
-<p class="text-gray-400 mb-6">
+<div id="repo-container" class="grid md:grid-cols-3 gap-6">
 
-Interested in collaborations, research projects,
-or internships.
+</div>
+
+</section>
+
+
+<section id="contact" class="section">
+
+<h2>Contact</h2>
+
+<p>
+
+Interested in collaboration, research opportunities, or internships.
 
 </p>
 
-<a href="mailto:yourmail@example.com"
-class="bg-cyan-500 px-6 py-3 rounded-lg text-black font-semibold">
+<a href="mailto:yourmail@example.com" class="btn">
 
-Send Email
+Email Me
 
 </a>
 
 </section>
 
-<footer class="text-center py-10 text-gray-500 text-sm">
+
+<footer class="footer">
 
 © 2026 Nikhil Karthik
 
 </footer>
 
+
 <script src="script.js"></script>
 
 </body>
+
 </html>
