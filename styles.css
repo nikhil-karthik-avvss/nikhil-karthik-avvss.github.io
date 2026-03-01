@@ -1,0 +1,48 @@
+.section-title
+{
+font-size: 2rem;
+font-weight: bold;
+margin-bottom: 2rem;
+color: #22d3ee;
+}
+
+.card
+{
+background:#0f172a;
+padding:20px;
+border-radius:10px;
+border:1px solid #1e293b;
+}
+
+.card-title
+{
+font-size:1.2rem;
+font-weight:600;
+}
+
+.card-text
+{
+color:#94a3b8;
+}
+
+.project-card
+{
+background:#020617;
+padding:20px;
+border-radius:10px;
+border:1px solid #1e293b;
+transition:0.2s;
+}
+
+.project-card:hover
+{
+transform:translateY(-5px);
+border-color:#22d3ee;
+}
+
+.skill-title
+{
+font-weight:600;
+color:#22d3ee;
+margin-bottom:5px;
+}
