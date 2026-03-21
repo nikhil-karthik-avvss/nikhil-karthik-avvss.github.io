@@ -19,25 +19,41 @@ particlesJS("particles-js", {
 
 /* ── CURSOR ── */
 const cursorEl = document.getElementById("cursor");
-if (cursorEl) {
+if (cursorEl && window.matchMedia("(pointer: fine)").matches) {
+  // Start cursor at centre of screen so it's visible immediately on page load
   let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
   let tx = cx, ty = cy;
+  let moved = false;
 
-  document.addEventListener("mousemove", e => { tx = e.clientX; ty = e.clientY; });
+  // Position using transform so the element origin (top-left) doesn't matter
+  function setCursor() {
+    cursorEl.style.transform = `translate(calc(${cx}px - 50%), calc(${cy}px - 50%))`;
+  }
+  setCursor(); // place it immediately
+
+  document.addEventListener("mousemove", e => {
+    tx = e.clientX; ty = e.clientY;
+    if (!moved) { cx = tx; cy = ty; moved = true; } // snap on first move
+  });
 
   function animateCursor() {
     cx += (tx - cx) * 0.18;
     cy += (ty - cy) * 0.18;
-    cursorEl.style.left = cx + "px";
-    cursorEl.style.top  = cy + "px";
+    setCursor();
     requestAnimationFrame(animateCursor);
   }
   animateCursor();
 
-  const hoverTargets = "a, button, .p-card, .sk-card, .r-card, .c-item, .int-item";
-  document.querySelectorAll(hoverTargets).forEach(el => {
-    el.addEventListener("mouseenter", () => cursorEl.classList.add("hovering"));
-    el.addEventListener("mouseleave", () => cursorEl.classList.remove("hovering"));
+  // Use event delegation so dynamically added cards (GitHub repos) also trigger hover
+  document.addEventListener("mouseover", e => {
+    if (e.target.closest("a, button, .p-card, .sk-card, .r-card, .c-item, .int-item, .edu-card")) {
+      cursorEl.classList.add("hovering");
+    }
+  });
+  document.addEventListener("mouseout", e => {
+    if (e.target.closest("a, button, .p-card, .sk-card, .r-card, .c-item, .int-item, .edu-card")) {
+      cursorEl.classList.remove("hovering");
+    }
   });
 }
 

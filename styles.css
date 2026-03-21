@@ -62,26 +62,28 @@ sup { font-size: 0.55em; vertical-align: super; }
 ════════════════════════════════════════ */
 .cursor {
   position: fixed; z-index: 9999; pointer-events: none;
-  transform: translate(-50%, -50%);
+  /* JS sets left/top via px; we shift by -50% to centre the ring on that point */
+  will-change: left, top;
 }
 .cursor-ring {
   width: 28px; height: 28px; border-radius: 50%;
   border: 1.5px solid var(--cy);
-  transition: transform 0.15s ease, border-color 0.2s, width 0.2s, height 0.2s;
-  box-shadow: 0 0 12px var(--cy-glow), inset 0 0 8px rgba(0,229,255,0.05);
+  box-shadow: 0 0 14px var(--cy-glow), inset 0 0 6px rgba(0,229,255,0.05);
+  transition: width 0.18s ease, height 0.18s ease, border-color 0.2s, background 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+/* inner dot */
+.cursor-ring::after {
+  content: '';
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--cy);
+  box-shadow: 0 0 10px var(--cy);
+  flex-shrink: 0;
 }
 .cursor.hovering .cursor-ring {
-  width: 48px; height: 48px;
+  width: 50px; height: 50px;
   border-color: var(--cy-bright);
   background: rgba(0,229,255,0.04);
-}
-.cursor::after {
-  content: '';
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 4px; height: 4px; border-radius: 50%;
-  background: var(--cy);
-  box-shadow: 0 0 8px var(--cy);
 }
 
 /* ════════════════════════════════════════
@@ -573,4 +575,149 @@ sup { font-size: 0.55em; vertical-align: super; }
   .hs-sep { height: 28px; }
   body { cursor: auto; }
   .cursor { display: none; }
+}
+
+/* ════════════════════════════════════════
+   EDUCATION TIMELINE
+════════════════════════════════════════ */
+.edu-timeline {
+  display: flex; flex-direction: column;
+  max-width: 760px;
+}
+.edu-card {
+  display: grid; grid-template-columns: 36px 1fr;
+  gap: 0 1.8rem; position: relative;
+  padding-bottom: 3rem;
+}
+.edu-card:last-child { padding-bottom: 0; }
+
+.edu-left {
+  display: flex; flex-direction: column;
+  align-items: center; padding-top: 0.35rem;
+}
+.edu-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--cy);
+  box-shadow: 0 0 0 3px rgba(0,229,255,0.12), 0 0 16px var(--cy-glow);
+  flex-shrink: 0; z-index: 1; transition: box-shadow 0.3s;
+}
+.edu-card:hover .edu-dot {
+  box-shadow: 0 0 0 5px rgba(0,229,255,0.15), 0 0 28px var(--cy-glow);
+}
+.edu-line {
+  flex: 1; width: 1px; margin-top: 6px;
+  background: linear-gradient(180deg, var(--cy-border), transparent);
+}
+
+.edu-body {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 1.6rem 1.8rem;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  position: relative; overflow: hidden;
+}
+.edu-body::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cy), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.edu-card:hover .edu-body {
+  border-color: var(--cy-border);
+  transform: translateX(4px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 30px rgba(0,229,255,0.05);
+}
+.edu-card:hover .edu-body::before { opacity: 1; }
+
+.edu-meta {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+.edu-period {
+  font-size: 0.68rem; letter-spacing: 0.1em;
+  color: var(--cy); opacity: 0.7; font-family: var(--mono);
+}
+.edu-badge {
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.18rem 0.55rem; border-radius: 2px;
+}
+.edu-badge.current {
+  background: rgba(34,197,94,0.1); color: #4ade80;
+  border: 1px solid rgba(34,197,94,0.25);
+}
+.edu-badge.online {
+  background: rgba(99,102,241,0.1); color: #a5b4fc;
+  border: 1px solid rgba(99,102,241,0.25);
+}
+
+.edu-degree {
+  font-family: var(--display); font-size: 1.02rem; font-weight: 600;
+  color: var(--text); margin-bottom: 0.35rem; line-height: 1.4;
+}
+.edu-inst {
+  font-size: 0.8rem; color: var(--text2); font-weight: 300; margin-bottom: 0.5rem;
+}
+.edu-detail {
+  display: flex; align-items: center; gap: 1rem; margin-top: 0.8rem;
+}
+.edu-stat {
+  display: flex; align-items: baseline; gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  background: var(--cy-dim); border: 1px solid rgba(0,229,255,0.2);
+  border-radius: 2px;
+}
+.edu-stat-val {
+  font-family: var(--display); font-size: 1.1rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--cy), var(--cy2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.edu-stat-lbl {
+  font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--cy); opacity: 0.7;
+}
+.edu-stat-note {
+  font-size: 0.7rem; color: var(--text3); font-style: italic;
+}
+
+.edu-badge.school {
+  background: rgba(251,191,36,0.1); color: #fbbf24;
+  border: 1px solid rgba(251,191,36,0.25);
+}
+.edu-marks { margin-top: 1rem; }
+.edu-mark-row {
+  display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;
+}
+.edu-mark-item {
+  display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+  padding: 0.6rem 1.1rem;
+  background: var(--cy-dim); border: 1px solid rgba(0,229,255,0.18);
+  border-radius: var(--r); min-width: 90px;
+}
+.edu-mark-item.edu-mark-dim {
+  background: rgba(255,255,255,0.02); border-color: var(--border);
+}
+.edu-mark-item.edu-mark-dim .edu-mark-val { opacity: 0.55; }
+.edu-mark-val {
+  font-family: var(--display); font-size: 1.15rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--cy), var(--cy2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1;
+}
+.edu-mark-denom {
+  font-size: 0.65em; opacity: 0.6;
+  -webkit-text-fill-color: var(--text3); color: var(--text3);
+  background: none; font-weight: 400;
+}
+.edu-mark-lbl {
+  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text3);
+}
+.edu-mark-note { color: var(--cy); opacity: 0.7; }
+.edu-mark-footnote {
+  font-size: 0.7rem; color: var(--text3); font-style: italic;
+  line-height: 1.6; padding-left: 0.2rem;
+  border-left: 2px solid var(--border); padding-left: 0.75rem;
 }
