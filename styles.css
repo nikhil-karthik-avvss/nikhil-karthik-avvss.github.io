@@ -3,6 +3,9 @@
 ════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Force custom cursor everywhere */
+html, html * { cursor: none !important; }
+
 :root {
   --bg:        #02060f;
   --bg2:       #040b18;
@@ -61,29 +64,32 @@ sup { font-size: 0.55em; vertical-align: super; }
    CURSOR
 ════════════════════════════════════════ */
 .cursor {
-  position: fixed; z-index: 9999; pointer-events: none;
-  /* JS sets left/top via px; we shift by -50% to centre the ring on that point */
-  will-change: left, top;
+  position: fixed;
+  /* NO top/left here — JS sets them via style.left / style.top */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #00e5ff;
+  box-shadow: 0 0 8px #00e5ff, 0 0 20px rgba(0,229,255,0.4);
+  pointer-events: none;
+  z-index: 99999;
+  display: none;
+  /* -50% centres the circle on the JS-set left/top point */
+  transform: translate(-50%, -50%);
+  transition: width 0.15s ease, height 0.15s ease, background 0.15s ease;
 }
-.cursor-ring {
-  width: 28px; height: 28px; border-radius: 50%;
-  border: 1.5px solid var(--cy);
-  box-shadow: 0 0 14px var(--cy-glow), inset 0 0 6px rgba(0,229,255,0.05);
-  transition: width 0.18s ease, height 0.18s ease, border-color 0.2s, background 0.2s;
-  display: flex; align-items: center; justify-content: center;
-}
-/* inner dot */
-.cursor-ring::after {
+.cursor::after {
   content: '';
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--cy);
-  box-shadow: 0 0 10px var(--cy);
-  flex-shrink: 0;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: #00e5ff;
 }
-.cursor.hovering .cursor-ring {
-  width: 50px; height: 50px;
-  border-color: var(--cy-bright);
-  background: rgba(0,229,255,0.04);
+.cursor.hovering {
+  width: 40px; height: 40px;
+  background: rgba(0,229,255,0.06);
 }
 
 /* ════════════════════════════════════════
@@ -573,7 +579,7 @@ sup { font-size: 0.55em; vertical-align: super; }
   .r-badge { border-right: none; border-bottom: 1px solid var(--border); padding: 1rem; min-height: auto; }
   .hero-stats { padding: 1.2rem 1.5rem; gap: 1.5rem; }
   .hs-sep { height: 28px; }
-  body { cursor: auto; }
+  html, html * { cursor: auto !important; }
   .cursor { display: none; }
 }
 
@@ -721,3 +727,5 @@ sup { font-size: 0.55em; vertical-align: super; }
   line-height: 1.6; padding-left: 0.2rem;
   border-left: 2px solid var(--border); padding-left: 0.75rem;
 }
+
+#particles-js canvas { pointer-events: none !important; }

@@ -1,5 +1,10 @@
 /* ── PARTICLES ── */
-particlesJS("particles-js", {
+// particles.js is loaded with defer — wait until it's available
+function initParticles() {
+  if (typeof particlesJS === "undefined") {
+    setTimeout(initParticles, 50); return;
+  }
+  particlesJS("particles-js", {
   particles: {
     number: { value: 55, density: { enable: true, value_area: 1000 } },
     color: { value: ["#00e5ff", "#0ea5e9", "#6366f1"] },
@@ -15,47 +20,33 @@ particlesJS("particles-js", {
     modes: { grab: { distance: 180, line_linked: { opacity: 0.3 } }, push: { particles_nb: 2 } }
   },
   retina_detect: true
-});
-
-/* ── CURSOR ── */
-const cursorEl = document.getElementById("cursor");
-if (cursorEl && window.matchMedia("(pointer: fine)").matches) {
-  // Start cursor at centre of screen so it's visible immediately on page load
-  let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-  let tx = cx, ty = cy;
-  let moved = false;
-
-  // Position using transform so the element origin (top-left) doesn't matter
-  function setCursor() {
-    cursorEl.style.transform = `translate(calc(${cx}px - 50%), calc(${cy}px - 50%))`;
-  }
-  setCursor(); // place it immediately
-
-  document.addEventListener("mousemove", e => {
-    tx = e.clientX; ty = e.clientY;
-    if (!moved) { cx = tx; cy = ty; moved = true; } // snap on first move
-  });
-
-  function animateCursor() {
-    cx += (tx - cx) * 0.18;
-    cy += (ty - cy) * 0.18;
-    setCursor();
-    requestAnimationFrame(animateCursor);
-  }
-  animateCursor();
-
-  // Use event delegation so dynamically added cards (GitHub repos) also trigger hover
-  document.addEventListener("mouseover", e => {
-    if (e.target.closest("a, button, .p-card, .sk-card, .r-card, .c-item, .int-item, .edu-card")) {
-      cursorEl.classList.add("hovering");
-    }
-  });
-  document.addEventListener("mouseout", e => {
-    if (e.target.closest("a, button, .p-card, .sk-card, .r-card, .c-item, .int-item, .edu-card")) {
-      cursorEl.classList.remove("hovering");
-    }
   });
 }
+initParticles();
+
+/* ── CURSOR ── */
+(function() {
+  if (!window.matchMedia("(pointer: fine)").matches) return;
+  var el = document.getElementById("cursor");
+  if (!el) return;
+
+  // CSS has NO top/left, so setting them via JS is clean with no conflict.
+  // transform:translate(-50%,-50%) in CSS centres the circle on that point.
+  document.addEventListener("mousemove", function(e) {
+    el.style.display = "block";
+    el.style.left = e.clientX + "px";
+    el.style.top  = e.clientY + "px";
+  }, { passive: true });
+
+  var HOVER = "a, button, .p-card, .sk-card, .r-card, .c-item, .int-item, .edu-card";
+  document.addEventListener("mouseover", function(e) {
+    if (e.target.closest(HOVER)) el.classList.add("hovering");
+  });
+  document.addEventListener("mouseout", function(e) {
+    if (e.target.closest(HOVER)) el.classList.remove("hovering");
+  });
+})();
+
 
 /* ── CARD RADIAL GLOW ON MOUSE ── */
 document.querySelectorAll(".p-card").forEach(card => {
@@ -83,31 +74,46 @@ if (toggleBtn && mobileMenu) {
 }
 
 /* ── SCROLL REVEAL ── */
-document.body.classList.add("js-ready");
+// Strategy: don't hide elements at all until we're SURE the observer is ready
+// and the layout has settled. On GitHub Pages, a 50ms delay isn't always enough.
+// We use requestAnimationFrame + a double rAF (two paint cycles) to guarantee
+// layout is complete before we measure getBoundingClientRect().
 
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
+      // Unobserve immediately so it never re-hides
+      revealObs.unobserve(entry.target);
       setTimeout(() => entry.target.classList.add("visible"), i * 75);
     }
   });
-}, { threshold: 0.07, rootMargin: "0px 0px -40px 0px" });
+}, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
 
 function initReveal() {
-  document.querySelectorAll(".reveal").forEach(el => {
-    const r = el.getBoundingClientRect();
-    if (r.top < window.innerHeight && r.bottom > 0) {
-      el.classList.add("visible");
-    } else {
-      revealObs.observe(el);
-    }
+  // Double rAF: first frame updates layout, second frame we can safely measure
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      // NOW add js-ready — elements go opacity:0 only after layout is settled
+      document.body.classList.add("js-ready");
+
+      document.querySelectorAll(".reveal").forEach(el => {
+        const r = el.getBoundingClientRect();
+        // Already fully or partially in viewport → show immediately, no animation
+        if (r.top < window.innerHeight - 20 && r.bottom > 0) {
+          el.classList.add("visible");
+        } else {
+          revealObs.observe(el);
+        }
+      });
+    });
   });
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => setTimeout(initReveal, 50));
+// Run after DOM + all resources are loaded for maximum safety on GitHub Pages
+if (document.readyState === "complete") {
+  initReveal();
 } else {
-  setTimeout(initReveal, 50);
+  window.addEventListener("load", initReveal);
 }
 
 /* ── GITHUB REPOS ── */
