@@ -4,354 +4,326 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nikhil Karthik S — Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- PARTICLES BACKGROUND -->
-  <div id="particles-js"></div>
+<div id="particles-js"></div>
+<div class="cursor" id="cursor"><div class="cursor-ring"></div></div>
+<div class="noise-overlay"></div>
 
-  <!-- CURSOR DOT -->
-  <div class="cursor-dot" id="cursor"></div>
+<!-- NAV -->
+<header id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">
+      <span class="bracket">[</span>NK<span class="bracket">]</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#about" data-text="About">About</a>
+      <a href="#research" data-text="Research">Research</a>
+      <a href="#projects" data-text="Projects">Projects</a>
+      <a href="#skills" data-text="Skills">Skills</a>
+      <a href="#github-section" data-text="GitHub">GitHub</a>
+      <a href="#contact" data-text="Contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle">&#9776;</button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about">About</a><a href="#research">Research</a>
+    <a href="#projects">Projects</a><a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
 
-  <!-- NAV -->
-  <header id="navbar">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-brand">
-        <span class="brand-bracket">[</span>NK<span class="brand-bracket">]</span>
-      </a>
-      <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#github-section">GitHub</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">&#9776;</button>
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="ey-line"></span>
+      <span class="ey-text">M.Tech CSE &nbsp;·&nbsp; SSN College of Engineering, Chennai</span>
+      <span class="ey-line"></span>
     </div>
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="#about">About</a>
-      <a href="#research">Research</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
+    <h1 class="hero-name">
+      <span class="hn-1">Nikhil</span>
+      <span class="hn-2">Karthik<em> S</em></span>
+    </h1>
+    <div class="hero-roles">
+      <span class="hr-tag">ML Researcher</span>
+      <span class="hr-dot">◆</span>
+      <span class="hr-tag">Full-Stack Dev</span>
+      <span class="hr-dot">◆</span>
+      <span class="hr-tag">Systems Engineer</span>
     </div>
-  </header>
-
-  <!-- HERO -->
-  <section id="hero" class="hero">
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <span class="eyebrow-line"></span>
-        <span>M.Tech (Integrated) CSE &nbsp;·&nbsp; SSN College of Engineering, Chennai</span>
-        <span class="eyebrow-line"></span>
+    <p class="hero-sub">
+      Building intelligent systems at the intersection of
+      <span class="cy">Machine Learning</span>, <span class="cy">NLP</span>, and <span class="cy">Software Engineering</span>.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-prime">View Projects</a>
+      <a href="#research" class="btn-outline">Research</a>
+      <a href="#contact" class="btn-outline">Contact</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs-item">
+        <span class="hs-val" id="gh-repos">—</span>
+        <span class="hs-lbl">Repos</span>
       </div>
-      <h1 class="hero-name">
-        <span class="name-line" style="--d:0.1s">Nikhil</span>
-        <span class="name-line accent" style="--d:0.25s">Karthik S</span>
-      </h1>
-      <p class="hero-role">
-        <span class="role-tag" style="--d:0.4s">ML Researcher</span>
-        <span class="role-sep">·</span>
-        <span class="role-tag" style="--d:0.5s">Full-Stack Developer</span>
-        <span class="role-sep">·</span>
-        <span class="role-tag" style="--d:0.6s">Systems Engineer</span>
-      </p>
-      <p class="hero-sub" style="--d:0.75s">
-        Building intelligent systems at the intersection of<br/>
-        <span class="highlight">Machine Learning</span>, <span class="highlight">NLP</span>, and <span class="highlight">Software Engineering</span>.
-      </p>
-      <div class="hero-actions" style="--d:0.9s">
-        <a href="#projects" class="btn-primary">View Projects</a>
-        <a href="#research" class="btn-ghost">Research</a>
-        <a href="#contact" class="btn-ghost">Contact</a>
+      <div class="hs-sep"></div>
+      <div class="hs-item">
+        <span class="hs-val">2</span>
+        <span class="hs-lbl">Publications</span>
       </div>
-      <div class="hero-stats" style="--d:1.05s">
-        <div class="stat"><span class="stat-n" id="gh-repos">—</span><span class="stat-l">Repos</span></div>
-        <div class="stat-div"></div>
-        <div class="stat"><span class="stat-n">2</span><span class="stat-l">Publications</span></div>
-        <div class="stat-div"></div>
-        <div class="stat"><span class="stat-n">3rd</span><span class="stat-l">MediaEval '25</span></div>
-        <div class="stat-div"></div>
-        <div class="stat"><span class="stat-n">Top 10</span><span class="stat-l">ACL '26</span></div>
+      <div class="hs-sep"></div>
+      <div class="hs-item">
+        <span class="hs-val">3<sup>rd</sup></span>
+        <span class="hs-lbl">MediaEval '25</span>
+      </div>
+      <div class="hs-sep"></div>
+      <div class="hs-item">
+        <span class="hs-val">T10</span>
+        <span class="hs-lbl">ACL '26</span>
       </div>
     </div>
-    <div class="scroll-indicator">
-      <div class="scroll-track"><div class="scroll-thumb"></div></div>
-      <span>scroll</span>
-    </div>
-  </section>
+  </div>
+  <div class="hero-scroll">
+    <div class="hs-track"><div class="hs-thumb"></div></div>
+    <span>scroll</span>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <div class="section-header">
-      <span class="section-number">01</span>
-      <h2 class="section-title">About</h2>
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="sec-wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">About</h2>
     </div>
     <div class="about-grid">
       <div class="about-text">
-        <p>I'm a 3rd-year <strong>M.Tech (Integrated) Computer Science & Engineering</strong> student at <strong>SSN College of Engineering</strong>. I work across the full stack — from systems-level networking tools and IoT hardware to fine-tuned language models and deep learning pipelines.</p>
-        <p>My research has been recognised at <strong>MediaEval 2025</strong> (3rd place, GI Imaging VQA) and <strong>DravidianLangTech 2026</strong> at the ACL workshop (Top 10, Tamil NLP). I'm currently preparing for internships and further research publications.</p>
-        <p>I'm drawn to hard problems: routing anomalies in live networks, pixel-level change detection in aerial imagery, abusive language in low-resource Dravidian languages. I care about getting the details right.</p>
+        <p>I'm a 3rd-year <strong>M.Tech (Integrated) CSE</strong> student at <strong>SSN College of Engineering</strong>. I work across the full stack — from systems-level networking tools and IoT hardware to fine-tuned language models and deep learning pipelines.</p>
+        <p>My research has been recognised at <strong>MediaEval 2025</strong> (3rd place, GI Imaging VQA) and <strong>DravidianLangTech 2026</strong> at ACL (Top 10, Tamil NLP). I'm preparing for internships and further publications.</p>
+        <p>I'm drawn to hard problems — routing anomalies, pixel-level change detection, abusive language in low-resource languages. I care about getting the details right.</p>
       </div>
-      <div class="about-right">
+      <div class="about-side">
         <div class="interest-grid">
-          <div class="interest-item"><span class="i-icon">⚡</span>Machine Learning</div>
-          <div class="interest-item"><span class="i-icon">🧠</span>NLP & LLMs</div>
-          <div class="interest-item"><span class="i-icon">👁</span>Computer Vision</div>
-          <div class="interest-item"><span class="i-icon">🌐</span>Systems & Networks</div>
-          <div class="interest-item"><span class="i-icon">📡</span>IoT & Embedded</div>
-          <div class="interest-item"><span class="i-icon">📐</span>Algorithms</div>
+          <div class="int-item"><span>⚡</span>Machine Learning</div>
+          <div class="int-item"><span>🧠</span>NLP &amp; LLMs</div>
+          <div class="int-item"><span>👁</span>Computer Vision</div>
+          <div class="int-item"><span>🌐</span>Systems &amp; Networks</div>
+          <div class="int-item"><span>📡</span>IoT &amp; Embedded</div>
+          <div class="int-item"><span>📐</span>Algorithms</div>
         </div>
-        <div class="coursework-box">
-          <div class="box-label">Core Coursework</div>
-          <div class="course-list">
-            <span>Data Structures & Algorithms</span><span>Operating Systems</span>
-            <span>Computer Networks</span><span>Machine Learning</span>
-            <span>Image Processing</span><span>Database Systems</span>
-            <span>Probability & Statistics</span><span>Linear Algebra</span>
+        <div class="cw-box">
+          <div class="cw-label">Core Coursework</div>
+          <div class="cw-tags">
+            <span>DSA</span><span>OS</span><span>Networks</span>
+            <span>ML</span><span>Image Processing</span><span>DBMS</span>
+            <span>Prob &amp; Stats</span><span>Linear Algebra</span>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- RESEARCH -->
-  <section id="research" class="section section-alt">
-    <div class="section-header">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Research &amp; Publications</h2>
+<!-- RESEARCH -->
+<section id="research" class="sec sec-dark">
+  <div class="sec-wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Research &amp; Publications</h2>
     </div>
     <div class="research-list">
 
-      <div class="research-card reveal">
-        <div class="research-rank-badge">🥉 3rd Place</div>
-        <div class="research-body">
+      <div class="r-card reveal">
+        <div class="r-badge">🥉 3rd</div>
+        <div class="r-body">
           <h3>BLIP-2 VQA with Multimodal Explanations for Gastrointestinal Imaging</h3>
-          <div class="research-venue">MediaEval 2025 — Subtask 2 &nbsp;·&nbsp; CEUR Workshop Proceedings</div>
-          <p>Applied the BLIP-2 vision-language model to the Kvasir-VQA-x1 dataset for visual question answering on endoscopy images. Generated answers with natural-language explanations, attention maps, and per-answer confidence scores. Achieved 3rd place internationally.</p>
-          <div class="research-tags">
-            <span>Vision-Language</span><span>BLIP-2</span><span>Medical Imaging</span><span>VQA</span><span>Published</span>
-          </div>
+          <div class="r-venue">MediaEval 2025 — Subtask 2 &nbsp;·&nbsp; CEUR Workshop Proceedings</div>
+          <p>Applied BLIP-2 to the Kvasir-VQA-x1 dataset for VQA on endoscopy images, generating answers with explanations, attention maps, and confidence scores. Achieved 3rd place internationally.</p>
+          <div class="r-tags"><span>BLIP-2</span><span>Medical VQA</span><span>Vision-Language</span><span>Published</span></div>
         </div>
       </div>
 
-      <div class="research-card reveal">
-        <div class="research-rank-badge">Top 10</div>
-        <div class="research-body">
+      <div class="r-card reveal">
+        <div class="r-badge">Top 10</div>
+        <div class="r-body">
           <h3>IndicBERT for Abusive Tamil Comment Classification</h3>
-          <div class="research-venue">DravidianLangTech 2026 — ACL Workshop &nbsp;·&nbsp; Draft Prepared</div>
-          <p>Fine-tuned IndicBERT for multi-class Tamil abusive language detection on social media. Applied class weighting and threshold optimisation to handle severe label imbalance. Achieved Macro F1 of <strong>0.8001</strong>, placing in the top 10 of the shared task.</p>
-          <div class="research-tags">
-            <span>NLP</span><span>IndicBERT</span><span>Tamil</span><span>Low-Resource</span><span>ACL 2026</span>
-          </div>
+          <div class="r-venue">DravidianLangTech 2026 — ACL Workshop &nbsp;·&nbsp; Draft Prepared</div>
+          <p>Fine-tuned IndicBERT for Tamil abusive language detection with class weighting and threshold optimisation. Achieved Macro F1 of <strong>0.8001</strong>, ranking in the top 10 of the shared task.</p>
+          <div class="r-tags"><span>IndicBERT</span><span>Tamil NLP</span><span>Low-Resource</span><span>ACL 2026</span></div>
         </div>
       </div>
 
-      <div class="research-card reveal">
-        <div class="research-rank-badge">Sharpe ~3.99</div>
-        <div class="research-body">
+      <div class="r-card reveal">
+        <div class="r-badge">~3.99</div>
+        <div class="r-body">
           <h3>Hull Tactical Market Prediction — Kaggle</h3>
-          <div class="research-venue">Kaggle Competition &nbsp;·&nbsp; ML &amp; Quantitative Finance</div>
-          <p>ElasticNet regression model with feature engineering, EWM imputation, StandardScaler, and 10-fold cross-validation. Trading signals optimised using Sharpe ratio, achieving a final Sharpe score of approximately 3.99.</p>
-          <div class="research-tags">
-            <span>ElasticNet</span><span>Time Series</span><span>Feature Engineering</span><span>Finance</span>
-          </div>
+          <div class="r-venue">Kaggle Competition &nbsp;·&nbsp; ML &amp; Quantitative Finance</div>
+          <p>ElasticNet model with feature engineering, EWM imputation, and 10-fold cross-validation. Trading signals optimised by Sharpe ratio — final score ~3.99.</p>
+          <div class="r-tags"><span>ElasticNet</span><span>Time Series</span><span>Feature Engineering</span><span>Finance</span></div>
         </div>
       </div>
 
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="section">
-    <div class="section-header">
-      <span class="section-number">03</span>
-      <h2 class="section-title">Projects</h2>
+<!-- PROJECTS -->
+<section id="projects" class="sec">
+  <div class="sec-wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Projects</h2>
     </div>
-    <div class="projects-grid">
+    <div class="proj-grid">
 
-      <div class="project-card reveal">
-        <div class="project-top">
-          <div class="project-status ongoing">Ongoing</div>
-          <div class="project-links">
-            <a href="https://github.com/nikhil-karthik-avvss" target="_blank" title="GitHub">⌥</a>
-          </div>
-        </div>
+      <div class="p-card reveal">
+        <div class="p-top"><span class="p-tag cli">CLI Tool</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        <h3>plagcheck — PDF Plagiarism Detector</h3>
+        <p>CLI tool comparing two PDF assignments across text (cosine, Jaccard, Dice n-grams), code (AST-level Python normalisation), visuals (perceptual hashing + tile matching), and document structure. Three-stage extraction pipeline; runs fully offline.</p>
+        <div class="p-tech"><span>Python</span><span>AST</span><span>pdfplumber</span><span>PyMuPDF</span><span>OCR</span><span>Perceptual Hash</span></div>
+      </div>
+
+      <div class="p-card reveal">
+        <div class="p-top"><span class="p-tag ongoing">Ongoing</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         <h3>Real-Time Accident Detection System</h3>
-        <p>IoT crash-detection system using Raspberry Pi, sensors, GPS, and GSM. Automatically dispatches emergency alerts on collision detection with SOS button and environmental monitoring. IFSP collaboration.</p>
-        <div class="project-tech"><span>Raspberry Pi</span><span>Python</span><span>GPS/GSM</span><span>IoT</span></div>
+        <p>IoT crash-detection using Raspberry Pi, sensors, GPS, and GSM. Dispatches emergency alerts on collision with SOS button and environmental monitoring. IFSP collaboration.</p>
+        <div class="p-tech"><span>Raspberry Pi</span><span>Python</span><span>GPS/GSM</span><span>IoT</span></div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="project-top">
-          <div class="project-status">LLM</div>
-          <div class="project-links"><a href="https://github.com/nikhil-karthik-avvss" target="_blank">⌥</a></div>
-        </div>
+      <div class="p-card reveal">
+        <div class="p-top"><span class="p-tag llm">LLM</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         <h3>Legal Assistant: Police Station Management</h3>
-        <p>Full-stack legal platform with a Mistral chatbot fine-tuned on Indian law data via Hugging Face. Graph-native Neo4j backend for relationship-aware queries. Django API + Next.js frontend.</p>
-        <div class="project-tech"><span>Django</span><span>Next.js</span><span>Neo4j</span><span>Mistral</span><span>HuggingFace</span></div>
+        <p>Full-stack legal platform with a Mistral chatbot fine-tuned on Indian law data. Graph-native Neo4j backend for relationship-aware queries. Django API + Next.js frontend.</p>
+        <div class="p-tech"><span>Django</span><span>Next.js</span><span>Neo4j</span><span>Mistral</span><span>HuggingFace</span></div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="project-top">
-          <div class="project-status hackathon">Hackathon Finalist</div>
-          <div class="project-links"><a href="https://github.com/nikhil-karthik-avvss" target="_blank">⌥</a></div>
-        </div>
+      <div class="p-card reveal">
+        <div class="p-top"><span class="p-tag hack">Hackathon Finalist</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         <h3>QR Guard — Malicious QR Detection</h3>
-        <p>Scans QR codes, extracts URLs, traces redirect chains, and classifies threats as safe/suspicious/malicious using heuristic rules combined with a trained ML classifier.</p>
-        <div class="project-tech"><span>Python</span><span>ML</span><span>URL Analysis</span><span>Heuristics</span></div>
+        <p>Scans QR codes, extracts and traces URLs, and classifies threats as safe/suspicious/malicious using heuristic rules and a trained ML classifier.</p>
+        <div class="p-tech"><span>Python</span><span>ML</span><span>URL Analysis</span><span>Heuristics</span></div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="project-top">
-          <div class="project-status">Full-Stack</div>
-          <div class="project-links"><a href="https://github.com/nikhil-karthik-avvss" target="_blank">⌥</a></div>
-        </div>
+      <div class="p-card reveal">
+        <div class="p-top"><span class="p-tag">Full-Stack</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         <h3>Lost &amp; Found Website</h3>
-        <p>Platform for reporting and reclaiming lost items with user authentication, image-based item posting, and a full claim workflow. Vue.js frontend with Spring Boot REST API and MongoDB storage.</p>
-        <div class="project-tech"><span>Vue.js</span><span>Spring Boot</span><span>MongoDB</span></div>
+        <p>Platform for reporting and reclaiming lost items with auth, image-based posting, and a claim workflow. Vue.js frontend with Spring Boot REST API and MongoDB.</p>
+        <div class="p-tech"><span>Vue.js</span><span>Spring Boot</span><span>MongoDB</span></div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="project-top">
-          <div class="project-status">Networks</div>
-          <div class="project-links"><a href="https://github.com/nikhil-karthik-avvss" target="_blank">⌥</a></div>
-        </div>
+      <div class="p-card reveal">
+        <div class="p-top"><span class="p-tag">Networks</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         <h3>Silent Loop Detector</h3>
-        <p>Network monitoring tool detecting routing loops via TTL variation and packet timing analysis. Real-time Flask dashboard with configurable alerts and visualisation of anomaly patterns.</p>
-        <div class="project-tech"><span>Python</span><span>Scapy</span><span>Flask</span><span>Networking</span></div>
+        <p>Detects routing loops via TTL variation and packet timing analysis. Real-time Flask dashboard with configurable alerts and anomaly visualisation.</p>
+        <div class="p-tech"><span>Python</span><span>Scapy</span><span>Flask</span><span>Networking</span></div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="project-top">
-          <div class="project-status">Deep Learning</div>
-          <div class="project-links"><a href="https://github.com/nikhil-karthik-avvss" target="_blank">⌥</a></div>
-        </div>
+      <div class="p-card reveal">
+        <div class="p-top"><span class="p-tag">Deep Learning</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         <h3>Change Detection using U-Net</h3>
-        <p>Semantic segmentation model on the Inria aerial dataset. CLAHE preprocessing, normalisation, and resizing pipeline. Generates pixel-level change detection maps from before/after imagery.</p>
-        <div class="project-tech"><span>PyTorch</span><span>U-Net</span><span>CUDA</span><span>Computer Vision</span></div>
+        <p>Segmentation model on the Inria aerial dataset with CLAHE preprocessing. Generates pixel-level change detection maps from before/after imagery.</p>
+        <div class="p-tech"><span>PyTorch</span><span>U-Net</span><span>CUDA</span><span>CV</span></div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="project-top">
-          <div class="project-status">Django</div>
-          <div class="project-links"><a href="https://github.com/nikhil-karthik-avvss" target="_blank">⌥</a></div>
-        </div>
+      <div class="p-card reveal">
+        <div class="p-top"><span class="p-tag">Django</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         <h3>Engineering Seat Allocator</h3>
-        <p>Automated seat allocation web app with student preference handling and matrix-based allocation logic. Deployed on PythonAnywhere; PostgreSQL locally, SQLite3 for hosted environment.</p>
-        <div class="project-tech"><span>Django</span><span>PostgreSQL</span><span>SQLite</span><span>PythonAnywhere</span></div>
+        <p>Automated seat allocation with student preference handling and matrix-based logic. Deployed on PythonAnywhere using SQLite; PostgreSQL locally.</p>
+        <div class="p-tech"><span>Django</span><span>PostgreSQL</span><span>SQLite</span><span>PythonAnywhere</span></div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="project-top">
-          <div class="project-status">Research</div>
-          <div class="project-links"><a href="https://github.com/nikhil-karthik-avvss" target="_blank">⌥</a></div>
-        </div>
+      <div class="p-card reveal">
+        <div class="p-top"><span class="p-tag">Research</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         <h3>Optimisation Algorithm Evaluation</h3>
-        <p>Comparative study of SGD, Momentum, Adam, RMSProp, Adagrad, Adadelta, LBFGS, and Photon across Rosenbrock, Rastrigin, Ackley, and Himmelblau benchmarks. Adaptive optimisers proved most stable.</p>
-        <div class="project-tech"><span>PyTorch</span><span>CUDA</span><span>Optimisation</span><span>Benchmarking</span></div>
+        <p>Compared SGD, Momentum, Adam, RMSProp, Adagrad, Adadelta, LBFGS, and Photon on Rosenbrock, Rastrigin, Ackley, and Himmelblau benchmarks. Adaptive optimisers proved most stable.</p>
+        <div class="p-tech"><span>PyTorch</span><span>CUDA</span><span>Optimisation</span><span>Benchmarking</span></div>
       </div>
 
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SKILLS -->
-  <section id="skills" class="section section-alt">
-    <div class="section-header">
-      <span class="section-number">04</span>
-      <h2 class="section-title">Skills</h2>
+<!-- SKILLS -->
+<section id="skills" class="sec sec-dark">
+  <div class="sec-wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Skills</h2>
     </div>
     <div class="skills-grid">
-      <div class="skill-group reveal">
-        <div class="skill-icon">{ }</div>
-        <h3>Languages</h3>
-        <div class="skill-pills"><span>Python</span><span>C++</span><span>Java</span><span>C</span><span>JavaScript</span></div>
-      </div>
-      <div class="skill-group reveal">
-        <div class="skill-icon">▣</div>
-        <h3>Frontend</h3>
-        <div class="skill-pills"><span>HTML/CSS</span><span>Vue.js</span><span>Next.js</span></div>
-      </div>
-      <div class="skill-group reveal">
-        <div class="skill-icon">⚙</div>
-        <h3>Backend</h3>
-        <div class="skill-pills"><span>Django</span><span>Spring Boot</span><span>Flask</span></div>
-      </div>
-      <div class="skill-group reveal">
-        <div class="skill-icon">◈</div>
-        <h3>Databases</h3>
-        <div class="skill-pills"><span>PostgreSQL</span><span>MySQL</span><span>SQLite</span><span>MongoDB</span><span>Neo4j</span><span>Cassandra</span><span>Redis</span></div>
-      </div>
-      <div class="skill-group reveal">
-        <div class="skill-icon">🧠</div>
-        <h3>ML / Data</h3>
-        <div class="skill-pills"><span>PyTorch</span><span>scikit-learn</span><span>NumPy</span><span>Pandas</span><span>Matplotlib</span><span>Seaborn</span></div>
-      </div>
-      <div class="skill-group reveal">
-        <div class="skill-icon">⚡</div>
-        <h3>Big Data &amp; Tools</h3>
-        <div class="skill-pills"><span>Hadoop</span><span>PySpark</span><span>Git</span><span>Linux</span><span>Scapy</span><span>Docker</span></div>
-      </div>
+      <div class="sk-card reveal"><div class="sk-icon">{ }</div><h3>Languages</h3><div class="sk-pills"><span>Python</span><span>C++</span><span>Java</span><span>C</span><span>JavaScript</span></div></div>
+      <div class="sk-card reveal"><div class="sk-icon">▣</div><h3>Frontend</h3><div class="sk-pills"><span>HTML/CSS</span><span>Vue.js</span><span>Next.js</span></div></div>
+      <div class="sk-card reveal"><div class="sk-icon">⚙</div><h3>Backend</h3><div class="sk-pills"><span>Django</span><span>Spring Boot</span><span>Flask</span></div></div>
+      <div class="sk-card reveal"><div class="sk-icon">◈</div><h3>Databases</h3><div class="sk-pills"><span>PostgreSQL</span><span>MySQL</span><span>SQLite</span><span>MongoDB</span><span>Neo4j</span><span>Cassandra</span><span>Redis</span></div></div>
+      <div class="sk-card reveal"><div class="sk-icon">🧠</div><h3>ML / Data</h3><div class="sk-pills"><span>PyTorch</span><span>scikit-learn</span><span>NumPy</span><span>Pandas</span><span>Matplotlib</span><span>Seaborn</span></div></div>
+      <div class="sk-card reveal"><div class="sk-icon">⚡</div><h3>Big Data &amp; Tools</h3><div class="sk-pills"><span>Hadoop</span><span>PySpark</span><span>Git</span><span>Linux</span><span>Scapy</span><span>Docker</span></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- GITHUB -->
-  <section id="github-section" class="section">
-    <div class="section-header">
-      <span class="section-number">05</span>
-      <h2 class="section-title">GitHub</h2>
+<!-- GITHUB -->
+<section id="github-section" class="sec">
+  <div class="sec-wrap">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">GitHub</h2>
     </div>
     <div id="repo-loading" class="repo-loading">Fetching repositories…</div>
-    <div id="repo-container" class="projects-grid" style="display:none;"></div>
-    <div style="text-align:center; margin-top:2.5rem;">
-      <a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="btn-ghost">View all on GitHub →</a>
+    <div id="repo-container" class="proj-grid" style="display:none;"></div>
+    <div class="gh-cta">
+      <a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="btn-outline">View all on GitHub →</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section section-alt">
-    <div class="section-header">
-      <span class="section-number">06</span>
-      <h2 class="section-title">Contact</h2>
+<!-- CONTACT -->
+<section id="contact" class="sec sec-dark">
+  <div class="sec-wrap">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title">Contact</h2>
     </div>
     <div class="contact-grid">
       <div class="contact-left">
         <p>Open to research collaborations, internship opportunities, and conversations about ML, systems, or software engineering.</p>
-        <p>The best way to reach me is by email — I try to respond within a day.</p>
+        <p>Best reached by email — I try to respond within a day.</p>
       </div>
       <div class="contact-links">
-        <a href="mailto:nikhilkarthik1avvss@gmail.com" class="contact-item">
+        <a href="mailto:nikhilkarthik1avvss@gmail.com" class="c-item reveal">
           <span class="c-icon">✉</span>
-          <div><span class="c-label">Email</span><span class="c-val">nikhilkarthik1avvss@gmail.com</span></div>
+          <div><span class="c-lbl">Email</span><span class="c-val">nikhilkarthik1avvss@gmail.com</span></div>
         </a>
-        <a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="contact-item">
+        <a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="c-item reveal">
           <span class="c-icon">⌥</span>
-          <div><span class="c-label">GitHub</span><span class="c-val">nikhil-karthik-avvss</span></div>
+          <div><span class="c-lbl">GitHub</span><span class="c-val">nikhil-karthik-avvss</span></div>
         </a>
-        <a href="https://www.linkedin.com/in/nikhil-karthik-avvss/" target="_blank" class="contact-item">
+        <a href="https://www.linkedin.com/in/nikhil-karthik-avvss/" target="_blank" class="c-item reveal">
           <span class="c-icon">◈</span>
-          <div><span class="c-label">LinkedIn</span><span class="c-val">nikhil-karthik-avvss</span></div>
+          <div><span class="c-lbl">LinkedIn</span><span class="c-val">nikhil-karthik-avvss</span></div>
         </a>
-        <a href="https://leetcode.com/u/navvss-nikhil-karthik/" target="_blank" class="contact-item">
+        <a href="https://leetcode.com/u/navvss-nikhil-karthik/" target="_blank" class="c-item reveal">
           <span class="c-icon">⚡</span>
-          <div><span class="c-label">LeetCode</span><span class="c-val">navvss-nikhil-karthik</span></div>
+          <div><span class="c-lbl">LeetCode</span><span class="c-val">navvss-nikhil-karthik</span></div>
         </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <span>© 2026 Nikhil Karthik S</span>
-    <span class="footer-mid">SSN College of Engineering, Chennai</span>
-    <span>Built from scratch.</span>
-  </footer>
+<footer class="footer">
+  <span>© 2026 Nikhil Karthik S</span>
+  <span class="footer-center">SSN College of Engineering, Chennai</span>
+  <span>Built from scratch.</span>
+</footer>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

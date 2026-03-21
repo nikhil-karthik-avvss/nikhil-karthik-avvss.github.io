@@ -1,94 +1,93 @@
 /* ── PARTICLES ── */
 particlesJS("particles-js", {
   particles: {
-    number: { value: 60, density: { enable: true, value_area: 900 } },
-    color: { value: "#22d3ee" },
+    number: { value: 55, density: { enable: true, value_area: 1000 } },
+    color: { value: ["#00e5ff", "#0ea5e9", "#6366f1"] },
     shape: { type: "circle" },
-    opacity: { value: 0.25, random: true },
+    opacity: { value: 0.2, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.05 } },
     size: { value: 2, random: true },
-    line_linked: {
-      enable: true, distance: 140,
-      color: "#22d3ee", opacity: 0.12, width: 1
-    },
-    move: { enable: true, speed: 1.2, random: true, out_mode: "out" }
+    line_linked: { enable: true, distance: 130, color: "#00e5ff", opacity: 0.08, width: 1 },
+    move: { enable: true, speed: 0.8, random: true, out_mode: "out", attract: { enable: true, rotateX: 600, rotateY: 1200 } }
   },
   interactivity: {
     detect_on: "canvas",
-    events: {
-      onhover: { enable: true, mode: "grab" },
-      onclick: { enable: true, mode: "push" }
-    },
-    modes: {
-      grab: { distance: 160, line_linked: { opacity: 0.4 } },
-      push: { particles_nb: 3 }
-    }
+    events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" } },
+    modes: { grab: { distance: 180, line_linked: { opacity: 0.3 } }, push: { particles_nb: 2 } }
   },
   retina_detect: true
 });
 
-/* ── CUSTOM CURSOR ── */
-const cursor = document.getElementById("cursor");
-if (cursor) {
-  document.addEventListener("mousemove", e => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top  = e.clientY + "px";
-  });
-  document.querySelectorAll("a, button, .project-card, .skill-group, .contact-item, .interest-item").forEach(el => {
-    el.addEventListener("mouseenter", () => {
-      cursor.style.transform = "translate(-50%, -50%) scale(2.5)";
-      cursor.style.opacity = "0.6";
-    });
-    el.addEventListener("mouseleave", () => {
-      cursor.style.transform = "translate(-50%, -50%) scale(1)";
-      cursor.style.opacity = "1";
-    });
+/* ── CURSOR ── */
+const cursorEl = document.getElementById("cursor");
+if (cursorEl) {
+  let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+  let tx = cx, ty = cy;
+
+  document.addEventListener("mousemove", e => { tx = e.clientX; ty = e.clientY; });
+
+  function animateCursor() {
+    cx += (tx - cx) * 0.18;
+    cy += (ty - cy) * 0.18;
+    cursorEl.style.left = cx + "px";
+    cursorEl.style.top  = cy + "px";
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  const hoverTargets = "a, button, .p-card, .sk-card, .r-card, .c-item, .int-item";
+  document.querySelectorAll(hoverTargets).forEach(el => {
+    el.addEventListener("mouseenter", () => cursorEl.classList.add("hovering"));
+    el.addEventListener("mouseleave", () => cursorEl.classList.remove("hovering"));
   });
 }
+
+/* ── CARD RADIAL GLOW ON MOUSE ── */
+document.querySelectorAll(".p-card").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width)  * 100;
+    const y = ((e.clientY - rect.top)  / rect.height) * 100;
+    card.style.setProperty("--mx", x + "%");
+    card.style.setProperty("--my", y + "%");
+  });
+});
 
 /* ── NAVBAR SCROLL ── */
 const navbar = document.getElementById("navbar");
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 60) navbar.classList.add("scrolled");
-  else navbar.classList.remove("scrolled");
+  navbar.classList.toggle("scrolled", window.scrollY > 60);
 }, { passive: true });
 
 /* ── MOBILE MENU ── */
-const toggleBtn = document.getElementById("nav-toggle");
+const toggleBtn  = document.getElementById("nav-toggle");
 const mobileMenu = document.getElementById("mobile-menu");
 if (toggleBtn && mobileMenu) {
   toggleBtn.addEventListener("click", () => mobileMenu.classList.toggle("open"));
-  mobileMenu.querySelectorAll("a").forEach(a => {
-    a.addEventListener("click", () => mobileMenu.classList.remove("open"));
-  });
+  mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => mobileMenu.classList.remove("open")));
 }
 
 /* ── SCROLL REVEAL ── */
-// Add js-ready to <body> so CSS hides .reveal elements only when JS is active.
-// This prevents the hosted version from leaving all cards invisible if the
-// observer fires before layout is complete (common on GitHub Pages).
 document.body.classList.add("js-ready");
 
-const revealObserver = new IntersectionObserver((entries) => {
+const revealObs = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add("visible"), i * 80);
+      setTimeout(() => entry.target.classList.add("visible"), i * 75);
     }
   });
-}, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+}, { threshold: 0.07, rootMargin: "0px 0px -40px 0px" });
 
 function initReveal() {
   document.querySelectorAll(".reveal").forEach(el => {
-    // Elements already in the viewport on load become visible immediately
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) {
       el.classList.add("visible");
     } else {
-      revealObserver.observe(el);
+      revealObs.observe(el);
     }
   });
 }
 
-// Small delay ensures layout is fully calculated before we check positions
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => setTimeout(initReveal, 50));
 } else {
@@ -96,27 +95,20 @@ if (document.readyState === "loading") {
 }
 
 /* ── GITHUB REPOS ── */
-
-// Fallback static repos — shown when API is rate-limited or unavailable
 const FALLBACK_REPOS = [
-  { name: "legal-assistant",         language: "Python",     description: "Police station management system with Mistral LLM chatbot, Django API, Next.js frontend, and Neo4j graph database.", url: "https://github.com/nikhil-karthik-avvss" },
-  { name: "qr-guard",                language: "Python",     description: "Malicious QR code detection using heuristic rules and a trained ML classifier to label URLs as safe, suspicious, or malicious.", url: "https://github.com/nikhil-karthik-avvss" },
-  { name: "silent-loop-detector",    language: "Python",     description: "Network monitoring tool detecting routing loops via TTL variation and packet timing, with a real-time Flask dashboard.", url: "https://github.com/nikhil-karthik-avvss" },
-  { name: "unet-change-detection",   language: "Python",     description: "U-Net segmentation model on the Inria aerial dataset for pixel-level change detection with CLAHE preprocessing.", url: "https://github.com/nikhil-karthik-avvss" },
-  { name: "lost-and-found",          language: "JavaScript", description: "Full-stack Lost & Found platform built with Vue.js, Spring Boot, and MongoDB featuring auth and claim workflows.", url: "https://github.com/nikhil-karthik-avvss" },
-  { name: "optimizer-benchmark",     language: "Python",     description: "Comparative evaluation of SGD, Adam, RMSProp, LBFGS and others on Rosenbrock, Rastrigin, Ackley benchmark functions.", url: "https://github.com/nikhil-karthik-avvss" },
+  { name: "plagcheck",            language: "Python",     description: "CLI tool comparing PDF assignments across text, code (AST), visuals (perceptual hashing), and structure. Three-stage extraction pipeline. Fully offline.",                     url: "https://github.com/nikhil-karthik-avvss" },
+  { name: "legal-assistant",      language: "Python",     description: "Police station management with Mistral LLM chatbot, Django API, Next.js frontend, and Neo4j graph database.",                                                              url: "https://github.com/nikhil-karthik-avvss" },
+  { name: "qr-guard",             language: "Python",     description: "Malicious QR code detection using heuristic rules and ML classifier to label URLs safe, suspicious, or malicious.",                                                        url: "https://github.com/nikhil-karthik-avvss" },
+  { name: "silent-loop-detector", language: "Python",     description: "Network loop detection via TTL variation and packet timing, with a real-time Flask dashboard.",                                                                             url: "https://github.com/nikhil-karthik-avvss" },
+  { name: "unet-change-detection",language: "Python",     description: "U-Net segmentation on Inria aerial dataset for pixel-level change detection with CLAHE preprocessing.",                                                                    url: "https://github.com/nikhil-karthik-avvss" },
+  { name: "lost-and-found",       language: "JavaScript", description: "Full-stack Lost & Found platform with Vue.js, Spring Boot, and MongoDB.",                                                                                                   url: "https://github.com/nikhil-karthik-avvss" },
 ];
 
 function renderRepos(repos) {
   const container = document.getElementById("repo-container");
   const loading   = document.getElementById("repo-loading");
   if (!container) return;
-
-  if (repos.length === 0) {
-    if (loading) loading.textContent = "No public repositories found.";
-    return;
-  }
-
+  if (repos.length === 0) { if (loading) loading.textContent = "No repositories found."; return; }
   if (loading) loading.style.display = "none";
   container.style.display = "grid";
 
@@ -127,63 +119,57 @@ function renderRepos(repos) {
     const updated = repo.updated_at
       ? new Date(repo.updated_at).toLocaleDateString("en-GB", { month: "short", year: "numeric" })
       : null;
-    const url     = repo.html_url || repo.url;
+    const url = repo.html_url || repo.url;
 
     const card = document.createElement("div");
-    card.className = "project-card reveal";
+    card.className = "p-card reveal";
     card.innerHTML = `
-      <div class="project-top">
-        <div class="project-status">${lang}</div>
-        <div class="project-links">
-          <a href="${url}" target="_blank" title="View on GitHub">⌥</a>
-        </div>
+      <div class="p-top">
+        <span class="p-tag">${lang}</span>
+        <a href="${url}" target="_blank" class="p-link">↗</a>
       </div>
       <h3>${repo.name}</h3>
       <p>${desc}</p>
-      <div class="project-tech">
+      <div class="p-tech">
         ${stars > 0 ? `<span>★ ${stars}</span>` : ""}
         ${updated ? `<span>Updated ${updated}</span>` : ""}
       </div>`;
     container.appendChild(card);
-    revealObserver.observe(card);
+
+    // attach card glow
+    card.addEventListener("mousemove", e => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--mx", ((e.clientX - rect.left) / rect.width * 100) + "%");
+      card.style.setProperty("--my", ((e.clientY - rect.top)  / rect.height * 100) + "%");
+    });
+
+    revealObs.observe(card);
   });
 }
 
 async function loadRepos() {
-  const loading = document.getElementById("repo-loading");
-
   try {
-    const [userRes, reposRes] = await Promise.all([
+    const [uRes, rRes] = await Promise.all([
       fetch("https://api.github.com/users/nikhil-karthik-avvss"),
       fetch("https://api.github.com/users/nikhil-karthik-avvss/repos?sort=updated&per_page=20")
     ]);
+    if (!uRes.ok || !rRes.ok) throw new Error("HTTP error");
 
-    // GitHub returns 200 even on rate-limit — check the body
-    if (!userRes.ok || !reposRes.ok) throw new Error("HTTP error");
+    const user  = await uRes.json();
+    const repos = await rRes.json();
 
-    const user  = await userRes.json();
-    const repos = await reposRes.json();
-
-    // Rate-limit response comes as an object with `message`, not an array
     if (!Array.isArray(repos) || repos.message) throw new Error(repos.message || "API error");
 
-    // Update hero repo count
-    const repoEl = document.getElementById("gh-repos");
-    if (repoEl && user.public_repos) repoEl.textContent = user.public_repos;
+    const el = document.getElementById("gh-repos");
+    if (el && user.public_repos) el.textContent = user.public_repos;
 
-    const filtered = repos
-      .filter(r => !r.fork && r.name !== "nikhil-karthik-avvss")
-      .slice(0, 6);
-
+    const filtered = repos.filter(r => !r.fork && r.name !== "nikhil-karthik-avvss").slice(0, 6);
     renderRepos(filtered.length > 0 ? filtered : FALLBACK_REPOS);
-
-  } catch (err) {
-    console.warn("GitHub API unavailable, using fallback:", err.message);
-    // Show fallback silently — section still looks complete
+  } catch (e) {
+    console.warn("GitHub API unavailable, using fallback:", e.message);
     renderRepos(FALLBACK_REPOS);
-    // Update repo count with a reasonable static number
-    const repoEl = document.getElementById("gh-repos");
-    if (repoEl && repoEl.textContent === "—") repoEl.textContent = "10+";
+    const el = document.getElementById("gh-repos");
+    if (el && el.textContent === "—") el.textContent = "10+";
   }
 }
 
