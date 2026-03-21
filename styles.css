@@ -65,7 +65,8 @@ sup { font-size: 0.55em; vertical-align: super; }
 ════════════════════════════════════════ */
 .cursor {
   position: fixed;
-  /* NO top/left here — JS sets them via style.left / style.top */
+  top: 0;
+  left: 0;
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -73,9 +74,12 @@ sup { font-size: 0.55em; vertical-align: super; }
   box-shadow: 0 0 8px #00e5ff, 0 0 20px rgba(0,229,255,0.4);
   pointer-events: none;
   z-index: 99999;
-  display: none;
-  /* -50% centres the circle on the JS-set left/top point */
+  /* Hidden by default — JS removes this when mouse first moves */
+  visibility: hidden;
+  /* JS sets this property directly to move the cursor */
+  /* translate(-50%,-50%) keeps the circle centred on the pointer */
   transform: translate(-50%, -50%);
+  /* Only transition the size, NOT position — position must be instant */
   transition: width 0.15s ease, height 0.15s ease, background 0.15s ease;
 }
 .cursor::after {

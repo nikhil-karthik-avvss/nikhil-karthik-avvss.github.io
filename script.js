@@ -30,13 +30,22 @@ initParticles();
   var el = document.getElementById("cursor");
   if (!el) return;
 
-  // CSS has NO top/left, so setting them via JS is clean with no conflict.
-  // transform:translate(-50%,-50%) in CSS centres the circle on that point.
+  // Move cursor by updating left/top directly.
+  // CSS has transform:translate(-50%,-50%) which centres it — this never changes.
+  // We use visibility:hidden → visible (not display:none) because display
+  // changes break the stacking context and cause the cursor to flash/disappear.
   document.addEventListener("mousemove", function(e) {
-    el.style.display = "block";
     el.style.left = e.clientX + "px";
     el.style.top  = e.clientY + "px";
+    el.style.visibility = "visible";
   }, { passive: true });
+
+  document.addEventListener("mouseleave", function() {
+    el.style.visibility = "hidden";
+  });
+  document.addEventListener("mouseenter", function() {
+    el.style.visibility = "visible";
+  });
 
   var HOVER = "a, button, .p-card, .sk-card, .r-card, .c-item, .int-item, .edu-card";
   document.addEventListener("mouseover", function(e) {
