@@ -671,10 +671,27 @@ sup { font-size: 0.55em; vertical-align: super; }
 /* ════════════════════════════════════════
    PROJECTS
 ════════════════════════════════════════ */
+.proj-featured-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.4rem;
+  margin-bottom: 2.5rem;
+}
+.proj-grid-label {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.proj-grid-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
 .proj-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.4rem;
+}
+@media (max-width: 720px) {
+  .proj-featured-grid { grid-template-columns: 1fr; }
 }
 .p-card {
   background: var(--surf);
@@ -697,7 +714,35 @@ sup { font-size: 0.55em; vertical-align: super; }
   box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 40px rgba(0,229,255,0.07);
 }
 .p-card:hover::after { opacity: 1; }
-.p-top { display: flex; align-items: center; justify-content: space-between; }
+.p-top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.p-top-left { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.p-top-right { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+
+.p-featured {
+  background: var(--surf2);
+  border-color: var(--cy-border);
+  box-shadow: 0 0 0 1px rgba(0,229,255,0.04), inset 0 0 60px rgba(0,229,255,0.02);
+}
+.p-featured::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--cy), var(--cy2), #6366f1);
+}
+.p-pin {
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--cy); opacity: 0.7;
+}
+.p-highlights {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 0.4rem; flex: 1;
+}
+.p-highlights li {
+  font-size: 0.78rem; color: var(--text2); line-height: 1.6;
+  padding-left: 1rem; position: relative;
+}
+.p-highlights li::before {
+  content: '›'; position: absolute; left: 0;
+  color: var(--cy); opacity: 0.7;
+}
 
 .p-tag {
   font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
@@ -1077,12 +1122,47 @@ sup { font-size: 0.55em; vertical-align: super; }
 }
 .ach-highlight:hover { border-color: rgba(245,158,11,0.5); }
 
-.ach-icon {
-  font-size: 1.8rem;
-  line-height: 1;
-  flex-shrink: 0;
-  margin-top: 0.1rem;
+/* Full-width scholarship card */
+.ach-wide { grid-column: 1 / -1; }
+
+/* Rank block replacing emoji */
+.ach-rank-block {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 0.25rem;
+  min-width: 68px; flex-shrink: 0; padding: 0.2rem 0;
 }
+.ach-rank-num {
+  font-family: var(--display); font-size: 1.6rem; font-weight: 800; line-height: 1;
+  background: linear-gradient(135deg, var(--cy), var(--cy2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(0,229,255,0.3));
+}
+.ach-rank-ctx {
+  font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text3);
+}
+.ach-rank-muted .ach-rank-num {
+  background: linear-gradient(135deg, var(--text2), var(--text3));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; filter: none;
+}
+
+/* RF monogram for scholarship */
+.ach-mono-block {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 0.25rem;
+  min-width: 68px; flex-shrink: 0;
+}
+.ach-mono-text {
+  font-family: var(--display); font-size: 1.5rem; font-weight: 800; line-height: 1;
+  color: #fbbf24; text-shadow: 0 0 20px rgba(245,158,11,0.4);
+}
+.ach-mono-sub {
+  font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text3);
+}
+
 .ach-label {
   font-size: 0.65rem;
   letter-spacing: 0.15em;

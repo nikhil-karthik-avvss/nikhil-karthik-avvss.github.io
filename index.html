@@ -348,39 +348,51 @@
 
     <div class="ach-grid">
 
-      <div class="ach-card ach-highlight reveal">
-        <div class="ach-icon">🏆</div>
+      <div class="ach-card ach-highlight ach-wide reveal">
+        <div class="ach-mono-block">
+          <span class="ach-mono-text">RF</span>
+          <span class="ach-mono-sub">Scholarship</span>
+        </div>
         <div class="ach-body">
-          <div class="ach-label">Scholarship</div>
+          <div class="ach-label">National Merit Scholarship · 2023</div>
           <h3>Reliance Foundation Undergraduate Scholarship</h3>
-          <p>Awarded the Reliance Foundation Undergraduate Scholarship — a merit-based national scholarship recognising academic excellence and potential.</p>
+          <p>Awarded the Reliance Foundation Undergraduate Scholarship — a highly competitive, merit-based national scholarship recognising academic excellence and future potential across India.</p>
         </div>
       </div>
 
       <div class="ach-card ach-highlight reveal">
-        <div class="ach-icon">🥉</div>
+        <div class="ach-rank-block">
+          <span class="ach-rank-num">3rd</span>
+          <span class="ach-rank-ctx">International</span>
+        </div>
         <div class="ach-body">
           <div class="ach-label">International Competition · MediaEval 2025</div>
-          <h3>3rd Place — GI Imaging Visual Question Answering</h3>
+          <h3>GI Imaging Visual Question Answering</h3>
           <p>Ranked 3rd internationally in Subtask 2 of MediaEval 2025 using BLIP-2 on the Kvasir-VQA-x1 medical imaging dataset. Published in CEUR Workshop Proceedings.</p>
         </div>
       </div>
 
       <div class="ach-card ach-highlight reveal">
-        <div class="ach-icon">📜</div>
+        <div class="ach-rank-block">
+          <span class="ach-rank-num">T10</span>
+          <span class="ach-rank-ctx">Shared Task</span>
+        </div>
         <div class="ach-body">
           <div class="ach-label">NLP Shared Task · ACL 2026</div>
-          <h3>Top 10 — DravidianLangTech Tamil Abusive Comment Classification</h3>
+          <h3>DravidianLangTech Tamil Abusive Comment Classification</h3>
           <p>Ranked in the top 10 at the DravidianLangTech 2026 shared task (ACL workshop) for Tamil abusive language detection. Macro F1: <strong>0.8001</strong>.</p>
         </div>
       </div>
 
       <div class="ach-card reveal">
-        <div class="ach-icon">⚡</div>
+        <div class="ach-rank-block ach-rank-muted">
+          <span class="ach-rank-num">SL</span>
+          <span class="ach-rank-ctx">Hackathon</span>
+        </div>
         <div class="ach-body">
-          <div class="ach-label">Hackathon</div>
-          <h3>Shortlisted — QR Guard Malicious QR Code Detection</h3>
-          <p>QR Guard was shortlisted at a national-level hackathon for its multi-layered ML-based approach to detecting malicious QR codes.</p>
+          <div class="ach-label">National Hackathon · Shortlisted</div>
+          <h3>QR Guard — Malicious QR Code Detection</h3>
+          <p>QR Guard was shortlisted at a national-level hackathon for its multi-layered ML-based approach to detecting and classifying malicious QR codes.</p>
         </div>
       </div>
 
@@ -448,21 +460,50 @@
       <span class="sec-num">06</span>
       <h2 class="sec-title">Projects</h2>
     </div>
+    <!-- Featured projects -->
+    <div class="proj-featured-grid">
+
+      <div class="p-card p-featured reveal">
+        <div class="p-top">
+          <div class="p-top-left"><span class="p-tag llm">LLM</span><span class="p-tag">Full-Stack</span></div>
+          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        </div>
+        <h3>Legal Assistant: Police Station Management</h3>
+        <p>Full-stack legal platform with a Mistral chatbot fine-tuned on Indian law data. Graph-native Neo4j backend for relationship-aware queries. Django REST API + Next.js frontend with case management workflows.</p>
+        <ul class="p-highlights">
+          <li>Fine-tuned Mistral on Indian Penal Code &amp; CrPC datasets</li>
+          <li>Neo4j graph backend for entity-relationship legal queries</li>
+          <li>Role-based access control for officers, lawyers &amp; admins</li>
+        </ul>
+        <div class="p-tech"><span>Django</span><span>Next.js</span><span>Neo4j</span><span>Mistral</span><span>HuggingFace</span><span>Python</span></div>
+      </div>
+
+      <div class="p-card p-featured reveal">
+        <div class="p-top">
+          <div class="p-top-left"><span class="p-tag cli">CLI Tool</span><span class="p-tag">Research</span></div>
+          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        </div>
+        <h3>plagcheck — PDF Plagiarism Detector</h3>
+        <p>Multi-modal CLI tool comparing two PDF assignments across four independent dimensions — runs entirely offline with no external API calls.</p>
+        <ul class="p-highlights">
+          <li>Text: cosine, Jaccard, Dice similarity across n-gram windows</li>
+          <li>Code: AST-level Python normalisation before diff</li>
+          <li>Visuals: perceptual hashing + tile-based image matching</li>
+        </ul>
+        <div class="p-tech"><span>Python</span><span>AST</span><span>pdfplumber</span><span>PyMuPDF</span><span>OCR</span><span>Perceptual Hash</span></div>
+      </div>
+
+    </div>
+
+    <!-- All other projects -->
+    <div class="proj-grid-label">More Projects</div>
     <div class="proj-grid">
 
       <div class="p-card reveal">
         <div class="p-top"><span class="p-tag kaggle">Kaggle</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         <h3>Hull Tactical Market Prediction</h3>
-        <p>ElasticNet regression model with feature engineering, EWM imputation, and 10-fold cross-validation. Trading signals optimised using Sharpe ratio — final Sharpe score ~3.99.</p>
-        <div class="p-tech"><span>Python</span><span>ElasticNet</span><span>scikit-learn</span><span>Feature Engineering</span><span>Time Series</span></div>
-      </div>
-
-
-      <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag cli">CLI Tool</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
-        <h3>plagcheck — PDF Plagiarism Detector</h3>
-        <p>CLI tool comparing two PDF assignments across text (cosine, Jaccard, Dice n-grams), code (AST-level Python normalisation), visuals (perceptual hashing + tile matching), and document structure. Three-stage extraction pipeline; runs fully offline.</p>
-        <div class="p-tech"><span>Python</span><span>AST</span><span>pdfplumber</span><span>PyMuPDF</span><span>OCR</span><span>Perceptual Hash</span></div>
+        <p>ElasticNet regression with feature engineering, EWM imputation, and 10-fold cross-validation. Trading signals optimised by Sharpe ratio — final score ~3.99.</p>
+        <div class="p-tech"><span>Python</span><span>ElasticNet</span><span>scikit-learn</span><span>Time Series</span></div>
       </div>
 
       <div class="p-card reveal">
@@ -470,13 +511,6 @@
         <h3>Real-Time Accident Detection System</h3>
         <p>IoT crash-detection using Raspberry Pi, sensors, GPS, and GSM. Dispatches emergency alerts on collision with SOS button and environmental monitoring. IFSP collaboration.</p>
         <div class="p-tech"><span>Raspberry Pi</span><span>Python</span><span>GPS/GSM</span><span>IoT</span></div>
-      </div>
-
-      <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag llm">LLM</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
-        <h3>Legal Assistant: Police Station Management</h3>
-        <p>Full-stack legal platform with a Mistral chatbot fine-tuned on Indian law data. Graph-native Neo4j backend for relationship-aware queries. Django API + Next.js frontend.</p>
-        <div class="p-tech"><span>Django</span><span>Next.js</span><span>Neo4j</span><span>Mistral</span><span>HuggingFace</span></div>
       </div>
 
       <div class="p-card reveal">
@@ -517,10 +551,9 @@
       <div class="p-card reveal">
         <div class="p-top"><span class="p-tag">Research</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         <h3>Optimisation Algorithm Evaluation</h3>
-        <p>Compared SGD, Momentum, Adam, RMSProp, Adagrad, Adadelta, LBFGS, and Photon on Rosenbrock, Rastrigin, Ackley, and Himmelblau benchmarks. Adaptive optimisers proved most stable.</p>
+        <p>Compared SGD, Momentum, Adam, RMSProp, Adagrad, Adadelta, LBFGS, and Photon on Rosenbrock, Rastrigin, Ackley, and Himmelblau benchmarks.</p>
         <div class="p-tech"><span>PyTorch</span><span>CUDA</span><span>Optimisation</span><span>Benchmarking</span></div>
       </div>
-
 
       <div class="p-card reveal">
         <div class="p-top"><span class="p-tag">Frontend</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
