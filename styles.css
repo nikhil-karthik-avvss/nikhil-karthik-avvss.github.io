@@ -945,10 +945,19 @@ sup { font-size: 0.55em; vertical-align: super; }
   padding: 0.22rem 0.65rem;
   border-radius: 2px;
 }
-.cert-badge.elite {
-  background: rgba(245,158,11,0.12);
+.cert-badges {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 0.35rem;
+}
+.cert-badge.elite-gold {
+  background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(251,191,36,0.08));
   color: #fbbf24;
-  border: 1px solid rgba(245,158,11,0.3);
+  border: 1px solid rgba(245,158,11,0.35);
+}
+.cert-pct {
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.18rem 0.55rem; border-radius: 2px;
+  background: var(--cy-dim); color: var(--cy);
+  border: 1px solid rgba(0,229,255,0.2);
 }
 .cert-card h3 {
   font-family: var(--display);
