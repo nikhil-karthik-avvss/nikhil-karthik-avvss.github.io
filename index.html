@@ -574,12 +574,54 @@
       <h2 class="sec-title">Skills</h2>
     </div>
     <div class="skills-grid">
-      <div class="sk-card reveal"><div class="sk-icon">{ }</div><h3>Languages</h3><div class="sk-pills"><span>Python</span><span>C++</span><span>Java</span><span>C</span><span>JavaScript</span></div></div>
-      <div class="sk-card reveal"><div class="sk-icon">▣</div><h3>Frontend</h3><div class="sk-pills"><span>HTML/CSS</span><span>Vue.js</span><span>Next.js</span></div></div>
-      <div class="sk-card reveal"><div class="sk-icon">⚙</div><h3>Backend</h3><div class="sk-pills"><span>Django</span><span>Spring Boot</span><span>Flask</span></div></div>
-      <div class="sk-card reveal"><div class="sk-icon">◈</div><h3>Databases</h3><div class="sk-pills"><span>PostgreSQL</span><span>MySQL</span><span>SQLite</span><span>MongoDB</span><span>Neo4j</span><span>Cassandra</span><span>Redis</span></div></div>
-      <div class="sk-card reveal"><div class="sk-icon">🧠</div><h3>ML / Data</h3><div class="sk-pills"><span>PyTorch</span><span>scikit-learn</span><span>NumPy</span><span>Pandas</span><span>Matplotlib</span><span>Seaborn</span></div></div>
-      <div class="sk-card reveal"><div class="sk-icon">⚡</div><h3>Big Data &amp; Tools</h3><div class="sk-pills"><span>Hadoop</span><span>PySpark</span><span>Git</span><span>Linux</span><span>Scapy</span><span>Docker</span></div></div>
+      <div class="sk-card sk-wide reveal">
+        <div class="sk-icon-block sk-ib-cyan">{ }</div>
+        <div class="sk-content">
+          <h3>Languages</h3>
+          <div class="sk-pills">
+            <span class="sk-primary">Python</span><span class="sk-primary">C++</span>
+            <span>Java</span><span>C</span><span>JavaScript</span>
+          </div>
+        </div>
+      </div>
+      <div class="sk-card sk-wide reveal">
+        <div class="sk-icon-block sk-ib-purple">ML</div>
+        <div class="sk-content">
+          <h3>ML / Data Science</h3>
+          <div class="sk-pills">
+            <span class="sk-primary">PyTorch</span><span class="sk-primary">scikit-learn</span>
+            <span>NumPy</span><span>Pandas</span><span>Matplotlib</span><span>Seaborn</span>
+          </div>
+        </div>
+      </div>
+      <div class="sk-card reveal">
+        <div class="sk-icon-block sk-ib-blue">FE</div>
+        <div class="sk-content">
+          <h3>Frontend</h3>
+          <div class="sk-pills"><span>HTML/CSS</span><span>Vue.js</span><span>Next.js</span></div>
+        </div>
+      </div>
+      <div class="sk-card reveal">
+        <div class="sk-icon-block sk-ib-green">BE</div>
+        <div class="sk-content">
+          <h3>Backend</h3>
+          <div class="sk-pills"><span class="sk-primary">Django</span><span>Spring Boot</span><span>Flask</span></div>
+        </div>
+      </div>
+      <div class="sk-card reveal">
+        <div class="sk-icon-block sk-ib-orange">DB</div>
+        <div class="sk-content">
+          <h3>Databases</h3>
+          <div class="sk-pills"><span class="sk-primary">PostgreSQL</span><span>MySQL</span><span>SQLite</span><span>MongoDB</span><span>Neo4j</span><span>Cassandra</span><span>Redis</span></div>
+        </div>
+      </div>
+      <div class="sk-card reveal">
+        <div class="sk-icon-block sk-ib-teal">BD</div>
+        <div class="sk-content">
+          <h3>Big Data &amp; Tools</h3>
+          <div class="sk-pills"><span>Hadoop</span><span>PySpark</span><span>Git</span><span>Linux</span><span>Scapy</span><span>Docker</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -591,7 +633,11 @@
       <span class="sec-num">08</span>
       <h2 class="sec-title">GitHub</h2>
     </div>
-    <div id="repo-loading" class="repo-loading">Fetching repositories…</div>
+    <div id="repo-loading" class="repo-skeleton-grid">
+      <div class="sk-repo-card"><div class="skr-tag"></div><div class="skr-title"></div><div class="skr-line"></div><div class="skr-line skr-line-short"></div><div class="skr-pills"><span></span><span></span><span></span></div></div>
+      <div class="sk-repo-card"><div class="skr-tag"></div><div class="skr-title"></div><div class="skr-line"></div><div class="skr-line skr-line-short"></div><div class="skr-pills"><span></span><span></span><span></span></div></div>
+      <div class="sk-repo-card"><div class="skr-tag"></div><div class="skr-title"></div><div class="skr-line"></div><div class="skr-line skr-line-short"></div><div class="skr-pills"><span></span><span></span><span></span></div></div>
+    </div>
     <div id="repo-container" class="proj-grid" style="display:none;"></div>
     <div class="gh-cta">
       <a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="btn-outline">View all on GitHub →</a>
@@ -608,25 +654,47 @@
     </div>
     <div class="contact-grid">
       <div class="contact-left">
-        <p>Open to research collaborations, internship opportunities, and conversations about ML, systems, or software engineering.</p>
-        <p>Best reached by email — I try to respond within a day.</p>
+        <p>Open to research collaborations and conversations about ML, NLP, systems, or software engineering.</p>
+        <p>Currently interning as an <strong>AI Software Engineer</strong> at DriveThruData LLP, Chennai. I still take time to respond to meaningful outreach — best reached by email.</p>
+        <div class="contact-status">
+          <div class="cs-row">
+            <span class="status-dot"></span>
+            <span>Responding within 24 hours</span>
+          </div>
+          <div class="cs-row">
+            <span class="cs-dot-neutral"></span>
+            <span>Open to research collaborations</span>
+          </div>
+        </div>
       </div>
       <div class="contact-links">
         <a href="mailto:nikhilkarthik1avvss@gmail.com" class="c-item reveal">
-          <span class="c-icon">✉</span>
-          <div><span class="c-lbl">Email</span><span class="c-val">nikhilkarthik1avvss@gmail.com</span></div>
+          <div class="c-icon-block c-ib-email">@</div>
+          <div class="c-text">
+            <span class="c-lbl">Email <span class="c-preferred">preferred</span></span>
+            <span class="c-val">nikhilkarthik1avvss@gmail.com</span>
+          </div>
         </a>
         <a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="c-item reveal">
-          <span class="c-icon">⌥</span>
-          <div><span class="c-lbl">GitHub</span><span class="c-val">nikhil-karthik-avvss</span></div>
+          <div class="c-icon-block c-ib-gh">GH</div>
+          <div class="c-text">
+            <span class="c-lbl">GitHub</span>
+            <span class="c-val">nikhil-karthik-avvss</span>
+          </div>
         </a>
         <a href="https://www.linkedin.com/in/nikhil-karthik-avvss/" target="_blank" class="c-item reveal">
-          <span class="c-icon">◈</span>
-          <div><span class="c-lbl">LinkedIn</span><span class="c-val">nikhil-karthik-avvss</span></div>
+          <div class="c-icon-block c-ib-li">Li</div>
+          <div class="c-text">
+            <span class="c-lbl">LinkedIn</span>
+            <span class="c-val">nikhil-karthik-avvss</span>
+          </div>
         </a>
-                <a href="https://leetcode.com/u/navvss-nikhil-karthik/" target="_blank" class="c-item reveal">
-          <span class="c-icon">⚡</span>
-          <div><span class="c-lbl">LeetCode</span><span class="c-val">navvss-nikhil-karthik</span></div>
+        <a href="https://leetcode.com/u/navvss-nikhil-karthik/" target="_blank" class="c-item reveal">
+          <div class="c-icon-block c-ib-lc">LC</div>
+          <div class="c-text">
+            <span class="c-lbl">LeetCode</span>
+            <span class="c-val">navvss-nikhil-karthik</span>
+          </div>
         </a>
       </div>
     </div>
@@ -634,9 +702,26 @@
 </section>
 
 <footer class="footer">
-  <span>© 2026 Nikhil Karthik S</span>
-  <span class="footer-center">SSN College of Engineering, Chennai</span>
-  <span>Built from scratch.</span>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#hero" class="footer-logo">
+        <span class="bracket">[</span>SNK<span class="bracket">]</span>
+      </a>
+      <span class="footer-tagline">Building at the intersection of ML &amp; Software</span>
+    </div>
+    <nav class="footer-nav">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="footer-copy">
+      <span>© 2026 Nikhil Karthik S</span>
+      <span class="footer-copy-dim">SSN College of Engineering, Chennai</span>
+    </div>
+  </div>
 </footer>
 
 <script src="script.js"></script>
