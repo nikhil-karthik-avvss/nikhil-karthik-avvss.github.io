@@ -158,7 +158,7 @@ sup { font-size: 0.55em; vertical-align: super; }
   min-height: 100vh;
   display: flex; flex-direction: column;
   justify-content: center; align-items: center;
-  text-align: center; padding: 120px 2rem 80px;
+  padding: 120px 2rem 80px;
   overflow: hidden;
 }
 .hero-bg-grid {
@@ -1007,12 +1007,14 @@ sup { font-size: 0.55em; vertical-align: super; }
   .hero-cta { justify-content: center; }
   .hero-eyebrow { justify-content: center; }
   .hero-photo-wrap { width: 180px; height: 180px; }
+  .hero-status { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .hero-aka { justify-content: center; }
 }
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .nav-toggle { display: block; }
   .r-card { grid-template-columns: 1fr; }
-  .r-badge { border-right: none; border-bottom: 1px solid var(--border); padding: 1rem; min-height: auto; }
   .hero-stats { padding: 1.2rem 1.5rem; gap: 1.5rem; }
   .hs-sep { height: 28px; }
   html, html * { cursor: auto !important; }
@@ -1188,8 +1190,7 @@ sup { font-size: 0.55em; vertical-align: super; }
 .edu-mark-note { color: var(--cy); opacity: 0.7; }
 .edu-mark-footnote {
   font-size: 0.7rem; color: var(--text3); font-style: italic;
-  line-height: 1.6; padding-left: 0.2rem;
-  border-left: 2px solid var(--border); padding-left: 0.75rem;
+  line-height: 1.6; border-left: 2px solid var(--border); padding-left: 0.75rem;
 }
 
 #particles-js canvas { pointer-events: none !important; }
