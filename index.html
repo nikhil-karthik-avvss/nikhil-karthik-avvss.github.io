@@ -182,9 +182,9 @@
     </div>
     <div class="edu-timeline">
 
-      <div class="edu-card reveal">
+      <div class="edu-card edu-active reveal">
         <div class="edu-left">
-          <div class="edu-dot"></div>
+          <div class="edu-dot edu-dot-pulse"></div>
           <div class="edu-line"></div>
         </div>
         <div class="edu-body">
@@ -197,6 +197,12 @@
           <div class="edu-detail">
             <span class="edu-stat"><span class="edu-stat-val">8.532</span><span class="edu-stat-lbl">CGPA</span></span>
             <span class="edu-stat-note">till 5th semester</span>
+          </div>
+          <div class="edu-progress">
+            <div class="edu-prog-track">
+              <div class="edu-prog-fill" style="width:60%"></div>
+            </div>
+            <span class="edu-prog-label">Year 3 of 5 &nbsp;·&nbsp; Semester 6</span>
           </div>
         </div>
       </div>
@@ -290,16 +296,44 @@
     </div>
     <div class="research-list">
 
-      <div class="r-card reveal">
-        <div class="r-badge">🥉 3rd</div>
+      <div class="r-card r-featured reveal">
+        <div class="r-feat-left">
+          <div class="r-feat-rank">3<sup>rd</sup></div>
+          <div class="r-feat-scope">International</div>
+          <div class="r-feat-year">2025</div>
+          <span class="r-status-pill published">Published</span>
+        </div>
         <div class="r-body">
+          <div class="r-venue-row">
+            <span class="r-conf">MediaEval 2025</span>
+            <span class="r-vsep">·</span>
+            <span class="r-track">Subtask 2: Endoscopy VQA</span>
+            <span class="r-vsep">·</span>
+            <span class="r-pub">CEUR Workshop Proceedings</span>
+          </div>
           <h3>BLIP-2 VQA with Multimodal Explanations for Gastrointestinal Imaging</h3>
-          <div class="r-venue">MediaEval 2025 — Subtask 2 &nbsp;·&nbsp; CEUR Workshop Proceedings</div>
-          <p>Applied BLIP-2 to the Kvasir-VQA-x1 dataset for VQA on endoscopy images, generating answers with explanations, attention maps, and confidence scores. Achieved 3rd place internationally.</p>
-          <div class="r-tags"><span>BLIP-2</span><span>Medical VQA</span><span>Vision-Language</span><span>Published</span></div>
+          <p>Applied BLIP-2 to the Kvasir-VQA-x1 dataset for visual question answering on endoscopy images, generating answers paired with natural-language explanations, attention maps, and confidence scores. Ranked 3rd internationally out of all competing teams.</p>
+          <div class="r-tags">
+            <span>BLIP-2</span><span>Medical VQA</span><span>Vision-Language</span>
+            <span>Attention Maps</span><span>Gastrointestinal Imaging</span>
+          </div>
         </div>
       </div>
 
+    </div>
+
+    <div class="r-pipeline">
+      <div class="rp-heading">
+        <span class="rp-label">In Preparation</span>
+        <span class="rp-line"></span>
+      </div>
+      <div class="rp-item">
+        <div class="rp-dot"></div>
+        <div class="rp-content">
+          <div class="rp-title">IndicBERT for Abusive Tamil Comment Classification</div>
+          <div class="rp-venue">DravidianLangTech 2026 — ACL Workshop &nbsp;·&nbsp; Macro F1: 0.8001 &nbsp;·&nbsp; Top 10</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
