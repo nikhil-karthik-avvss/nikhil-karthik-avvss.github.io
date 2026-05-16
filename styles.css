@@ -256,6 +256,24 @@ sup { font-size: 0.55em; vertical-align: super; }
 }
 .hn-2 em { font-style: normal; }
 
+.hero-aka {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+  margin-top: 0.9rem;
+  font-size: 0.68rem; letter-spacing: 0.08em;
+  opacity: 0; animation: fadeUp 0.7s 0.38s forwards;
+}
+.aka-label {
+  color: var(--text3); font-style: italic;
+}
+.aka-name {
+  color: var(--text2);
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  background: rgba(255,255,255,0.02);
+}
+.aka-sep { color: var(--text3); }
+
 .hero-roles {
   margin-top: 2rem;
   display: flex; flex-wrap: wrap; align-items: center;
