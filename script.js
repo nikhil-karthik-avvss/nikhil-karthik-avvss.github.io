@@ -68,6 +68,29 @@ document.querySelectorAll(".p-card").forEach(card => {
   });
 });
 
+/* ── THEME TOGGLE ── */
+(function() {
+  const btn = document.getElementById("theme-toggle");
+  if (!btn) return;
+
+  function applyTheme(t) {
+    document.documentElement.setAttribute("data-theme", t);
+    localStorage.setItem("theme", t);
+  }
+
+  btn.addEventListener("click", function() {
+    const current = document.documentElement.getAttribute("data-theme") || "dark";
+    const next = current === "light" ? "dark" : "light";
+
+    // Brief transition class for smooth color shift
+    document.body.classList.add("theme-transitioning");
+    applyTheme(next);
+    setTimeout(function() {
+      document.body.classList.remove("theme-transitioning");
+    }, 300);
+  });
+})();
+
 /* ── NAVBAR SCROLL ── */
 const navbar = document.getElementById("navbar");
 window.addEventListener("scroll", () => {

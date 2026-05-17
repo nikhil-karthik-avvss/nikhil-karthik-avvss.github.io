@@ -27,7 +27,51 @@ html, html * { cursor: none !important; }
   --r:         6px;
 }
 
-html { scroll-behavior: smooth; }
+/* Light mode variables */
+[data-theme="light"] {
+  --bg:        #f2f6fd;
+  --bg2:       #e6edf8;
+  --surf:      #d8e4f2;
+  --surf2:     #c8d6ea;
+  --cy:        #0077aa;
+  --cy2:       #005f8a;
+  --cy-dim:    rgba(0, 119, 170, 0.1);
+  --cy-glow:   rgba(0, 119, 170, 0.22);
+  --cy-border: rgba(0, 119, 170, 0.28);
+  --cy-bright: rgba(0, 119, 170, 0.5);
+  --text:      #0a1928;
+  --text2:     #2d4a6a;
+  --text3:     #5c7a99;
+  --border:    rgba(0, 30, 70, 0.1);
+  --border2:   rgba(0, 30, 70, 0.16);
+}
+
+/* Respect system preference when no stored choice */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --bg:        #f2f6fd;
+    --bg2:       #e6edf8;
+    --surf:      #d8e4f2;
+    --surf2:     #c8d6ea;
+    --cy:        #0077aa;
+    --cy2:       #005f8a;
+    --cy-dim:    rgba(0, 119, 170, 0.1);
+    --cy-glow:   rgba(0, 119, 170, 0.22);
+    --cy-border: rgba(0, 119, 170, 0.28);
+    --cy-bright: rgba(0, 119, 170, 0.5);
+    --text:      #0a1928;
+    --text2:     #2d4a6a;
+    --text3:     #5c7a99;
+    --border:    rgba(0, 30, 70, 0.1);
+    --border2:   rgba(0, 30, 70, 0.16);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cy-border) var(--bg2);
+}
 
 body {
   font-family: var(--mono);
@@ -39,6 +83,26 @@ body {
   cursor: none;
   overflow-x: hidden;
 }
+
+/* Theme transition — applied briefly on toggle to smooth the switch */
+body.theme-transitioning,
+body.theme-transitioning * {
+  transition: background-color 0.25s ease, color 0.25s ease,
+              border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; background: var(--bg); }
+::-webkit-scrollbar-track { background: var(--bg2); border-radius: 3px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--cy), var(--cy2));
+  border-radius: 3px;
+  opacity: 0.7;
+}
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: 0 0 8px var(--cy-glow);
+}
+::-webkit-scrollbar-corner { background: var(--bg2); }
 
 a { color: inherit; text-decoration: none; }
 strong { color: var(--cy); font-weight: 500; }
@@ -138,6 +202,41 @@ sup { font-size: 0.55em; vertical-align: super; }
   display: none; background: none; border: none;
   color: var(--text); font-size: 1.3rem; cursor: pointer;
 }
+.theme-toggle {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; flex-shrink: 0;
+  background: var(--cy-dim); border: 1px solid var(--cy-border);
+  border-radius: var(--r); color: var(--cy);
+  cursor: pointer; transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
+  margin-left: 1rem;
+}
+.theme-toggle:hover {
+  background: var(--cy-border);
+  box-shadow: 0 0 12px var(--cy-glow);
+}
+.theme-toggle svg { display: block; flex-shrink: 0; }
+
+/* Show sun (→ go light) in dark mode; moon (→ go dark) in light mode */
+[data-theme="dark"]  .icon-sun  { display: block; }
+[data-theme="dark"]  .icon-moon { display: none;  }
+[data-theme="light"] .icon-sun  { display: none;  }
+[data-theme="light"] .icon-moon { display: block; }
+
+/* Light mode: fix navbar scrolled state */
+[data-theme="light"] #navbar {
+  background: rgba(242,246,253,0.85);
+  border-color: var(--border);
+}
+[data-theme="light"] #navbar.scrolled {
+  background: rgba(242,246,253,0.97);
+  border-color: var(--cy-border);
+}
+
+/* Light mode: noise overlay less prominent */
+[data-theme="light"] .noise-overlay { opacity: 0.15; }
+
+/* Light mode: particles subtler */
+[data-theme="light"] #particles-js { opacity: 0.45; }
 .mobile-menu {
   display: none; flex-direction: column;
   background: var(--bg2); border-top: 1px solid var(--border);
