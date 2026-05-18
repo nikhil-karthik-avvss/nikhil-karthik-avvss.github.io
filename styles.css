@@ -29,19 +29,19 @@ html, html * { cursor: none !important; }
 
 /* Light mode variables */
 [data-theme="light"] {
-  --bg:        #f2f6fd;
-  --bg2:       #e6edf8;
-  --surf:      #d8e4f2;
-  --surf2:     #c8d6ea;
+  --bg:        #eef2fa;
+  --bg2:       #e3eaf6;
+  --surf:      #ffffff;
+  --surf2:     #f3f7ff;
   --cy:        #0077aa;
   --cy2:       #005f8a;
-  --cy-dim:    rgba(0, 119, 170, 0.1);
-  --cy-glow:   rgba(0, 119, 170, 0.22);
-  --cy-border: rgba(0, 119, 170, 0.28);
-  --cy-bright: rgba(0, 119, 170, 0.5);
+  --cy-dim:    rgba(0, 119, 170, 0.08);
+  --cy-glow:   rgba(0, 119, 170, 0.2);
+  --cy-border: rgba(0, 119, 170, 0.22);
+  --cy-bright: rgba(0, 119, 170, 0.45);
   --text:      #0a1928;
-  --text2:     #2d4a6a;
-  --text3:     #5c7a99;
+  --text2:     #334e68;
+  --text3:     #5f7a95;
   --border:    rgba(0, 30, 70, 0.1);
   --border2:   rgba(0, 30, 70, 0.16);
 }
@@ -49,19 +49,19 @@ html, html * { cursor: none !important; }
 /* Respect system preference when no stored choice */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
-    --bg:        #f2f6fd;
-    --bg2:       #e6edf8;
-    --surf:      #d8e4f2;
-    --surf2:     #c8d6ea;
+    --bg:        #eef2fa;
+    --bg2:       #e3eaf6;
+    --surf:      #ffffff;
+    --surf2:     #f3f7ff;
     --cy:        #0077aa;
     --cy2:       #005f8a;
-    --cy-dim:    rgba(0, 119, 170, 0.1);
-    --cy-glow:   rgba(0, 119, 170, 0.22);
-    --cy-border: rgba(0, 119, 170, 0.28);
-    --cy-bright: rgba(0, 119, 170, 0.5);
+    --cy-dim:    rgba(0, 119, 170, 0.08);
+    --cy-glow:   rgba(0, 119, 170, 0.2);
+    --cy-border: rgba(0, 119, 170, 0.22);
+    --cy-bright: rgba(0, 119, 170, 0.45);
     --text:      #0a1928;
-    --text2:     #2d4a6a;
-    --text3:     #5c7a99;
+    --text2:     #334e68;
+    --text3:     #5f7a95;
     --border:    rgba(0, 30, 70, 0.1);
     --border2:   rgba(0, 30, 70, 0.16);
   }
@@ -224,19 +224,159 @@ sup { font-size: 0.55em; vertical-align: super; }
 
 /* Light mode: fix navbar scrolled state */
 [data-theme="light"] #navbar {
-  background: rgba(242,246,253,0.85);
+  background: rgba(238,242,250,0.88);
   border-color: var(--border);
 }
 [data-theme="light"] #navbar.scrolled {
-  background: rgba(242,246,253,0.97);
+  background: rgba(238,242,250,0.97);
   border-color: var(--cy-border);
 }
 
 /* Light mode: noise overlay less prominent */
-[data-theme="light"] .noise-overlay { opacity: 0.15; }
+[data-theme="light"] .noise-overlay { opacity: 0.12; }
 
 /* Light mode: particles subtler */
-[data-theme="light"] #particles-js { opacity: 0.45; }
+[data-theme="light"] #particles-js { opacity: 0.35; }
+
+/* ════════════════════════════════════════
+   LIGHT MODE — COMPREHENSIVE OVERRIDES
+════════════════════════════════════════ */
+
+/* Cursor — use theme cyan, no blinding glow */
+[data-theme="light"] .cursor {
+  border-color: var(--cy);
+  box-shadow: 0 0 6px var(--cy-glow), 0 0 14px var(--cy-dim);
+}
+[data-theme="light"] .cursor::after { background: var(--cy); }
+[data-theme="light"] .cursor.hovering { background: var(--cy-dim); }
+
+/* Hero background grid — dark tinted lines on light bg */
+[data-theme="light"] .hero-bg-grid {
+  background-image:
+    linear-gradient(rgba(0,30,70,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,30,70,0.05) 1px, transparent 1px);
+}
+
+/* Hero glows — visible on light bg */
+[data-theme="light"] .hero-glow-1 {
+  background: radial-gradient(ellipse, rgba(0,119,170,0.1) 0%, transparent 70%);
+}
+[data-theme="light"] .hero-glow-2 {
+  background: radial-gradient(ellipse, rgba(99,102,241,0.07) 0%, transparent 70%);
+}
+
+/* Hero name gradient — readable on light */
+[data-theme="light"] .hn-2 {
+  background: linear-gradient(135deg, var(--cy) 0%, var(--cy2) 60%, #4f46e5 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  filter: none;
+}
+
+/* Hero photo — tone down the dark bottom shadow */
+[data-theme="light"] .hero-photo {
+  box-shadow:
+    0 0 0 5px rgba(0,119,170,0.12),
+    0 0 30px rgba(0,119,170,0.12),
+    0 12px 40px rgba(0,30,70,0.15);
+}
+
+/* Hero photo outer ring — visible on light */
+[data-theme="light"] .hero-photo-wrap::after {
+  border-bottom-color: rgba(0,119,170,0.3);
+  border-left-color:   rgba(0,119,170,0.3);
+}
+
+/* Hero tag elements — fix transparent white backgrounds */
+[data-theme="light"] .aka-name {
+  background: rgba(0,30,70,0.04); border-color: var(--border2);
+}
+[data-theme="light"] .hr-tag {
+  background: rgba(0,30,70,0.04); border-color: var(--border2);
+}
+
+/* All card hover shadows — replace heavy dark with soft blue-tinted */
+[data-theme="light"] .exp-card:hover,
+[data-theme="light"] .r-card:hover,
+[data-theme="light"] .p-card:hover,
+[data-theme="light"] .sk-card:hover,
+[data-theme="light"] .ach-card:hover {
+  box-shadow: 0 8px 32px rgba(0,30,70,0.12), 0 0 0 1px var(--cy-border);
+}
+[data-theme="light"] .c-item:hover {
+  box-shadow: 0 4px 20px rgba(0,30,70,0.1);
+}
+
+/* P-card radial glow on hover */
+[data-theme="light"] .p-card::after {
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(0,119,170,0.05) 0%, transparent 60%);
+}
+
+/* Featured project card */
+[data-theme="light"] .p-featured {
+  box-shadow: 0 0 0 1px var(--cy-border), inset 0 0 24px rgba(0,119,170,0.03);
+}
+
+/* Button shadows */
+[data-theme="light"] .btn-prime:hover {
+  box-shadow: 0 0 20px var(--cy-glow), 0 8px 20px rgba(0,30,70,0.12);
+}
+[data-theme="light"] .btn-outline:hover {
+  box-shadow: 0 0 14px var(--cy-dim);
+}
+
+/* ── HARDCODED CYAN RGBA IN TAGS/ICONS ── */
+[data-theme="light"] .curr-tag.interning {
+  background: var(--cy-dim); border-color: var(--cy-border);
+}
+[data-theme="light"] .exp-tags span       { border-color: var(--cy-border); }
+[data-theme="light"] .p-tag               { border-color: var(--cy-border); }
+[data-theme="light"] .r-tags span         { border-color: var(--cy-border); }
+[data-theme="light"] .sk-ib-cyan          { background: var(--cy-dim); border-color: var(--cy-border); }
+[data-theme="light"] .sk-primary          { border-color: var(--cy-border) !important; }
+[data-theme="light"] .c-ib-email          { background: var(--cy-dim); border-color: var(--cy-border); }
+[data-theme="light"] .c-preferred         { border-color: var(--cy-border); }
+[data-theme="light"] .c-ib-gh             { background: rgba(0,30,70,0.05); border-color: var(--border2); }
+
+/* R-feat rank glow — invisible on light, remove it */
+[data-theme="light"] .r-feat-rank { filter: none; }
+[data-theme="light"] .ach-rank-num { filter: none; }
+
+/* ── COLORFUL TAGS — DARK VERSIONS FOR CONTRAST ON LIGHT BG ── */
+
+/* Status / activity tags */
+[data-theme="light"] .curr-tag.writing  { color: #5b21b6; background: rgba(91,33,182,0.08);  border-color: rgba(91,33,182,0.25);  }
+[data-theme="light"] .curr-tag.building { color: #0f766e; background: rgba(15,118,110,0.08); border-color: rgba(15,118,110,0.25); }
+[data-theme="light"] .curr-tag.seeking  { color: #15803d; background: rgba(21,128,61,0.08);  border-color: rgba(21,128,61,0.25);  }
+
+/* Project tags */
+[data-theme="light"] .p-tag.ongoing  { color: #15803d; background: rgba(21,128,61,0.08);   border-color: rgba(21,128,61,0.25);   }
+[data-theme="light"] .p-tag.hack     { color: #c2410c; background: rgba(194,65,12,0.08);   border-color: rgba(194,65,12,0.25);   }
+[data-theme="light"] .p-tag.llm      { color: #6d28d9; background: rgba(109,40,217,0.08);  border-color: rgba(109,40,217,0.25);  }
+[data-theme="light"] .p-tag.cli      { color: #3730a3; background: rgba(55,48,163,0.08);   border-color: rgba(55,48,163,0.25);   }
+[data-theme="light"] .p-tag.kaggle   { color: #0f766e; background: rgba(15,118,110,0.08);  border-color: rgba(15,118,110,0.25);  }
+
+/* Skill icon blocks */
+[data-theme="light"] .sk-ib-purple { color: #6d28d9; background: rgba(109,40,217,0.08);  border-color: rgba(109,40,217,0.22); }
+[data-theme="light"] .sk-ib-blue   { color: #3730a3; background: rgba(55,48,163,0.08);   border-color: rgba(55,48,163,0.22);  }
+[data-theme="light"] .sk-ib-green  { color: #15803d; background: rgba(21,128,61,0.08);   border-color: rgba(21,128,61,0.22);  }
+[data-theme="light"] .sk-ib-orange { color: #c2410c; background: rgba(194,65,12,0.08);   border-color: rgba(194,65,12,0.22);  }
+[data-theme="light"] .sk-ib-teal   { color: #0f766e; background: rgba(15,118,110,0.08);  border-color: rgba(15,118,110,0.22); }
+
+/* Contact icon blocks */
+[data-theme="light"] .c-ib-li { color: #3730a3; background: rgba(55,48,163,0.08);  border-color: rgba(55,48,163,0.22);  }
+[data-theme="light"] .c-ib-lc { color: #c2410c; background: rgba(194,65,12,0.08);  border-color: rgba(194,65,12,0.22);  }
+
+/* Experience / research status badges */
+[data-theme="light"] .exp-badge.current        { color: #15803d; background: rgba(21,128,61,0.08);  border-color: rgba(21,128,61,0.25); }
+[data-theme="light"] .r-status-pill.published  { color: #15803d; background: rgba(21,128,61,0.08);  border-color: rgba(21,128,61,0.25); }
+
+/* Achievement scholarship monogram — yellow is unreadable on white */
+[data-theme="light"] .ach-mono-text {
+  color: #b45309;
+  text-shadow: none;
+}
+
+/* Achievement gold border highlight stays amber (fine on light) */
 .mobile-menu {
   display: none; flex-direction: column;
   background: var(--bg2); border-top: 1px solid var(--border);
