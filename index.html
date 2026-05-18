@@ -480,7 +480,7 @@
           <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         </div>
         <h3>Legal Assistant: Police Station Management</h3>
-        <p>Full-stack legal platform with a Mistral chatbot fine-tuned on Indian law data. Graph-native Neo4j backend for relationship-aware queries. Django REST API + Next.js frontend with case management workflows.</p>
+        <p>Full-stack legal platform with a Mistral chatbot fine-tuned on Indian law data. Graph-native Neo4j backend for relationship-aware queries. Django REST API + Next.js frontend.</p>
         <ul class="p-highlights">
           <li>Fine-tuned Mistral on Indian Penal Code &amp; CrPC datasets</li>
           <li>Neo4j graph backend for entity-relationship legal queries</li>
@@ -491,17 +491,47 @@
 
       <div class="p-card p-featured reveal">
         <div class="p-top">
-          <div class="p-top-left"><span class="p-tag cli">CLI Tool</span><span class="p-tag">Research</span></div>
+          <div class="p-top-left"><span class="p-tag">Django</span><span class="p-tag">Full-Stack</span></div>
           <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         </div>
-        <h3>plagcheck — PDF Plagiarism Detector</h3>
-        <p>Multi-modal CLI tool comparing two PDF assignments across four independent dimensions — runs entirely offline with no external API calls.</p>
+        <h3>Engineering Seat Allocator</h3>
+        <p>Automated college seat allocation portal with student preference handling, matrix-based allocation logic, and multi-round waitlist processing. Live on PythonAnywhere.</p>
         <ul class="p-highlights">
-          <li>Text: cosine, Jaccard, Dice similarity across n-gram windows</li>
-          <li>Code: AST-level Python normalisation before diff</li>
-          <li>Visuals: perceptual hashing + tile-based image matching</li>
+          <li>Matrix-driven allocation respecting category &amp; preference order</li>
+          <li>Multi-round waitlist with automatic seat re-distribution</li>
+          <li>Deployed on PythonAnywhere; PostgreSQL locally, SQLite in prod</li>
         </ul>
-        <div class="p-tech"><span>Python</span><span>AST</span><span>pdfplumber</span><span>PyMuPDF</span><span>OCR</span><span>Perceptual Hash</span></div>
+        <div class="p-tech"><span>Django</span><span>PostgreSQL</span><span>SQLite</span><span>PythonAnywhere</span></div>
+      </div>
+
+      <div class="p-card p-featured reveal">
+        <div class="p-top">
+          <div class="p-top-left"><span class="p-tag hack">Hackathon Finalist</span><span class="p-tag">Security</span></div>
+          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        </div>
+        <h3>QR Guard — Malicious QR Detection</h3>
+        <p>End-to-end QR threat scanner that traces redirect chains and classifies URLs as safe, suspicious, or malicious using heuristic rules and a trained ML classifier.</p>
+        <ul class="p-highlights">
+          <li>Multi-hop redirect tracing with domain reputation checks</li>
+          <li>Heuristic rule engine + ML classifier for three-tier labelling</li>
+          <li>Hackathon finalist — real-time scanning with confidence scores</li>
+        </ul>
+        <div class="p-tech"><span>Python</span><span>scikit-learn</span><span>URL Analysis</span><span>Heuristics</span></div>
+      </div>
+
+      <div class="p-card p-featured reveal">
+        <div class="p-top">
+          <div class="p-top-left"><span class="p-tag kaggle">Kaggle</span><span class="p-tag">Finance</span></div>
+          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        </div>
+        <h3>Hull Tactical Market Prediction</h3>
+        <p>Kaggle competition entry predicting market returns for Hull Tactical Asset Management. Rigorous time-series discipline throughout feature engineering and validation.</p>
+        <ul class="p-highlights">
+          <li>ElasticNet regression with EWM imputation &amp; feature engineering</li>
+          <li>10-fold purged cross-validation, Sharpe ratio optimisation</li>
+          <li>Final competition score ~3.99 on held-out market data</li>
+        </ul>
+        <div class="p-tech"><span>Python</span><span>ElasticNet</span><span>scikit-learn</span><span>Time Series</span></div>
       </div>
 
     </div>
@@ -511,10 +541,10 @@
     <div class="proj-grid">
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag kaggle">Kaggle</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
-        <h3>Hull Tactical Market Prediction</h3>
-        <p>ElasticNet regression with feature engineering, EWM imputation, and 10-fold cross-validation. Trading signals optimised by Sharpe ratio — final score ~3.99.</p>
-        <div class="p-tech"><span>Python</span><span>ElasticNet</span><span>scikit-learn</span><span>Time Series</span></div>
+        <div class="p-top"><span class="p-tag cli">CLI Tool</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        <h3>plagcheck — PDF Plagiarism Detector</h3>
+        <p>Multi-modal CLI tool comparing PDF assignments across text, code (AST), visuals (perceptual hashing), and structure — fully offline, no external API calls.</p>
+        <div class="p-tech"><span>Python</span><span>AST</span><span>pdfplumber</span><span>PyMuPDF</span><span>OCR</span></div>
       </div>
 
       <div class="p-card reveal">
@@ -522,13 +552,6 @@
         <h3>Real-Time Accident Detection System</h3>
         <p>IoT crash-detection using Raspberry Pi, sensors, GPS, and GSM. Dispatches emergency alerts on collision with SOS button and environmental monitoring. IFSP collaboration.</p>
         <div class="p-tech"><span>Raspberry Pi</span><span>Python</span><span>GPS/GSM</span><span>IoT</span></div>
-      </div>
-
-      <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag hack">Hackathon Finalist</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
-        <h3>QR Guard — Malicious QR Detection</h3>
-        <p>Scans QR codes, extracts and traces URLs, and classifies threats as safe/suspicious/malicious using heuristic rules and a trained ML classifier.</p>
-        <div class="p-tech"><span>Python</span><span>ML</span><span>URL Analysis</span><span>Heuristics</span></div>
       </div>
 
       <div class="p-card reveal">
@@ -553,13 +576,6 @@
       </div>
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag">Django</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
-        <h3>Engineering Seat Allocator</h3>
-        <p>Automated seat allocation with student preference handling and matrix-based logic. Deployed on PythonAnywhere using SQLite; PostgreSQL locally.</p>
-        <div class="p-tech"><span>Django</span><span>PostgreSQL</span><span>SQLite</span><span>PythonAnywhere</span></div>
-      </div>
-
-      <div class="p-card reveal">
         <div class="p-top"><span class="p-tag">Research</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         <h3>Optimisation Algorithm Evaluation</h3>
         <p>Compared SGD, Momentum, Adam, RMSProp, Adagrad, Adadelta, LBFGS, and Photon on Rosenbrock, Rastrigin, Ackley, and Himmelblau benchmarks.</p>
@@ -569,7 +585,7 @@
       <div class="p-card reveal">
         <div class="p-top"><span class="p-tag">Frontend</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
         <h3>CSE Department Website</h3>
-        <p>Static website for the Computer Science & Engineering department. Built with clean HTML, CSS, and JavaScript.</p>
+        <p>Static website for the Computer Science &amp; Engineering department. Built with clean HTML, CSS, and JavaScript.</p>
         <div class="p-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
       </div>
 
@@ -682,8 +698,15 @@
         <a href="mailto:nikhilkarthik1avvss@gmail.com" class="c-item reveal">
           <div class="c-icon-block c-ib-email">@</div>
           <div class="c-text">
-            <span class="c-lbl">Email <span class="c-preferred">preferred</span></span>
+            <span class="c-lbl">Personal Email <span class="c-preferred">preferred</span></span>
             <span class="c-val">nikhilkarthik1avvss@gmail.com</span>
+          </div>
+        </a>
+        <a href="mailto:nikhilkarthik2370024@ssn.edu.in" class="c-item reveal">
+          <div class="c-icon-block c-ib-ssn">@</div>
+          <div class="c-text">
+            <span class="c-lbl">Academic Email <span class="c-preferred c-ssn-pill">SSN</span></span>
+            <span class="c-val">nikhilkarthik2370024@ssn.edu.in</span>
           </div>
         </a>
         <a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="c-item reveal">
