@@ -1212,13 +1212,8 @@ sup { font-size: 0.55em; vertical-align: super; }
 }
 
 /* ════════════════════════════════════════
-   REVEAL
+   REVEAL — base (overridden at end of file)
 ════════════════════════════════════════ */
-.js-ready .reveal {
-  opacity: 0; transform: translateY(22px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
-.js-ready .reveal.visible { opacity: 1; transform: none; }
 
 /* ════════════════════════════════════════
    KEYFRAMES
@@ -1645,3 +1640,221 @@ sup { font-size: 0.55em; vertical-align: super; }
   color: var(--text3);
   letter-spacing: 0.04em;
 }
+
+/* ════════════════════════════════════════
+   SCROLL PROGRESS BAR
+════════════════════════════════════════ */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; z-index: 200;
+  height: 2px; width: 0%;
+  background: linear-gradient(90deg, var(--cy), var(--cy2), #6366f1);
+  pointer-events: none;
+  transition: width 0.08s linear;
+  box-shadow: 0 0 8px var(--cy-glow);
+}
+
+/* ════════════════════════════════════════
+   IMPROVED REVEAL ANIMATION
+════════════════════════════════════════ */
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.js-ready .reveal.visible { opacity: 1; transform: none; }
+
+/* Slide from left variant (applied via JS/class) */
+.js-ready .reveal-left {
+  opacity: 0; transform: translateX(-32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.js-ready .reveal-left.visible { opacity: 1; transform: none; }
+
+/* ════════════════════════════════════════
+   ACTIVE NAV LINK
+════════════════════════════════════════ */
+.nav-links a.nav-active { color: var(--cy); }
+.nav-links a.nav-active::after { width: 100%; }
+
+/* ════════════════════════════════════════
+   EDUCATION PROGRESS BAR ANIMATION
+════════════════════════════════════════ */
+.edu-prog-fill {
+  width: 0 !important; /* always start at 0; JS sets final width */
+  transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.edu-prog-fill.animated {
+  /* width set inline by JS */
+  width: var(--target-w) !important;
+}
+
+/* Timeline line grow animation */
+.js-ready .edu-line {
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+.js-ready .edu-card.visible .edu-line { transform: scaleY(1); }
+
+/* ════════════════════════════════════════
+   SK-CARD SPOTLIGHT (matches p-card)
+════════════════════════════════════════ */
+.sk-card::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  border-radius: var(--r);
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(0,229,255,0.045) 0%, transparent 65%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.sk-card:hover::after { opacity: 1; }
+
+/* ════════════════════════════════════════
+   INTEREST GRID ICONS
+════════════════════════════════════════ */
+.int-icon {
+  width: 15px; height: 15px; flex-shrink: 0;
+  color: var(--cy); opacity: 0.9;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.int-item:hover .int-icon { transform: scale(1.15); opacity: 1; }
+.int-item {
+  display: flex; align-items: center; gap: 0.55rem;
+}
+
+/* ════════════════════════════════════════
+   CERT CARD REDESIGN — WITH IMAGE
+════════════════════════════════════════ */
+.cert-card {
+  display: flex; flex-direction: column;
+  padding: 0; /* image sits flush at top */
+}
+
+.cert-thumb-wrap {
+  position: relative;
+  width: 100%; padding-top: 63%; /* 841/1190 ≈ A4 landscape */
+  overflow: hidden; cursor: pointer;
+  background: var(--surf2);
+  border: none; outline: none;
+  flex-shrink: 0;
+  border-radius: var(--r) var(--r) 0 0;
+}
+.cert-thumb {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s;
+}
+.cert-thumb-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.5rem;
+  background: rgba(2, 6, 15, 0.55);
+  color: #fff; font-size: 0.72rem; font-family: var(--mono);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  opacity: 0; transition: opacity 0.3s;
+  backdrop-filter: blur(2px);
+}
+.cert-thumb-wrap:hover .cert-thumb { transform: scale(1.04); filter: brightness(0.85); }
+.cert-thumb-wrap:hover .cert-thumb-overlay { opacity: 1; }
+.cert-thumb-wrap:focus-visible { outline: 2px solid var(--cy); outline-offset: 2px; }
+
+.cert-info {
+  padding: 1.3rem 1.5rem;
+  flex: 1; display: flex; flex-direction: column; gap: 0;
+}
+.cert-info .cert-top { margin-bottom: 0.85rem; }
+.cert-info h3 { margin-bottom: 0.3rem; }
+
+/* ════════════════════════════════════════
+   CERTIFICATE LIGHTBOX
+════════════════════════════════════════ */
+.cert-lightbox {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(2, 6, 15, 0.92);
+  backdrop-filter: blur(10px) saturate(1.2);
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.cert-lightbox.open {
+  opacity: 1; visibility: visible; pointer-events: auto;
+}
+.clb-inner {
+  position: relative; max-width: min(92vw, 960px); width: 100%;
+  transform: scale(0.93) translateY(16px);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cert-lightbox.open .clb-inner { transform: scale(1) translateY(0); }
+.clb-img {
+  width: 100%; height: auto; display: block;
+  border-radius: var(--r);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px var(--border2);
+}
+.clb-close {
+  position: absolute; top: -14px; right: -14px;
+  width: 34px; height: 34px;
+  background: var(--surf2); border: 1px solid var(--border2);
+  border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text2); transition: all 0.2s; z-index: 1;
+}
+.clb-close:hover {
+  background: var(--cy-dim); color: var(--cy);
+  border-color: var(--cy-border);
+  transform: rotate(90deg);
+}
+
+/* Light mode lightbox */
+[data-theme="light"] .cert-lightbox { background: rgba(0,20,50,0.88); }
+[data-theme="light"] .cert-thumb-overlay { background: rgba(0,20,50,0.5); }
+
+/* ════════════════════════════════════════
+   FEATURED PIN ICON
+════════════════════════════════════════ */
+.p-pin {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+}
+.p-pin svg { flex-shrink: 0; }
+
+/* ════════════════════════════════════════
+   HERO ROLE SEPARATOR
+════════════════════════════════════════ */
+.hr-dot {
+  display: inline-flex; align-items: center;
+  color: var(--cy); opacity: 0.5; font-size: 0.5rem;
+}
+
+/* ════════════════════════════════════════
+   KEYFRAME: GRADIENT SHIFT (name hover)
+════════════════════════════════════════ */
+@keyframes gradShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+.hn-2:hover {
+  background: linear-gradient(135deg, var(--cy), #6366f1, var(--cy2), var(--cy));
+  background-size: 300% 300%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradShift 1.8s ease infinite;
+}
+
+/* ════════════════════════════════════════
+   MAGNETIC BUTTON TRANSITION
+════════════════════════════════════════ */
+.btn-prime {
+  transition: transform 0.15s ease, box-shadow 0.25s ease, background 0.25s;
+}
+
+/* ════════════════════════════════════════
+   LIGHT MODE CERT OVERRIDES
+════════════════════════════════════════ */
+[data-theme="light"] .cert-thumb-overlay { color: #fff; }
+[data-theme="light"] .cert-card:hover {
+  box-shadow: 0 8px 28px rgba(0,30,70,0.12), 0 0 0 1px var(--cy-border);
+}
+[data-theme="light"] .cert-score-val { filter: none; }
+[data-theme="light"] .cert-pct { border-color: var(--cy-border); }
+[data-theme="light"] .cert-badge.elite-gold { color: #b45309; background: rgba(180,83,9,0.08); border-color: rgba(180,83,9,0.3); }

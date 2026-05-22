@@ -58,7 +58,7 @@ initParticles();
 
 
 /* ── CARD RADIAL GLOW ON MOUSE ── */
-document.querySelectorAll(".p-card").forEach(card => {
+document.querySelectorAll(".p-card, .sk-card").forEach(card => {
   card.addEventListener("mousemove", e => {
     const rect = card.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width)  * 100;
@@ -67,6 +67,16 @@ document.querySelectorAll(".p-card").forEach(card => {
     card.style.setProperty("--my", y + "%");
   });
 });
+
+/* ── SCROLL PROGRESS BAR ── */
+(function() {
+  const bar = document.getElementById("scroll-progress");
+  if (!bar) return;
+  window.addEventListener("scroll", function() {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    bar.style.width = Math.min(pct, 100) + "%";
+  }, { passive: true });
+})();
 
 /* ── THEME TOGGLE ── */
 (function() {
@@ -228,3 +238,85 @@ async function loadRepos() {
 }
 
 loadRepos();
+
+/* ── ACTIVE NAV HIGHLIGHTING ── */
+(function() {
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav-links a");
+  if (!sections.length || !navLinks.length) return;
+
+  const activeObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove("nav-active"));
+        const link = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (link) link.classList.add("nav-active");
+      }
+    });
+  }, { rootMargin: "-35% 0px -55% 0px", threshold: 0 });
+
+  sections.forEach(s => activeObs.observe(s));
+})();
+
+/* ── EDUCATION PROGRESS BAR ── */
+(function() {
+  document.querySelectorAll(".edu-prog-fill[data-width]").forEach(function(bar) {
+    const target = bar.dataset.width;
+    const obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          bar.style.setProperty("--target-w", target + "%");
+          bar.classList.add("animated");
+          obs.unobserve(bar);
+        }
+      });
+    }, { threshold: 0.5 });
+    obs.observe(bar);
+  });
+})();
+
+/* ── CERT LIGHTBOX ── */
+(function() {
+  const lightbox = document.getElementById("cert-lightbox");
+  const lbImg    = document.getElementById("clb-img");
+  const closeBtn = document.getElementById("clb-close");
+  if (!lightbox || !lbImg) return;
+
+  function openLightbox(src) {
+    lbImg.src = src;
+    lightbox.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    document.body.style.overflow = "";
+    setTimeout(function() { lbImg.src = ""; }, 350);
+  }
+
+  document.querySelectorAll(".cert-thumb-wrap").forEach(function(btn) {
+    btn.addEventListener("click", function() { openLightbox(btn.dataset.cert); });
+  });
+  closeBtn.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+  });
+})();
+
+/* ── MAGNETIC PRIMARY BUTTON ── */
+(function() {
+  if (!window.matchMedia("(pointer: fine)").matches) return;
+  const btn = document.querySelector(".btn-prime");
+  if (!btn) return;
+  btn.addEventListener("mousemove", function(e) {
+    const rect = btn.getBoundingClientRect();
+    const dx = (e.clientX - (rect.left + rect.width  / 2)) * 0.22;
+    const dy = (e.clientY - (rect.top  + rect.height / 2)) * 0.22;
+    btn.style.transform = `translate(${dx}px, ${dy}px) translateY(-2px)`;
+  });
+  btn.addEventListener("mouseleave", function() {
+    btn.style.transform = "";
+  });
+})();
