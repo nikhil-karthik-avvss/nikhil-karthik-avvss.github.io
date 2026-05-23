@@ -1361,7 +1361,7 @@ sup { font-size: 0.55em; vertical-align: super; }
   background: var(--surf);
   border: 1px solid var(--border);
   border-radius: var(--r);
-  padding: 1.6rem 5.2rem 1.6rem 1.8rem;
+  padding: 1.6rem 6rem 1.6rem 1.8rem;
   transition: border-color 0.3s, transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s;
   position: relative; overflow: hidden;
 }
@@ -1381,19 +1381,20 @@ sup { font-size: 0.55em; vertical-align: super; }
 /* Institution logos */
 .edu-logo {
   position: absolute;
-  top: 1.2rem; right: 1.4rem;
-  width: 54px; height: 54px;
+  top: 50%; right: 1.4rem;
+  transform: translateY(-50%);
+  width: 72px; height: 72px;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 10px;
   background: #fff;
-  padding: 5px;
+  padding: 6px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08);
   transition: transform 0.4s cubic-bezier(0.16,1,0.3,1),
               box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);
 }
 .edu-logo-circle { border-radius: 50%; }
 .edu-card:hover .edu-logo {
-  transform: scale(1.1) rotate(-3deg);
+  transform: translateY(-50%) scale(1.1) rotate(-3deg);
   box-shadow: 0 6px 24px rgba(0,0,0,0.4), 0 0 0 2px rgba(0,229,255,0.25);
 }
 
