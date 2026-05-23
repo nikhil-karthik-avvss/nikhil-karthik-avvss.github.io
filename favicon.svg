@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" fill="#02060f" rx="3"/>
-  <text x="3" y="22" font-family="'Courier New', Courier, monospace" font-size="8" font-weight="700" fill="#00e5ff">[SNK]</text>
+  <rect width="32" height="32" fill="#0d1117" rx="3"/>
+  <text x="2" y="23" font-family="'Arial Black', 'Arial', sans-serif" font-size="14" font-weight="900" fill="#00e5ff">[</text>
+  <text x="7" y="23" font-family="'Arial Black', 'Arial', sans-serif" font-size="13" font-weight="900" fill="#ffffff">NK</text>
+  <text x="25" y="23" font-family="'Arial Black', 'Arial', sans-serif" font-size="14" font-weight="900" fill="#00e5ff">]</text>
 </svg>
