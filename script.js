@@ -74,7 +74,7 @@ initParticles();
 
 
 /* ── CARD RADIAL GLOW ON MOUSE ── */
-document.querySelectorAll(".p-card, .sk-card, .exp-card").forEach(card => {
+document.querySelectorAll(".p-card, .sk-card, .exp-card, .r-card").forEach(card => {
   card.addEventListener("mousemove", e => {
     const rect = card.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width)  * 100;
