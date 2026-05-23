@@ -1523,6 +1523,69 @@ sup { font-size: 0.55em; vertical-align: super; }
   line-height: 1.6; border-left: 2px solid var(--border); padding-left: 0.75rem;
 }
 
+/* ── SEMESTER GPA SPARKLINE ── */
+.edu-sparkline {
+  margin-top: 1.3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.esp-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+.esp-title {
+  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text3);
+}
+.esp-cgpa {
+  font-size: 0.62rem; letter-spacing: 0.08em; font-family: var(--mono);
+  color: var(--cy); opacity: 0.7;
+}
+.esp-bars {
+  display: flex; align-items: flex-end; gap: 7px;
+  height: 64px;
+}
+.esp-bar {
+  flex: 1; height: 0;
+  background: linear-gradient(180deg, var(--cy) 0%, var(--cy2) 100%);
+  border-radius: 3px 3px 0 0;
+  position: relative;
+  box-shadow: 0 0 8px rgba(0,229,255,0.18);
+  transition: height 0.7s cubic-bezier(0.16,1,0.3,1),
+              filter 0.2s, box-shadow 0.2s;
+  cursor: default;
+}
+.esp-bar.esp-dip {
+  background: linear-gradient(180deg, rgba(0,229,255,0.55), rgba(0,229,255,0.3));
+  box-shadow: none;
+}
+.esp-bar.esp-peak {
+  background: linear-gradient(180deg, #a78bfa, #6366f1);
+  box-shadow: 0 0 14px rgba(99,102,241,0.4);
+}
+.esp-bar:hover { filter: brightness(1.25); }
+.esp-tip {
+  position: absolute;
+  bottom: calc(100% + 5px); left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.6rem; font-family: var(--mono);
+  color: var(--text2); white-space: nowrap;
+  background: var(--surf);
+  border: 1px solid var(--border2);
+  padding: 2px 5px; border-radius: 3px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.15s;
+}
+.esp-bar:hover .esp-tip { opacity: 1; }
+.esp-labels {
+  display: flex; gap: 7px; margin-top: 5px;
+}
+.esp-labels span {
+  flex: 1; text-align: center;
+  font-size: 0.6rem; letter-spacing: 0.08em; color: var(--text3);
+  font-family: var(--mono);
+}
+
 #particles-js canvas { pointer-events: none !important; }
 
 /* ════════════════════════════════════════
