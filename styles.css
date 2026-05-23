@@ -1523,27 +1523,87 @@ sup { font-size: 0.55em; vertical-align: super; }
   line-height: 1.6; border-left: 2px solid var(--border); padding-left: 0.75rem;
 }
 
-/* ── SEMESTER GPA SPARKLINE ── */
-.edu-sparkline {
-  margin-top: 1.3rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
+/* ── FLIP CARD ── */
+.edu-flip-card {
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  perspective: 1200px;
 }
+.edu-card:hover .edu-flip-card { transform: none !important; }
+.edu-flip-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.edu-card:hover .edu-flip-inner { transform: rotateY(180deg); }
+.edu-flip-front,
+.edu-flip-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--r);
+  background: var(--surf);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.edu-flip-front {
+  padding: 1.6rem 6rem 1.6rem 1.8rem;
+}
+.edu-flip-back {
+  position: absolute; inset: 0;
+  transform: rotateY(180deg);
+  padding: 1.8rem 2rem;
+  display: flex; flex-direction: column; justify-content: center;
+  border-color: var(--cy-border);
+  box-shadow: inset 0 0 40px rgba(0,229,255,0.03);
+}
+.edu-flip-front::before,
+.edu-flip-back::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cy), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.edu-card:hover .edu-flip-front::before,
+.edu-card:hover .edu-flip-back::before { opacity: 1; }
+.edu-active .edu-flip-front {
+  border-color: var(--cy-border);
+  box-shadow: 0 0 0 1px rgba(0,229,255,0.06), inset 0 0 40px rgba(0,229,255,0.02);
+}
+.edu-active .edu-flip-front::before { opacity: 0.6; }
+
+.edu-flip-hint {
+  display: flex; align-items: center; gap: 0.35rem;
+  margin-top: 1rem;
+  font-size: 0.6rem; letter-spacing: 0.08em;
+  color: var(--text3); opacity: 0.6;
+  font-family: var(--mono);
+}
+
+/* ── SEMESTER GPA SPARKLINE (back face) ── */
 .esp-header {
   display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
 }
 .esp-title {
   font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--text3);
 }
 .esp-cgpa {
-  font-size: 0.62rem; letter-spacing: 0.08em; font-family: var(--mono);
-  color: var(--cy); opacity: 0.7;
+  font-size: 0.65rem; letter-spacing: 0.08em; font-family: var(--mono);
+  color: var(--cy); opacity: 0.85;
 }
 .esp-bars {
-  display: flex; align-items: flex-end; gap: 7px;
-  height: 64px;
+  display: flex; align-items: flex-end; gap: 8px;
+  height: 90px;
+}
+@keyframes espBarGrow {
+  from { height: 0; }
+  to   { height: var(--bar-h, 0%); }
 }
 .esp-bar {
   flex: 1; height: 0;
@@ -1551,39 +1611,46 @@ sup { font-size: 0.55em; vertical-align: super; }
   border-radius: 3px 3px 0 0;
   position: relative;
   box-shadow: 0 0 8px rgba(0,229,255,0.18);
-  transition: height 0.7s cubic-bezier(0.16,1,0.3,1),
-              filter 0.2s, box-shadow 0.2s;
   cursor: default;
 }
+.edu-card:hover .esp-bar {
+  animation: espBarGrow 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation-delay: var(--bar-delay, 0.5s);
+}
 .esp-bar.esp-dip {
-  background: linear-gradient(180deg, rgba(0,229,255,0.55), rgba(0,229,255,0.3));
+  background: linear-gradient(180deg, rgba(0,229,255,0.5), rgba(0,229,255,0.28));
   box-shadow: none;
 }
 .esp-bar.esp-peak {
   background: linear-gradient(180deg, #a78bfa, #6366f1);
-  box-shadow: 0 0 14px rgba(99,102,241,0.4);
+  box-shadow: 0 0 16px rgba(99,102,241,0.45);
 }
-.esp-bar:hover { filter: brightness(1.25); }
+.esp-bar:hover { filter: brightness(1.2); }
 .esp-tip {
   position: absolute;
-  bottom: calc(100% + 5px); left: 50%;
+  bottom: calc(100% + 6px); left: 50%;
   transform: translateX(-50%);
   font-size: 0.6rem; font-family: var(--mono);
-  color: var(--text2); white-space: nowrap;
-  background: var(--surf);
+  color: var(--text); white-space: nowrap;
+  background: var(--bg2);
   border: 1px solid var(--border2);
-  padding: 2px 5px; border-radius: 3px;
+  padding: 3px 7px; border-radius: 3px;
   opacity: 0; pointer-events: none;
   transition: opacity 0.15s;
 }
 .esp-bar:hover .esp-tip { opacity: 1; }
 .esp-labels {
-  display: flex; gap: 7px; margin-top: 5px;
+  display: flex; gap: 8px; margin-top: 6px;
 }
 .esp-labels span {
   flex: 1; text-align: center;
-  font-size: 0.6rem; letter-spacing: 0.08em; color: var(--text3);
+  font-size: 0.62rem; letter-spacing: 0.08em; color: var(--text3);
   font-family: var(--mono);
+}
+.esp-note {
+  margin-top: 1rem;
+  font-size: 0.6rem; color: var(--text3); font-style: italic;
+  letter-spacing: 0.05em;
 }
 
 #particles-js canvas { pointer-events: none !important; }

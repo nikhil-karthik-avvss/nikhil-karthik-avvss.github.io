@@ -274,24 +274,6 @@ loadRepos();
   sections.forEach(s => activeObs.observe(s));
 })();
 
-/* ── SEMESTER GPA SPARKLINE ── */
-(function() {
-  const sparkline = document.querySelector(".edu-sparkline");
-  if (!sparkline) return;
-  const bars = sparkline.querySelectorAll(".esp-bar[data-h]");
-  const obs = new IntersectionObserver(function(entries) {
-    if (entries[0].isIntersecting) {
-      bars.forEach(function(bar, i) {
-        setTimeout(function() {
-          bar.style.height = bar.dataset.h + "%";
-        }, i * 90);
-      });
-      obs.disconnect();
-    }
-  }, { threshold: 0.4 });
-  obs.observe(sparkline);
-})();
-
 /* ── EDUCATION PROGRESS BAR ── */
 (function() {
   document.querySelectorAll(".edu-prog-fill[data-width]").forEach(function(bar) {
