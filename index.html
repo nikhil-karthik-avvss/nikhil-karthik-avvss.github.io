@@ -30,7 +30,8 @@
     <a href="#hero" class="nav-brand">
       <span class="bracket">[</span>NK<span class="bracket">]</span>
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" id="nav-links">
+      <div class="nav-pill" id="nav-pill"></div>
       <a href="#about" data-text="About">About</a>
       <a href="#education" data-text="Education">Education</a>
       <a href="#experience" data-text="Experience">Experience</a>
@@ -41,6 +42,7 @@
       <a href="#github-section" data-text="GitHub">GitHub</a>
       <a href="#contact" data-text="Contact">Contact</a>
     </nav>
+    <button class="cmd-hint-btn" id="cmd-hint-btn" aria-label="Open command palette (Ctrl+K)"><kbd>⌘K</kbd></button>
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
       <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
       <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -59,6 +61,15 @@
   <div class="hero-bg-grid"></div>
   <div class="hero-glow hero-glow-1"></div>
   <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-aurora" aria-hidden="true"></div>
+  <div class="hero-code-float" aria-hidden="true">
+    <span class="hcf-item hcf-1">{ }</span>
+    <span class="hcf-item hcf-2">&lt;/&gt;</span>
+    <span class="hcf-item hcf-3">[ ]</span>
+    <span class="hcf-item hcf-4">fn()</span>
+    <span class="hcf-item hcf-5">_init</span>
+    <span class="hcf-item hcf-6">&lt;&gt;</span>
+  </div>
   <div class="hero-content">
     <div class="hero-text">
       <div class="hero-eyebrow">
@@ -77,15 +88,13 @@
         <span class="aka-name">Nikhil Karthik AVVSS</span>
       </div>
       <div class="hero-roles">
-        <span class="hr-tag">ML Researcher</span>
-        <span class="hr-dot">◆</span>
-        <span class="hr-tag">Full-Stack Dev</span>
-        <span class="hr-dot">◆</span>
-        <span class="hr-tag">Systems Engineer</span>
+        <span class="hr-prompt">&gt;&nbsp;</span><span id="hero-typed" class="hr-typed"></span><span class="hr-typed-cursor"></span>
       </div>
       <p class="hero-sub">
-        Building intelligent systems at the intersection of
-        <span class="cy">Machine Learning</span>, <span class="cy">NLP</span>, and <span class="cy">Software Engineering</span>.
+        Engineering intelligent solutions across
+        <span class="cy">AI</span>, <span class="cy">Machine Learning</span>,
+        <span class="cy">Computer Vision</span>, <span class="cy">Cybersecurity</span>,
+        and <span class="cy">Software Engineering</span>.
       </p>
       <div class="hero-cta">
         <a href="#projects" class="btn-prime">View Projects</a>
@@ -103,17 +112,17 @@
         </div>
         <div class="hs-sep"></div>
         <div class="hs-item">
-          <span class="hs-val">2</span>
+          <span class="hs-val" data-count="2">0</span>
           <span class="hs-lbl">Publications</span>
         </div>
         <div class="hs-sep"></div>
         <div class="hs-item">
-          <span class="hs-val">3<sup>rd</sup></span>
+          <span class="hs-val hs-val-gold">3<sup>rd</sup></span>
           <span class="hs-lbl">MediaEval '25</span>
         </div>
         <div class="hs-sep"></div>
         <div class="hs-item">
-          <span class="hs-val">T10</span>
+          <span class="hs-val hs-val-silver">T10</span>
           <span class="hs-lbl">ACL '26</span>
         </div>
       </div>
@@ -131,7 +140,7 @@
 <!-- ABOUT -->
 <section id="about" class="sec">
   <div class="sec-wrap">
-    <div class="sec-head">
+    <div class="sec-head" data-num="01">
       <span class="sec-num">01</span>
       <h2 class="sec-title">About</h2>
     </div>
@@ -206,7 +215,7 @@
 <!-- EDUCATION -->
 <section id="education" class="sec sec-dark">
   <div class="sec-wrap">
-    <div class="sec-head">
+    <div class="sec-head" data-num="02">
       <span class="sec-num">02</span>
       <h2 class="sec-title">Education</h2>
     </div>
@@ -290,7 +299,7 @@
 <!-- EXPERIENCE -->
 <section id="experience" class="sec">
   <div class="sec-wrap">
-    <div class="sec-head">
+    <div class="sec-head" data-num="03">
       <span class="sec-num">03</span>
       <h2 class="sec-title">Experience</h2>
     </div>
@@ -320,7 +329,7 @@
 <!-- RESEARCH -->
 <section id="research" class="sec sec-dark">
   <div class="sec-wrap">
-    <div class="sec-head">
+    <div class="sec-head" data-num="04">
       <span class="sec-num">04</span>
       <h2 class="sec-title">Research &amp; Publications</h2>
     </div>
@@ -371,7 +380,7 @@
 <!-- ACHIEVEMENTS & CERTIFICATIONS -->
 <section id="achievements" class="sec sec-dark">
   <div class="sec-wrap">
-    <div class="sec-head">
+    <div class="sec-head" data-num="05">
       <span class="sec-num">05</span>
       <h2 class="sec-title">Achievements &amp; Certifications</h2>
     </div>
@@ -391,7 +400,7 @@
       </div>
 
       <div class="ach-card ach-highlight reveal">
-        <div class="ach-rank-block">
+        <div class="ach-rank-block ach-rank-gold">
           <span class="ach-rank-num">3rd</span>
           <span class="ach-rank-ctx">International</span>
         </div>
@@ -403,7 +412,7 @@
       </div>
 
       <div class="ach-card ach-highlight reveal">
-        <div class="ach-rank-block">
+        <div class="ach-rank-block ach-rank-silver">
           <span class="ach-rank-num">T10</span>
           <span class="ach-rank-ctx">Shared Task</span>
         </div>
@@ -513,7 +522,7 @@
 <!-- PROJECTS -->
 <section id="projects" class="sec">
   <div class="sec-wrap">
-    <div class="sec-head">
+    <div class="sec-head" data-num="06">
       <span class="sec-num">06</span>
       <h2 class="sec-title">Projects</h2>
     </div>
@@ -642,59 +651,120 @@
 <!-- SKILLS -->
 <section id="skills" class="sec sec-dark">
   <div class="sec-wrap">
-    <div class="sec-head">
+    <div class="sec-head" data-num="07">
       <span class="sec-num">07</span>
       <h2 class="sec-title">Skills</h2>
     </div>
-    <div class="skills-grid">
-      <div class="sk-card sk-wide reveal">
-        <div class="sk-icon-block sk-ib-cyan">{ }</div>
-        <div class="sk-content">
-          <h3>Languages</h3>
-          <div class="sk-pills">
-            <span class="sk-primary">Python</span><span class="sk-primary">C++</span>
-            <span>Java</span><span>C</span><span>JavaScript</span>
+    <div class="skills-lanes">
+
+      <div class="sl-row reveal">
+        <div class="sl-left">
+          <span class="sl-num">01</span>
+          <div class="sl-name-wrap">
+            <span class="sl-glyph">{ } lang</span>
+            <h3 class="sl-name">Languages</h3>
           </div>
         </div>
+        <div class="sl-divider"></div>
+        <div class="sl-pills">
+          <span class="sl-pill sl-core">Python</span>
+          <span class="sl-pill sl-core">C++</span>
+          <span class="sl-pill">Java</span>
+          <span class="sl-pill">C</span>
+          <span class="sl-pill">JavaScript</span>
+        </div>
       </div>
-      <div class="sk-card sk-wide reveal">
-        <div class="sk-icon-block sk-ib-purple">ML</div>
-        <div class="sk-content">
-          <h3>ML / Data Science</h3>
-          <div class="sk-pills">
-            <span class="sk-primary">PyTorch</span><span class="sk-primary">scikit-learn</span>
-            <span>NumPy</span><span>Pandas</span><span>Matplotlib</span><span>Seaborn</span>
+
+      <div class="sl-row reveal">
+        <div class="sl-left">
+          <span class="sl-num">02</span>
+          <div class="sl-name-wrap">
+            <span class="sl-glyph">∿ ml &amp; data</span>
+            <h3 class="sl-name">ML / Data Science</h3>
           </div>
         </div>
-      </div>
-      <div class="sk-card reveal">
-        <div class="sk-icon-block sk-ib-blue">FE</div>
-        <div class="sk-content">
-          <h3>Frontend</h3>
-          <div class="sk-pills"><span>HTML/CSS</span><span>Vue.js</span><span>Next.js</span></div>
+        <div class="sl-divider"></div>
+        <div class="sl-pills">
+          <span class="sl-pill sl-core">PyTorch</span>
+          <span class="sl-pill sl-core">scikit-learn</span>
+          <span class="sl-pill">NumPy</span>
+          <span class="sl-pill">Pandas</span>
+          <span class="sl-pill">Matplotlib</span>
+          <span class="sl-pill">Seaborn</span>
         </div>
       </div>
-      <div class="sk-card reveal">
-        <div class="sk-icon-block sk-ib-green">BE</div>
-        <div class="sk-content">
-          <h3>Backend</h3>
-          <div class="sk-pills"><span class="sk-primary">Django</span><span>Spring Boot</span><span>Flask</span></div>
+
+      <div class="sl-row reveal">
+        <div class="sl-left">
+          <span class="sl-num">03</span>
+          <div class="sl-name-wrap">
+            <span class="sl-glyph">&lt;/&gt; frontend</span>
+            <h3 class="sl-name">Frontend</h3>
+          </div>
+        </div>
+        <div class="sl-divider"></div>
+        <div class="sl-pills">
+          <span class="sl-pill">HTML / CSS</span>
+          <span class="sl-pill">Vue.js</span>
+          <span class="sl-pill">Next.js</span>
         </div>
       </div>
-      <div class="sk-card reveal">
-        <div class="sk-icon-block sk-ib-orange">DB</div>
-        <div class="sk-content">
-          <h3>Databases</h3>
-          <div class="sk-pills"><span class="sk-primary">PostgreSQL</span><span>MySQL</span><span>SQLite</span><span>MongoDB</span><span>Neo4j</span><span>Cassandra</span><span>Redis</span></div>
+
+      <div class="sl-row reveal">
+        <div class="sl-left">
+          <span class="sl-num">04</span>
+          <div class="sl-name-wrap">
+            <span class="sl-glyph">⚙ backend</span>
+            <h3 class="sl-name">Backend</h3>
+          </div>
+        </div>
+        <div class="sl-divider"></div>
+        <div class="sl-pills">
+          <span class="sl-pill sl-core">Django</span>
+          <span class="sl-pill">Spring Boot</span>
+          <span class="sl-pill">Flask</span>
         </div>
       </div>
-      <div class="sk-card reveal">
-        <div class="sk-icon-block sk-ib-teal">BD</div>
-        <div class="sk-content">
-          <h3>Big Data &amp; Tools</h3>
-          <div class="sk-pills"><span>Hadoop</span><span>PySpark</span><span>Git</span><span>Linux</span><span>Scapy</span><span>Docker</span></div>
+
+      <div class="sl-row reveal">
+        <div class="sl-left">
+          <span class="sl-num">05</span>
+          <div class="sl-name-wrap">
+            <span class="sl-glyph">⊞ databases</span>
+            <h3 class="sl-name">Databases</h3>
+          </div>
+        </div>
+        <div class="sl-divider"></div>
+        <div class="sl-pills">
+          <span class="sl-pill sl-core">PostgreSQL</span>
+          <span class="sl-pill">MySQL</span>
+          <span class="sl-pill">SQLite</span>
+          <span class="sl-pill">MongoDB</span>
+          <span class="sl-pill">Neo4j</span>
+          <span class="sl-pill">Cassandra</span>
+          <span class="sl-pill">Redis</span>
         </div>
       </div>
+
+      <div class="sl-row reveal">
+        <div class="sl-left">
+          <span class="sl-num">06</span>
+          <div class="sl-name-wrap">
+            <span class="sl-glyph">◈ big data &amp; tools</span>
+            <h3 class="sl-name">Big Data &amp; Tools</h3>
+          </div>
+        </div>
+        <div class="sl-divider"></div>
+        <div class="sl-pills">
+          <span class="sl-pill">Hadoop</span>
+          <span class="sl-pill">PySpark</span>
+          <span class="sl-pill">Git</span>
+          <span class="sl-pill">Linux</span>
+          <span class="sl-pill">Scapy</span>
+          <span class="sl-pill">Docker</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -702,7 +772,7 @@
 <!-- GITHUB -->
 <section id="github-section" class="sec">
   <div class="sec-wrap">
-    <div class="sec-head">
+    <div class="sec-head" data-num="08">
       <span class="sec-num">08</span>
       <h2 class="sec-title">GitHub</h2>
     </div>
@@ -721,14 +791,15 @@
 <!-- CONTACT -->
 <section id="contact" class="sec sec-dark">
   <div class="sec-wrap">
-    <div class="sec-head">
+    <div class="sec-head" data-num="09">
       <span class="sec-num">09</span>
       <h2 class="sec-title">Contact</h2>
     </div>
-    <div class="contact-grid">
-      <div class="contact-left">
-        <p>Open to research collaborations and conversations about ML, NLP, systems, or software engineering.</p>
-        <p>Currently interning as an <strong>AI Software Engineer</strong> at DriveThruData LLP, Chennai. I still take time to respond to meaningful outreach — best reached by email.</p>
+    <div class="contact-editorial">
+      <div class="ce-left">
+        <div class="ce-eyebrow">— reach out —</div>
+        <div class="ce-heading">Let's<br><em>connect.</em></div>
+        <p class="ce-sub">Open for research collaborations, ML conversations, or just a good chat about systems and language models. Currently interning as an <strong>AI Software Engineer</strong> at DriveThruData LLP — I still respond to meaningful outreach. Best reached by email.</p>
         <div class="contact-status">
           <div class="cs-row">
             <span class="status-dot"></span>
@@ -787,7 +858,7 @@
       <a href="#hero" class="footer-logo">
         <span class="bracket">[</span>SNK<span class="bracket">]</span>
       </a>
-      <span class="footer-tagline">Building at the intersection of ML &amp; Software</span>
+      <span class="footer-tagline">AI · ML · Computer Vision · Cybersecurity · Software Engineering</span>
     </div>
     <nav class="footer-nav">
       <a href="#about">About</a>
@@ -811,6 +882,25 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <img class="clb-img" id="clb-img" src="" alt="NPTEL Certificate" />
+  </div>
+</div>
+
+<!-- COMMAND PALETTE -->
+<div id="cmd-palette" class="cmd-palette" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="cmd-backdrop" id="cmd-backdrop"></div>
+  <div class="cmd-modal">
+    <div class="cmd-header">
+      <span class="cmd-prompt">❯</span>
+      <input type="text" id="cmd-input" class="cmd-input" placeholder="Navigate or run a command…" autocomplete="off" spellcheck="false" />
+      <span class="cmd-esc-badge">ESC</span>
+    </div>
+    <div class="cmd-list" id="cmd-list" role="listbox" aria-label="Commands"></div>
+    <div class="cmd-footer">
+      <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span><kbd>↵</kbd> select</span>
+      <span><kbd>ESC</kbd> close</span>
+      <span style="margin-left:auto;opacity:0.5">⌘K / Ctrl+K</span>
+    </div>
   </div>
 </div>
 
