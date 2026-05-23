@@ -1361,8 +1361,8 @@ sup { font-size: 0.55em; vertical-align: super; }
   background: var(--surf);
   border: 1px solid var(--border);
   border-radius: var(--r);
-  padding: 1.6rem 1.8rem;
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  padding: 1.6rem 5.2rem 1.6rem 1.8rem;
+  transition: border-color 0.3s, transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s;
   position: relative; overflow: hidden;
 }
 .edu-body::before {
@@ -1373,10 +1373,29 @@ sup { font-size: 0.55em; vertical-align: super; }
 }
 .edu-card:hover .edu-body {
   border-color: var(--cy-border);
-  transform: translateX(4px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 30px rgba(0,229,255,0.05);
+  transform: translateX(6px) translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 40px rgba(0,229,255,0.08);
 }
 .edu-card:hover .edu-body::before { opacity: 1; }
+
+/* Institution logos */
+.edu-logo {
+  position: absolute;
+  top: 1.2rem; right: 1.4rem;
+  width: 54px; height: 54px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff;
+  padding: 5px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.edu-logo-circle { border-radius: 50%; }
+.edu-card:hover .edu-logo {
+  transform: scale(1.1) rotate(-3deg);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.4), 0 0 0 2px rgba(0,229,255,0.25);
+}
 
 .edu-active .edu-body {
   border-color: var(--cy-border);
@@ -1435,6 +1454,13 @@ sup { font-size: 0.55em; vertical-align: super; }
   padding: 0.35rem 0.9rem;
   background: var(--cy-dim); border: 1px solid rgba(0,229,255,0.2);
   border-radius: 2px;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  cursor: default;
+}
+.edu-stat:hover {
+  border-color: rgba(0,229,255,0.45);
+  box-shadow: 0 0 16px rgba(0,229,255,0.15);
+  transform: translateY(-2px);
 }
 .edu-stat-val {
   font-family: var(--display); font-size: 1.1rem; font-weight: 700;
@@ -1463,6 +1489,13 @@ sup { font-size: 0.55em; vertical-align: super; }
   padding: 0.6rem 1.1rem;
   background: var(--cy-dim); border: 1px solid rgba(0,229,255,0.18);
   border-radius: var(--r); min-width: 90px;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+  cursor: default;
+}
+.edu-mark-item:not(.edu-mark-dim):hover {
+  border-color: rgba(0,229,255,0.4);
+  box-shadow: 0 0 18px rgba(0,229,255,0.12);
+  transform: translateY(-3px);
 }
 .edu-mark-item.edu-mark-dim {
   background: rgba(255,255,255,0.02); border-color: var(--border);
