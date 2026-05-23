@@ -1,3 +1,19 @@
+/* ── ANIMATED COUNTER UTILITY ── */
+function countUp(el, to, duration) {
+  to = (to !== undefined) ? to : parseInt(el.dataset.count, 10);
+  duration = duration || 1800;
+  if (isNaN(to)) return;
+  el.classList.add('counting');
+  var t0 = performance.now();
+  (function frame(now) {
+    var p = Math.min((now - t0) / duration, 1);
+    var ease = 1 - Math.pow(1 - p, 4);
+    el.textContent = Math.round(ease * to);
+    if (p < 1) { requestAnimationFrame(frame); }
+    else { el.textContent = to; el.classList.remove('counting'); }
+  })(t0);
+}
+
 /* ── PARTICLES ── */
 // particles.js is loaded with defer — wait until it's available
 function initParticles() {
@@ -225,7 +241,7 @@ async function loadRepos() {
     if (!Array.isArray(repos) || repos.message) throw new Error(repos.message || "API error");
 
     const el = document.getElementById("gh-repos");
-    if (el && user.public_repos) el.textContent = user.public_repos;
+    if (el && user.public_repos) countUp(el, user.public_repos);
 
     const filtered = repos.filter(r => !r.fork && r.name !== "nikhil-karthik-avvss").slice(0, 6);
     renderRepos(filtered.length > 0 ? filtered : FALLBACK_REPOS);
@@ -233,7 +249,7 @@ async function loadRepos() {
     console.warn("GitHub API unavailable, using fallback:", e.message);
     renderRepos(FALLBACK_REPOS);
     const el = document.getElementById("gh-repos");
-    if (el && el.textContent === "—") el.textContent = "10+";
+    if (el && el.textContent === "—") { el.textContent = "0"; countUp(el, 10); }
   }
 }
 
@@ -319,4 +335,222 @@ loadRepos();
   btn.addEventListener("mouseleave", function() {
     btn.style.transform = "";
   });
+})();
+
+/* ── TYPEWRITER HERO ROLE ── */
+(function() {
+  var el = document.getElementById('hero-typed');
+  if (!el) return;
+  var roles = [
+    'Creative Problem Solver',
+    'Full-Stack Developer',
+    'AI Engineer',
+    'Machine Learning Researcher',
+    'Cybersecurity Enthusiast',
+    'Computer Vision Explorer'
+  ];
+  var ri = 0, ci = 0, del = false;
+  function tick() {
+    var word = roles[ri];
+    if (!del) {
+      ci++;
+      el.textContent = word.slice(0, ci);
+      if (ci === word.length) { del = true; setTimeout(tick, 1900); return; }
+      setTimeout(tick, 72);
+    } else {
+      ci--;
+      el.textContent = word.slice(0, ci);
+      if (ci === 0) {
+        del = false;
+        ri = (ri + 1) % roles.length;
+        setTimeout(tick, 380);
+        return;
+      }
+      setTimeout(tick, 40);
+    }
+  }
+  setTimeout(tick, 1300);
+})();
+
+/* ── 3D CARD TILT ── */
+(function() {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+  document.querySelectorAll('.p-card').forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      var r = card.getBoundingClientRect();
+      var rx = (e.clientY - r.top  - r.height * 0.5) / r.height * -10;
+      var ry = (e.clientX - r.left - r.width  * 0.5) / r.width  *  10;
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width  * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100) + '%');
+      card.style.transition = 'box-shadow 0.3s, border-color 0.3s';
+      card.style.transform = 'perspective(900px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-6px)';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transition = 'transform 0.6s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s, border-color 0.3s';
+      card.style.transform = '';
+      setTimeout(function() { card.style.transition = ''; }, 620);
+    });
+  });
+})();
+
+/* ── NAV PILL INDICATOR ── */
+(function() {
+  var pill   = document.getElementById('nav-pill');
+  var navEl  = document.getElementById('nav-links');
+  if (!pill || !navEl) return;
+  var links = navEl.querySelectorAll('a');
+  function moveTo(link) {
+    var nr = navEl.getBoundingClientRect();
+    var lr = link.getBoundingClientRect();
+    pill.style.left  = (lr.left - nr.left) + 'px';
+    pill.style.width = lr.width + 'px';
+    pill.classList.add('active');
+  }
+  links.forEach(function(a) {
+    a.addEventListener('mouseenter', function() { moveTo(a); });
+    a.addEventListener('mouseleave', function() { pill.classList.remove('active'); });
+  });
+})();
+
+/* ── SCROLL-TRIGGERED COUNTERS ── */
+(function() {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        obs.unobserve(e.target);
+        countUp(e.target);
+      }
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(function(el) {
+    obs.observe(el);
+  });
+})();
+
+/* ── COMMAND PALETTE (⌘K / Ctrl+K) ── */
+(function() {
+  var palette  = document.getElementById('cmd-palette');
+  var backdrop = document.getElementById('cmd-backdrop');
+  var input    = document.getElementById('cmd-input');
+  var list     = document.getElementById('cmd-list');
+  var hintBtn  = document.getElementById('cmd-hint-btn');
+  if (!palette || !input || !list) return;
+
+  var COMMANDS = [
+    { label: 'Go to About',           icon: '→', group: 'Navigate', section: '#about' },
+    { label: 'Go to Education',       icon: '→', group: 'Navigate', section: '#education' },
+    { label: 'Go to Experience',      icon: '→', group: 'Navigate', section: '#experience' },
+    { label: 'Go to Research',        icon: '→', group: 'Navigate', section: '#research' },
+    { label: 'Go to Achievements',    icon: '→', group: 'Navigate', section: '#achievements' },
+    { label: 'Go to Projects',        icon: '→', group: 'Navigate', section: '#projects' },
+    { label: 'Go to Skills',          icon: '→', group: 'Navigate', section: '#skills' },
+    { label: 'Go to GitHub',          icon: '→', group: 'Navigate', section: '#github-section' },
+    { label: 'Go to Contact',         icon: '→', group: 'Navigate', section: '#contact' },
+    { label: 'Open GitHub Profile',   icon: '↗', group: 'Links',    href: 'https://github.com/nikhil-karthik-avvss' },
+    { label: 'Send Email',            icon: '✉', group: 'Links',    href: 'mailto:nikhilkarthik1avvss@gmail.com' },
+    { label: 'Open LinkedIn',         icon: '↗', group: 'Links',    href: 'https://www.linkedin.com/in/nikhil-karthik-avvss/' },
+    { label: 'Toggle Dark / Light Mode', icon: '◐', group: 'Actions', action: 'theme' },
+  ];
+
+  var activeIdx = -1;
+  var filtered  = COMMANDS.slice();
+
+  function openPalette() {
+    palette.classList.add('open');
+    palette.removeAttribute('aria-hidden');
+    input.value = '';
+    renderList(COMMANDS);
+    setTimeout(function() { input.focus(); }, 10);
+  }
+
+  function closePalette() {
+    palette.classList.remove('open');
+    palette.setAttribute('aria-hidden', 'true');
+  }
+
+  function execute(cmd) {
+    closePalette();
+    if (cmd.section) {
+      var target = document.querySelector(cmd.section);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    } else if (cmd.href) {
+      window.open(cmd.href, cmd.href.startsWith('mailto') ? '_self' : '_blank');
+    } else if (cmd.action === 'theme') {
+      var btn = document.getElementById('theme-toggle');
+      if (btn) btn.click();
+    }
+  }
+
+  function setActive(idx) {
+    var items = list.querySelectorAll('.cmd-item');
+    items.forEach(function(el, i) {
+      el.classList.toggle('cmd-active', i === idx);
+    });
+    activeIdx = idx;
+    if (items[idx]) items[idx].scrollIntoView({ block: 'nearest' });
+  }
+
+  function renderList(cmds) {
+    filtered  = cmds;
+    activeIdx = cmds.length > 0 ? 0 : -1;
+    list.innerHTML = '';
+    if (cmds.length === 0) {
+      list.innerHTML = '<div class="cmd-empty">No commands matched.</div>';
+      return;
+    }
+    var lastGroup = null;
+    cmds.forEach(function(cmd, i) {
+      if (cmd.group !== lastGroup) {
+        if (lastGroup !== null) {
+          var sep = document.createElement('div');
+          sep.className = 'cmd-sep';
+          list.appendChild(sep);
+        }
+        lastGroup = cmd.group;
+      }
+      var item = document.createElement('div');
+      item.className = 'cmd-item' + (i === 0 ? ' cmd-active' : '');
+      item.setAttribute('role', 'option');
+      item.innerHTML =
+        '<span class="cmd-item-icon">' + cmd.icon + '</span>' +
+        '<span>' + cmd.label + '</span>' +
+        '<span class="cmd-item-group">' + cmd.group + '</span>';
+      (function(c, idx) {
+        item.addEventListener('click', function() { execute(c); });
+        item.addEventListener('mouseenter', function() { setActive(idx); });
+      })(cmd, i);
+      list.appendChild(item);
+    });
+  }
+
+  input.addEventListener('input', function() {
+    var q = input.value.toLowerCase().trim();
+    if (!q) { renderList(COMMANDS); return; }
+    renderList(COMMANDS.filter(function(c) {
+      return c.label.toLowerCase().includes(q) || c.group.toLowerCase().includes(q);
+    }));
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      palette.classList.contains('open') ? closePalette() : openPalette();
+      return;
+    }
+    if (!palette.classList.contains('open')) return;
+    if (e.key === 'Escape') { closePalette(); return; }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActive(Math.min(activeIdx + 1, filtered.length - 1));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActive(Math.max(activeIdx - 1, 0));
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (activeIdx >= 0 && filtered[activeIdx]) execute(filtered[activeIdx]);
+    }
+  });
+
+  if (backdrop) backdrop.addEventListener('click', closePalette);
+  if (hintBtn)  hintBtn.addEventListener('click', openPalette);
 })();
