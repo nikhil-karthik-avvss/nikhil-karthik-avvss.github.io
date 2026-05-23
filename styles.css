@@ -1771,20 +1771,26 @@ sup { font-size: 0.55em; vertical-align: super; }
   align-items: flex-start;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  transition: border-color 0.35s, transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s;
 }
 .ach-card::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; height: 1px;
   background: linear-gradient(90deg, transparent, var(--cy), transparent);
-  opacity: 0; transition: opacity 0.3s;
+  opacity: 0; transition: opacity 0.3s; z-index: 1;
+}
+.ach-card::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(0,229,255,0.07) 0%, transparent 55%);
+  opacity: 0; transition: opacity 0.35s;
 }
 .ach-card:hover {
   border-color: var(--cy-border);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 30px rgba(0,229,255,0.06);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 40px rgba(0,229,255,0.07);
 }
 .ach-card:hover::before { opacity: 1; }
+.ach-card:hover::after  { opacity: 1; }
 
 /* Gold top border for top-tier achievements */
 .ach-highlight {
@@ -1793,7 +1799,10 @@ sup { font-size: 0.55em; vertical-align: super; }
 .ach-highlight::before {
   background: linear-gradient(90deg, transparent, #f59e0b, transparent);
 }
-.ach-highlight:hover { border-color: rgba(245,158,11,0.5); }
+.ach-highlight:hover {
+  border-color: rgba(245,158,11,0.5);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 40px rgba(245,158,11,0.07);
+}
 
 /* Full-width scholarship card */
 .ach-wide { grid-column: 1 / -1; }
@@ -1810,6 +1819,11 @@ sup { font-size: 0.55em; vertical-align: super; }
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
   filter: drop-shadow(0 0 10px rgba(0,229,255,0.3));
+  transition: filter 0.35s, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.ach-card:hover .ach-rank-num {
+  filter: drop-shadow(0 0 22px rgba(0,229,255,0.65));
+  transform: scale(1.12);
 }
 .ach-rank-ctx {
   font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
@@ -1830,6 +1844,11 @@ sup { font-size: 0.55em; vertical-align: super; }
 .ach-mono-text {
   font-family: var(--display); font-size: 1.5rem; font-weight: 800; line-height: 1;
   color: #fbbf24; text-shadow: 0 0 20px rgba(245,158,11,0.4);
+  transition: text-shadow 0.35s, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.ach-card:hover .ach-mono-text {
+  text-shadow: 0 0 32px rgba(251,191,36,0.75);
+  transform: scale(1.12);
 }
 .ach-mono-sub {
   font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
@@ -1889,8 +1908,8 @@ sup { font-size: 0.55em; vertical-align: super; }
 }
 .cert-card:hover {
   border-color: var(--cy-border);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.35), 0 0 20px rgba(0,229,255,0.05);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 40px rgba(0,229,255,0.08);
 }
 .cert-card:hover::before { transform: scaleY(1); }
 
@@ -1915,6 +1934,11 @@ sup { font-size: 0.55em; vertical-align: super; }
   background-clip: text;
   line-height: 1;
   filter: drop-shadow(0 0 10px rgba(0,229,255,0.3));
+  transition: filter 0.35s, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.cert-card:hover .cert-score-val {
+  filter: drop-shadow(0 0 22px rgba(0,229,255,0.65));
+  transform: scale(1.08);
 }
 .cert-score-den {
   font-size: 0.85rem;
@@ -1935,12 +1959,22 @@ sup { font-size: 0.55em; vertical-align: super; }
   background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(251,191,36,0.08));
   color: #fbbf24;
   border: 1px solid rgba(245,158,11,0.35);
+  transition: background 0.25s, border-color 0.25s;
+}
+.cert-card:hover .cert-badge.elite-gold {
+  background: linear-gradient(135deg, rgba(245,158,11,0.25), rgba(251,191,36,0.15));
+  border-color: rgba(245,158,11,0.6);
 }
 .cert-pct {
   font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
   padding: 0.18rem 0.55rem; border-radius: 2px;
   background: var(--cy-dim); color: var(--cy);
   border: 1px solid rgba(0,229,255,0.2);
+  transition: background 0.25s, border-color 0.25s;
+}
+.cert-card:hover .cert-pct {
+  background: rgba(0,229,255,0.13);
+  border-color: rgba(0,229,255,0.5);
 }
 .cert-card h3 {
   font-family: var(--display);

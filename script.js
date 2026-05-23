@@ -63,7 +63,7 @@ initParticles();
     el.style.visibility = "visible";
   });
 
-  var HOVER = "a, button, .p-card, .sk-card, .r-card, .c-item, .int-item, .edu-card, .exp-card";
+  var HOVER = "a, button, .p-card, .sk-card, .r-card, .c-item, .int-item, .edu-card, .exp-card, .ach-card, .cert-card";
   document.addEventListener("mouseover", function(e) {
     if (e.target.closest(HOVER)) el.classList.add("hovering");
   });
@@ -74,7 +74,7 @@ initParticles();
 
 
 /* ── CARD RADIAL GLOW ON MOUSE ── */
-document.querySelectorAll(".p-card, .sk-card, .exp-card, .r-card").forEach(card => {
+document.querySelectorAll(".p-card, .sk-card, .exp-card, .r-card, .ach-card").forEach(card => {
   card.addEventListener("mousemove", e => {
     const rect = card.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width)  * 100;
