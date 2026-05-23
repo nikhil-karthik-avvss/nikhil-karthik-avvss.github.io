@@ -775,11 +775,17 @@ sup { font-size: 0.55em; vertical-align: super; }
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, var(--cy), var(--cy2), #6366f1);
 }
+.exp-card::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(0,229,255,0.07) 0%, transparent 55%);
+  opacity: 0; transition: opacity 0.35s;
+}
 .exp-card:hover {
   border-color: var(--cy-border);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 40px rgba(0,229,255,0.06);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.45), 0 0 50px rgba(0,229,255,0.08);
 }
+.exp-card:hover::after { opacity: 1; }
 .exp-left { display: flex; align-items: flex-start; padding-top: 0.2rem; }
 .exp-logo {
   width: 56px; height: 56px; border-radius: var(--r);
@@ -833,6 +839,13 @@ sup { font-size: 0.55em; vertical-align: super; }
 .exp-resp-item {
   display: flex; gap: 0.75rem; align-items: flex-start;
   font-size: 0.82rem; line-height: 1.7;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+  cursor: default;
+}
+.exp-resp-item:hover { transform: translateX(5px); }
+.exp-resp-item:hover .exp-resp-label {
+  border-color: rgba(0,229,255,0.5);
+  background: rgba(0,229,255,0.13);
 }
 .exp-resp-label {
   flex-shrink: 0;
@@ -853,6 +866,13 @@ sup { font-size: 0.55em; vertical-align: super; }
   font-size: 0.65rem; padding: 0.2rem 0.55rem; letter-spacing: 0.06em;
   background: var(--cy-dim); color: var(--cy);
   border: 1px solid rgba(0,229,255,0.2); border-radius: 2px;
+  transition: border-color 0.2s, background 0.2s, transform 0.25s cubic-bezier(0.16,1,0.3,1);
+  cursor: default;
+}
+.exp-tags span:hover {
+  border-color: rgba(0,229,255,0.55);
+  background: rgba(0,229,255,0.13);
+  transform: translateY(-2px);
 }
 @media (max-width: 600px) {
   .exp-card { grid-template-columns: 1fr; }
