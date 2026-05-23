@@ -360,6 +360,7 @@ sup { font-size: 0.55em; vertical-align: super; }
 [data-theme="light"] .p-tag.llm      { color: #6d28d9; background: rgba(109,40,217,0.08);  border-color: rgba(109,40,217,0.25);  }
 [data-theme="light"] .p-tag.cli      { color: #3730a3; background: rgba(55,48,163,0.08);   border-color: rgba(55,48,163,0.25);   }
 [data-theme="light"] .p-tag.kaggle   { color: #0f766e; background: rgba(15,118,110,0.08);  border-color: rgba(15,118,110,0.25);  }
+[data-theme="light"] .p-tag.funded  { color: #b45309; background: rgba(180,83,9,0.08);    border-color: rgba(180,83,9,0.25);    }
 
 /* Skill icon blocks */
 [data-theme="light"] .sk-ib-purple { color: #6d28d9; background: rgba(109,40,217,0.08);  border-color: rgba(109,40,217,0.22); }
@@ -1146,6 +1147,7 @@ sup { font-size: 0.55em; vertical-align: super; }
 .p-tag.llm      { background: rgba(168,85,247,0.1);  color: #c084fc; border-color: rgba(168,85,247,0.25); }
 .p-tag.cli      { background: rgba(99,102,241,0.1);  color: #a5b4fc; border-color: rgba(99,102,241,0.25); }
 .p-tag.kaggle   { background: rgba(20,184,166,0.1);  color: #2dd4bf; border-color: rgba(20,184,166,0.25); }
+.p-tag.funded   { background: rgba(245,158,11,0.1);  color: #fbbf24; border-color: rgba(245,158,11,0.3); }
 
 .p-link {
   font-size: 1rem; color: var(--text3);
