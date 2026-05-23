@@ -1007,6 +1007,22 @@ sup { font-size: 0.55em; vertical-align: super; }
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(0,229,255,0.15);
 }
+.r-authors {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem;
+  margin: 0.5rem 0 0.85rem;
+  font-size: 0.78rem; font-family: var(--mono);
+}
+.r-author { color: var(--text2); }
+.r-author-self {
+  color: var(--cy);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(0,229,255,0.4);
+}
+.r-author-faculty { color: var(--text3); font-style: italic; }
+.r-author-sep { color: var(--border2); }
+
 .r-body h3 {
   font-family: var(--display); font-size: 1.15rem; font-weight: 700;
   color: var(--text); margin-bottom: 0.9rem; line-height: 1.45;
