@@ -14,64 +14,6 @@ function countUp(el, to, duration) {
   })(t0);
 }
 
-/* ── PARTICLES ── */
-// particles.js is loaded with defer — wait until it's available
-function initParticles() {
-  if (typeof particlesJS === "undefined") {
-    setTimeout(initParticles, 50); return;
-  }
-  particlesJS("particles-js", {
-  particles: {
-    number: { value: 55, density: { enable: true, value_area: 1000 } },
-    color: { value: ["#00e5ff", "#0ea5e9", "#6366f1"] },
-    shape: { type: "circle" },
-    opacity: { value: 0.2, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.05 } },
-    size: { value: 2, random: true },
-    line_linked: { enable: true, distance: 130, color: "#00e5ff", opacity: 0.08, width: 1 },
-    move: { enable: true, speed: 0.8, random: true, out_mode: "out", attract: { enable: true, rotateX: 600, rotateY: 1200 } }
-  },
-  interactivity: {
-    detect_on: "canvas",
-    events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" } },
-    modes: { grab: { distance: 180, line_linked: { opacity: 0.3 } }, push: { particles_nb: 2 } }
-  },
-  retina_detect: true
-  });
-}
-initParticles();
-
-/* ── CURSOR ── */
-(function() {
-  if (!window.matchMedia("(pointer: fine)").matches) return;
-  var el = document.getElementById("cursor");
-  if (!el) return;
-
-  // Move cursor by updating left/top directly.
-  // CSS has transform:translate(-50%,-50%) which centres it — this never changes.
-  // We use visibility:hidden → visible (not display:none) because display
-  // changes break the stacking context and cause the cursor to flash/disappear.
-  document.addEventListener("mousemove", function(e) {
-    el.style.left = e.clientX + "px";
-    el.style.top  = e.clientY + "px";
-    el.style.visibility = "visible";
-  }, { passive: true });
-
-  document.addEventListener("mouseleave", function() {
-    el.style.visibility = "hidden";
-  });
-  document.addEventListener("mouseenter", function() {
-    el.style.visibility = "visible";
-  });
-
-  var HOVER = "a, button, .p-card, .sk-card, .r-card, .c-item, .int-item, .edu-card, .exp-card, .ach-card, .cert-card";
-  document.addEventListener("mouseover", function(e) {
-    if (e.target.closest(HOVER)) el.classList.add("hovering");
-  });
-  document.addEventListener("mouseout", function(e) {
-    if (e.target.closest(HOVER)) el.classList.remove("hovering");
-  });
-})();
-
 
 /* ── CARD RADIAL GLOW ON MOUSE ── */
 document.querySelectorAll(".p-card, .sk-card, .exp-card, .r-card, .ach-card").forEach(card => {
