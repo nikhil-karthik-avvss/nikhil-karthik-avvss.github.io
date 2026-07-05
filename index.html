@@ -60,15 +60,21 @@
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#060A12" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#F5F7FD" media="(prefers-color-scheme: light)" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="nikhil.png" fetchpriority="high" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<div class="scroll-progress" id="scroll-progress"></div>
-<div class="noise-overlay"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
 
 <!-- NAV -->
 <header id="navbar">
@@ -93,7 +99,7 @@
       <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
       <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-    <button class="nav-toggle" id="nav-toggle">&#9776;</button>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">&#9776;</button>
   </div>
   <div class="mobile-menu" id="mobile-menu">
     <a href="#about">About</a><a href="#education">Education</a><a href="#experience">Experience</a><a href="#research">Research</a><a href="#achievements">Achievements</a>
@@ -102,11 +108,13 @@
   </div>
 </header>
 
+<main id="main">
+
 <!-- HERO -->
 <section id="hero" class="hero">
-  <div class="hero-bg-grid"></div>
-  <div class="hero-glow hero-glow-1"></div>
-  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-bg-grid" aria-hidden="true"></div>
+  <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
+  <div class="hero-glow hero-glow-2" aria-hidden="true"></div>
   <div class="hero-aurora" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="hero-text">
@@ -161,10 +169,10 @@
       </div>
     </div>
     <div class="hero-photo-wrap">
-      <img src="nikhil.png" alt="Nikhil Karthik S" class="hero-photo" />
+      <img src="nikhil.png" alt="Nikhil Karthik S" class="hero-photo" width="280" height="280" fetchpriority="high" />
     </div>
   </div>
-  <div class="hero-scroll">
+  <div class="hero-scroll" aria-hidden="true">
     <div class="hs-track"><div class="hs-thumb"></div></div>
     <span>scroll</span>
   </div>
@@ -179,7 +187,7 @@
     </div>
     <div class="about-grid">
       <div class="about-text">
-        <p>I'm a 3rd-year <strong>M.Tech (Integrated) CSE</strong> student at <strong>SSN College of Engineering</strong>. I work across the full stack — from systems-level networking tools and IoT hardware to fine-tuned language models and deep learning pipelines.</p>
+        <p>I'm a 4th-year <strong>M.Tech (Integrated) CSE</strong> student at <strong>SSN College of Engineering</strong>. I work across the full stack — from systems-level networking tools and IoT hardware to fine-tuned language models and deep learning pipelines.</p>
         <p>My research has been recognised at <strong>MediaEval 2025</strong> (3rd place, GI Imaging VQA). I'm currently interning as an AI engineer while preparing further publications.</p>
         <p>I'm drawn to hard problems — routing anomalies, pixel-level change detection, language in low-resource settings. I care about getting the details right.</p>
       </div>
@@ -255,12 +263,12 @@
           <div class="edu-dot edu-dot-pulse"></div>
           <div class="edu-line"></div>
         </div>
-        <div class="edu-body edu-flip-card">
+        <div class="edu-body edu-flip-card" tabindex="0" aria-label="M.Tech CGPA card — focus or hover to see the semester GPA trend">
           <div class="edu-flip-inner">
 
             <!-- FRONT -->
             <div class="edu-flip-front">
-              <img class="edu-logo" src="logos/ssn.png" alt="SSN College of Engineering" loading="lazy" />
+              <img class="edu-logo" src="logos/ssn.png" alt="SSN College of Engineering" width="72" height="72" loading="lazy" decoding="async" />
               <div class="edu-meta">
                 <span class="edu-period">Aug 2023 — Apr 2028</span>
                 <span class="edu-badge current">Current</span>
@@ -273,9 +281,9 @@
               </div>
               <div class="edu-progress">
                 <div class="edu-prog-track">
-                  <div class="edu-prog-fill" data-width="60"></div>
+                  <div class="edu-prog-fill" data-width="70"></div>
                 </div>
-                <span class="edu-prog-label">Semester 6 of 10 &nbsp;·&nbsp; Year 3 of 5</span>
+                <span class="edu-prog-label">Semester 7 of 10 &nbsp;·&nbsp; Year 4 of 5</span>
               </div>
               <div class="edu-flip-hint">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
@@ -312,7 +320,7 @@
           <div class="edu-line"></div>
         </div>
         <div class="edu-body">
-          <img class="edu-logo edu-logo-circle" src="logos/iitm.png" alt="IIT Madras" loading="lazy" />
+          <img class="edu-logo edu-logo-circle" src="logos/iitm.png" alt="IIT Madras" width="72" height="72" loading="lazy" decoding="async" />
           <div class="edu-meta">
             <span class="edu-period">Jan — Sept 2024</span>
             <span class="edu-badge online">Online</span>
@@ -327,7 +335,7 @@
           <div class="edu-dot"></div>
         </div>
         <div class="edu-body">
-          <img class="edu-logo" src="logos/school.png" alt="Srivi Lions School" loading="lazy" />
+          <img class="edu-logo" src="logos/school.png" alt="Srivi Lions School" width="72" height="72" loading="lazy" decoding="async" />
           <div class="edu-meta">
             <span class="edu-period">Jun 2008 — Apr 2023</span>
             <span class="edu-badge school">Pre-KG → Class XII</span>
@@ -368,7 +376,7 @@
     <div class="exp-card reveal">
       <div class="exp-left">
         <div class="exp-logo exp-logo-img">
-          <img src="logos/dtd.png" alt="DriveThruData LLP" loading="lazy" />
+          <img src="logos/dtd.png" alt="DriveThruData LLP" width="42" height="42" loading="lazy" decoding="async" />
         </div>
       </div>
       <div class="exp-body">
@@ -594,7 +602,7 @@
       <div class="p-card p-featured reveal">
         <div class="p-top">
           <div class="p-top-left"><span class="p-tag llm">LLM</span><span class="p-tag">Full-Stack</span></div>
-          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="p-link">↗</a></div>
         </div>
         <h3>Legal Assistant: Police Station Management</h3>
         <div class="p-authors">
@@ -614,7 +622,7 @@
       <div class="p-card p-featured reveal">
         <div class="p-top">
           <div class="p-top-left"><span class="p-tag">Django</span><span class="p-tag">Full-Stack</span></div>
-          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="p-link">↗</a></div>
         </div>
         <h3>Engineering Seat Allocator</h3>
         <div class="p-authors">
@@ -633,7 +641,7 @@
       <div class="p-card p-featured reveal">
         <div class="p-top">
           <div class="p-top-left"><span class="p-tag hack">Hackathon Finalist</span><span class="p-tag">Security</span></div>
-          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="p-link">↗</a></div>
         </div>
         <h3>QR Guard — Malicious QR Detection</h3>
         <div class="p-authors">
@@ -653,7 +661,7 @@
       <div class="p-card p-featured reveal">
         <div class="p-top">
           <div class="p-top-left"><span class="p-tag kaggle">Kaggle</span><span class="p-tag">Finance</span></div>
-          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="p-link">↗</a></div>
         </div>
         <h3>Hull Tactical Market Prediction</h3>
         <div class="p-authors">
@@ -675,7 +683,7 @@
       <div class="p-card p-featured reveal">
         <div class="p-top">
           <div class="p-top-left"><span class="p-tag">Health Tech</span><span class="p-tag">Mobile</span></div>
-          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss/TelmedApp" target="_blank" class="p-link">↗</a></div>
+          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss/TelmedApp" target="_blank" rel="noopener" class="p-link">↗</a></div>
         </div>
         <h3>TelmedApp — Real-Time PPG Telemedicine Monitor</h3>
         <div class="p-authors">
@@ -696,7 +704,7 @@
       <div class="p-card p-featured reveal">
         <div class="p-top">
           <div class="p-top-left"><span class="p-tag">Systems</span><span class="p-tag">OS Dev</span></div>
-          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss/MilkyWayOS" target="_blank" class="p-link">↗</a></div>
+          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss/MilkyWayOS" target="_blank" rel="noopener" class="p-link">↗</a></div>
         </div>
         <h3>MilkyWayOS — Custom Linux Distribution</h3>
         <div class="p-authors">
@@ -714,7 +722,7 @@
       <div class="p-card p-featured reveal">
         <div class="p-top">
           <div class="p-top-left"><span class="p-tag">Security</span><span class="p-tag">Big Data</span></div>
-          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+          <div class="p-top-right"><span class="p-pin">◈ Featured</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="p-link">↗</a></div>
         </div>
         <h3>CyberShield — Real-Time Attack Detection</h3>
         <div class="p-authors">
@@ -736,7 +744,7 @@
     <div class="proj-grid">
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag cli">CLI Tool</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        <div class="p-top"><span class="p-tag cli">CLI Tool</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="p-link">↗</a></div>
         <h3>plagcheck — PDF Plagiarism Detector</h3>
         <div class="p-authors">
           <span class="p-author-self">Nikhil Karthik S</span>
@@ -746,7 +754,7 @@
       </div>
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag ongoing">Ongoing</span><span class="p-tag funded">Institutionally Funded</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        <div class="p-top"><span class="p-tag ongoing">Ongoing</span><span class="p-tag funded">Institutionally Funded</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="p-link">↗</a></div>
         <h3>Real-Time Accident Detection and Alerting System</h3>
         <div class="p-authors">
           <span class="p-author-self">Nikhil Karthik S</span><span class="p-author-sep">,</span>
@@ -762,7 +770,7 @@
       </div>
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag">Full-Stack</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        <div class="p-top"><span class="p-tag">Full-Stack</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="p-link">↗</a></div>
         <h3>Lost &amp; Found Website</h3>
         <div class="p-authors">
           <span class="p-author-self">Nikhil Karthik S</span><span class="p-author-sep">,</span>
@@ -774,7 +782,7 @@
       </div>
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag">Networks</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        <div class="p-top"><span class="p-tag">Networks</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="p-link">↗</a></div>
         <h3>Silent Loop Detector</h3>
         <div class="p-authors">
           <span class="p-author-self">Nikhil Karthik S</span><span class="p-author-sep">,</span>
@@ -788,7 +796,7 @@
       </div>
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag">Deep Learning</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        <div class="p-top"><span class="p-tag">Deep Learning</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="p-link">↗</a></div>
         <h3>Change Detection using U-Net</h3>
         <div class="p-authors">
           <span class="p-author-self">Nikhil Karthik S</span><span class="p-author-sep">,</span>
@@ -799,7 +807,7 @@
       </div>
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag">Research</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        <div class="p-top"><span class="p-tag">Research</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="p-link">↗</a></div>
         <h3>Optimisation Algorithm Evaluation</h3>
         <div class="p-authors">
           <span class="p-author-self">Nikhil Karthik S</span><span class="p-author-sep">,</span>
@@ -810,7 +818,7 @@
       </div>
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag">Frontend</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        <div class="p-top"><span class="p-tag">Frontend</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="p-link">↗</a></div>
         <h3>CSE Department Website</h3>
         <div class="p-authors">
           <span class="p-author-self">Nikhil Karthik S</span><span class="p-author-sep">,</span>
@@ -822,7 +830,7 @@
       </div>
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag">EdTech</span><span class="p-tag">Full-Stack</span><a href="https://github.com/nikhil-karthik-avvss/cp-exam-platform" target="_blank" class="p-link">↗</a></div>
+        <div class="p-top"><span class="p-tag">EdTech</span><span class="p-tag">Full-Stack</span><a href="https://github.com/nikhil-karthik-avvss/cp-exam-platform" target="_blank" rel="noopener" class="p-link">↗</a></div>
         <h3>CP Exam Platform</h3>
         <div class="p-authors">
           <span class="p-author-self">Nikhil Karthik S</span>
@@ -832,7 +840,7 @@
       </div>
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag">EdTech</span><span class="p-tag">Systems</span><a href="https://github.com/nikhil-karthik-avvss/exam-platform" target="_blank" class="p-link">↗</a></div>
+        <div class="p-top"><span class="p-tag">EdTech</span><span class="p-tag">Systems</span><a href="https://github.com/nikhil-karthik-avvss/exam-platform" target="_blank" rel="noopener" class="p-link">↗</a></div>
         <h3>Exam Platform — M.Tech LAN Deployment</h3>
         <div class="p-authors">
           <span class="p-author-self">Nikhil Karthik S</span>
@@ -842,7 +850,7 @@
       </div>
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag">Systems</span><span class="p-tag">Full-Stack</span><a href="https://github.com/nikhil-karthik-avvss/labctrl" target="_blank" class="p-link">↗</a></div>
+        <div class="p-top"><span class="p-tag">Systems</span><span class="p-tag">Full-Stack</span><a href="https://github.com/nikhil-karthik-avvss/labctrl" target="_blank" rel="noopener" class="p-link">↗</a></div>
         <h3>LabCtrl — Lab Management System</h3>
         <div class="p-authors">
           <span class="p-author-self">Nikhil Karthik S</span>
@@ -852,7 +860,7 @@
       </div>
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag">Desktop App</span><a href="https://github.com/nikhil-karthik-avvss/servicepilot" target="_blank" class="p-link">↗</a></div>
+        <div class="p-top"><span class="p-tag">Desktop App</span><a href="https://github.com/nikhil-karthik-avvss/servicepilot" target="_blank" rel="noopener" class="p-link">↗</a></div>
         <h3>ServicePilot — GTK4 systemd Manager</h3>
         <div class="p-authors">
           <span class="p-author-self">Nikhil Karthik S</span>
@@ -862,7 +870,7 @@
       </div>
 
       <div class="p-card reveal">
-        <div class="p-top"><span class="p-tag">IoT</span><span class="p-tag">Security</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="p-link">↗</a></div>
+        <div class="p-top"><span class="p-tag">IoT</span><span class="p-tag">Security</span><a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="p-link">↗</a></div>
         <h3>Intelligent Campus Surveillance &amp; Threat Analysis</h3>
         <div class="p-authors">
           <span class="p-author-self">Nikhil Karthik S</span><span class="p-author-sep">,</span>
@@ -1011,7 +1019,7 @@
     </div>
     <div id="repo-container" class="proj-grid" style="display:none;"></div>
     <div class="gh-cta">
-      <a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="btn-outline">View all on GitHub →</a>
+      <a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="btn-outline">View all on GitHub →</a>
     </div>
   </div>
 </section>
@@ -1054,21 +1062,21 @@
             <span class="c-val">nikhilkarthik2370024@ssn.edu.in</span>
           </div>
         </a>
-        <a href="https://github.com/nikhil-karthik-avvss" target="_blank" class="c-item reveal">
+        <a href="https://github.com/nikhil-karthik-avvss" target="_blank" rel="noopener" class="c-item reveal">
           <div class="c-icon-block c-ib-gh">GH</div>
           <div class="c-text">
             <span class="c-lbl">GitHub</span>
             <span class="c-val">nikhil-karthik-avvss</span>
           </div>
         </a>
-        <a href="https://www.linkedin.com/in/nikhil-karthik-avvss/" target="_blank" class="c-item reveal">
+        <a href="https://www.linkedin.com/in/nikhil-karthik-avvss/" target="_blank" rel="noopener" class="c-item reveal">
           <div class="c-icon-block c-ib-li">Li</div>
           <div class="c-text">
             <span class="c-lbl">LinkedIn</span>
             <span class="c-val">nikhil-karthik-avvss</span>
           </div>
         </a>
-        <a href="https://leetcode.com/u/navvss-nikhil-karthik/" target="_blank" class="c-item reveal">
+        <a href="https://leetcode.com/u/navvss-nikhil-karthik/" target="_blank" rel="noopener" class="c-item reveal">
           <div class="c-icon-block c-ib-lc">LC</div>
           <div class="c-text">
             <span class="c-lbl">LeetCode</span>
@@ -1079,6 +1087,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <footer class="footer">
   <div class="footer-inner">
@@ -1099,8 +1109,7 @@
     <div class="footer-copy">
       <span>© 2026 Nikhil Karthik S</span>
       <span class="footer-copy-dim">SSN College of Engineering, Chennai</span>
-      <a href="teachers.html" class="footer-copy-dim" style="text-decoration:none;opacity:0.5;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.5'">Wall of Teachers ↗</a>
-      <a href="gratitude.html" class="footer-copy-dim" style="text-decoration:none;opacity:0.5;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.5'">Wall of Gratitude ↗</a>
+
     </div>
   </div>
 </footer>
@@ -1121,7 +1130,7 @@
   <div class="cmd-modal">
     <div class="cmd-header">
       <span class="cmd-prompt">❯</span>
-      <input type="text" id="cmd-input" class="cmd-input" placeholder="Navigate or run a command…" autocomplete="off" spellcheck="false" />
+      <input type="text" id="cmd-input" class="cmd-input" placeholder="Navigate or run a command…" autocomplete="off" spellcheck="false" aria-label="Search commands" />
       <span class="cmd-esc-badge">ESC</span>
     </div>
     <div class="cmd-list" id="cmd-list" role="listbox" aria-label="Commands"></div>

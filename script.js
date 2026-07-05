@@ -15,6 +15,15 @@ function countUp(el, to, duration) {
 }
 
 
+/* ── HTML ESCAPE (for API-sourced strings) ── */
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, function(c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+
+var REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /* ── CARD RADIAL GLOW ON MOUSE ── */
 document.querySelectorAll(".p-card, .sk-card, .exp-card, .r-card, .ach-card").forEach(card => {
   card.addEventListener("mousemove", e => {
@@ -69,8 +78,16 @@ window.addEventListener("scroll", () => {
 const toggleBtn  = document.getElementById("nav-toggle");
 const mobileMenu = document.getElementById("mobile-menu");
 if (toggleBtn && mobileMenu) {
-  toggleBtn.addEventListener("click", () => mobileMenu.classList.toggle("open"));
-  mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => mobileMenu.classList.remove("open")));
+  function setMenu(open) {
+    mobileMenu.classList.toggle("open", open);
+    toggleBtn.setAttribute("aria-expanded", String(open));
+    toggleBtn.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+  }
+  toggleBtn.addEventListener("click", () => setMenu(!mobileMenu.classList.contains("open")));
+  mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && mobileMenu.classList.contains("open")) setMenu(false);
+  });
 }
 
 /* ── SCROLL REVEAL ── */
@@ -147,14 +164,14 @@ function renderRepos(repos) {
     card.className = "p-card reveal";
     card.innerHTML = `
       <div class="p-top">
-        <span class="p-tag">${lang}</span>
-        <a href="${url}" target="_blank" class="p-link">↗</a>
+        <span class="p-tag">${esc(lang)}</span>
+        <a href="${esc(url)}" target="_blank" rel="noopener" class="p-link" aria-label="Open ${esc(repo.name)} on GitHub">↗</a>
       </div>
-      <h3>${repo.name}</h3>
-      <p>${desc}</p>
+      <h3>${esc(repo.name)}</h3>
+      <p>${esc(desc)}</p>
       <div class="p-tech">
         ${stars > 0 ? `<span>★ ${stars}</span>` : ""}
-        ${updated ? `<span>Updated ${updated}</span>` : ""}
+        ${updated ? `<span>Updated ${esc(updated)}</span>` : ""}
       </div>`;
     container.appendChild(card);
 
@@ -240,15 +257,19 @@ loadRepos();
   const closeBtn = document.getElementById("clb-close");
   if (!lightbox || !lbImg) return;
 
+  var lastFocused = null;
   function openLightbox(src) {
+    lastFocused = document.activeElement;
     lbImg.src = src;
     lightbox.classList.add("open");
     document.body.style.overflow = "hidden";
+    closeBtn.focus();
   }
   function closeLightbox() {
     lightbox.classList.remove("open");
     document.body.style.overflow = "";
     setTimeout(function() { lbImg.src = ""; }, 350);
+    if (lastFocused) { lastFocused.focus(); lastFocused = null; }
   }
 
   document.querySelectorAll(".cert-thumb-wrap").forEach(function(btn) {
@@ -265,7 +286,7 @@ loadRepos();
 
 /* ── MAGNETIC PRIMARY BUTTON ── */
 (function() {
-  if (!window.matchMedia("(pointer: fine)").matches) return;
+  if (!window.matchMedia("(pointer: fine)").matches || REDUCED_MOTION) return;
   const btn = document.querySelector(".btn-prime");
   if (!btn) return;
   btn.addEventListener("mousemove", function(e) {
@@ -291,6 +312,7 @@ loadRepos();
     'Cybersecurity Enthusiast',
     'Computer Vision Explorer'
   ];
+  if (REDUCED_MOTION) { el.textContent = roles[2]; return; }
   var ri = 0, ci = 0, del = false;
   function tick() {
     var word = roles[ri];
@@ -316,7 +338,7 @@ loadRepos();
 
 /* ── 3D CARD TILT ── */
 (function() {
-  if (!window.matchMedia('(pointer: fine)').matches) return;
+  if (!window.matchMedia('(pointer: fine)').matches || REDUCED_MOTION) return;
   document.querySelectorAll('.p-card').forEach(function(card) {
     card.addEventListener('mousemove', function(e) {
       var r = card.getBoundingClientRect();
