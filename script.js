@@ -23,13 +23,35 @@ function countUp(el, to, duration) {
 (function () {
   var btn = document.getElementById('theme-toggle');
   if (!btn) return;
-  btn.addEventListener('click', function () {
-    var root = document.documentElement;
-    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.body.classList.add('theme-transitioning');
+  var root = document.documentElement;
+
+  function apply(next) {
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('theme', next); } catch (e) {}
-    setTimeout(function () { document.body.classList.remove('theme-transitioning'); }, 300);
+  }
+
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+
+    // Fallback: quick colour cross-fade
+    if (!document.startViewTransition || REDUCED_MOTION) {
+      document.body.classList.add('theme-transitioning');
+      apply(next);
+      setTimeout(function () { document.body.classList.remove('theme-transitioning'); }, 300);
+      return;
+    }
+
+    // Circular reveal expanding from the toggle button
+    var r = btn.getBoundingClientRect();
+    var x = r.left + r.width / 2, y = r.top + r.height / 2;
+    var radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    var t = document.startViewTransition(function () { apply(next); });
+    t.ready.then(function () {
+      root.animate(
+        { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + radius + 'px at ' + x + 'px ' + y + 'px)'] },
+        { duration: 600, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', pseudoElement: '::view-transition-new(root)' }
+      );
+    });
   });
 })();
 
@@ -64,13 +86,35 @@ function countUp(el, to, duration) {
 // Elements are only hidden after layout settles (double rAF), and anything
 // already on screen is shown immediately, so content never gets stuck hidden.
 var revealObs = new IntersectionObserver(function (entries) {
+  var n = 0;
   entries.forEach(function (entry) {
-    if (entry.isIntersecting) {
-      revealObs.unobserve(entry.target);
-      entry.target.classList.add('visible');
+    if (!entry.isIntersecting) return;
+    var el = entry.target;
+    revealObs.unobserve(el);
+    // Stagger items that enter together; clear the delay afterwards so
+    // it doesn't slow down hover transitions.
+    var delay = Math.min(n++, 6) * 70;
+    if (delay) {
+      el.style.transitionDelay = delay + 'ms';
+      setTimeout(function () { el.style.transitionDelay = ''; }, delay + 800);
     }
+    el.classList.add('visible');
   });
-}, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+}, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+// One-shot "add a class when this scrolls into view" helper
+function onEnter(selector, cls, threshold) {
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      obs.unobserve(entry.target);
+      entry.target.classList.add(cls);
+    });
+  }, { threshold: threshold || 0, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll(selector).forEach(function (el) { obs.observe(el); });
+}
+
+var RULE_SELECTORS = '.entries, .work, .paper, .skills, .repos, .repo-loading, .contact-links';
 
 function observeReveal(el) {
   var r = el.getBoundingClientRect();
@@ -82,8 +126,12 @@ function initReveal() {
   if (REDUCED_MOTION) return;
   requestAnimationFrame(function () {
     requestAnimationFrame(function () {
+      document.querySelectorAll('.sec-title').forEach(function (el) { el.classList.add('reveal'); });
+      document.querySelectorAll(RULE_SELECTORS).forEach(function (el) { el.classList.add('rule-draw'); });
       document.body.classList.add('js-ready');
       document.querySelectorAll('.reveal').forEach(observeReveal);
+      onEnter('.rule-draw, .sub-title', 'drawn');
+      onEnter('.gpa-bars', 'grown', 0.4);
     });
   });
 }
