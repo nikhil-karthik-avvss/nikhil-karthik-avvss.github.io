@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page not found — Nikhil Karthik S</title>
+  <meta name="robots" content="noindex" />
+  <script>
+    (function(){
+      var s = null;
+      try { s = localStorage.getItem('theme'); } catch (e) {}
+      var t = s || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#F4F1EA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#131210" media="(prefers-color-scheme: dark)" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .nf { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
+    .nf > .wrap { width: 100%; }
+    .nf-top { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); }
+    .nf-main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-top: 48px; padding-bottom: 72px; }
+    .nf-code {
+      font-family: var(--serif); font-weight: 400; line-height: 0.85;
+      font-size: clamp(7rem, 26vw, 18rem); letter-spacing: -0.03em; color: var(--accent);
+      animation: rise 0.9s var(--ease-out) both;
+    }
+    .nf-title {
+      margin-top: 1.5rem; font-family: var(--serif); font-weight: 400;
+      font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.05; color: var(--ink);
+      animation: rise 0.9s var(--ease-out) 0.12s both;
+    }
+    .nf-text { margin-top: 1rem; max-width: 52ch; font-size: 1.1rem; color: var(--ink-2); animation: rise 0.9s var(--ease-out) 0.22s both; }
+    .nf-text code {
+      font-family: var(--mono); font-size: 0.9em; color: var(--ink);
+      background: var(--bg-raised); border: 1px solid var(--line); border-radius: 4px; padding: 0.05em 0.4em;
+      overflow-wrap: anywhere;
+    }
+    .nf-actions { margin-top: 2.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; animation: rise 0.9s var(--ease-out) 0.32s both; }
+    .nf-links {
+      margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--ink);
+      display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; max-width: 640px;
+      font-family: var(--mono); font-size: 0.85rem; color: var(--ink-3);
+      animation: rise 0.9s var(--ease-out) 0.42s both;
+    }
+    .nf-links a { color: var(--ink-2); transition: color 0.2s; }
+    .nf-links a:hover { color: var(--accent); }
+    .nf-foot { padding-top: 1.5rem; padding-bottom: 1.5rem; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--ink-3); }
+  </style>
+</head>
+<body>
+  <div class="nf">
+    <header class="wrap nf-top">
+      <a href="/" class="nav-brand">Nikhil Karthik S</a>
+    </header>
+
+    <main class="wrap nf-main">
+      <p class="nf-code" aria-hidden="true">404</p>
+      <h1 class="nf-title">This page doesn't exist.</h1>
+      <p class="nf-text">
+        Nothing lives at <code id="nf-path">this address</code>. It may be a typo, or an old link to something that has moved.
+      </p>
+      <div class="nf-actions">
+        <a href="/" class="btn">Back to the homepage</a>
+        <a href="/#contact" class="link-arrow">Tell me about it <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <nav class="nf-links" aria-label="Sections">
+        <span>Or jump to</span>
+        <a href="/#projects">Projects</a>
+        <a href="/#research">Research</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#education">Education</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </main>
+
+    <footer class="wrap nf-foot">© 2026 Nikhil Karthik S &middot; SSN College of Engineering, Chennai</footer>
+  </div>
+
+  <script>
+    (function () {
+      var el = document.getElementById('nf-path');
+      if (!el || !location.pathname || location.pathname === '/') return;
+      var p = location.pathname;
+      try { p = decodeURI(p); } catch (e) {}
+      el.textContent = p;
+    })();
+  </script>
+</body>
+</html>
