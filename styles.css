@@ -99,6 +99,26 @@ section[id] { scroll-margin-top: var(--nav-h); }
 
 .accent { color: var(--accent); }
 
+/* ── 2b. SCROLLBAR (follows light/dark theme) ── */
+/* Chromium & Safari: thin rounded thumb that blends into the page */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--line-2);
+  border: 3px solid var(--bg);          /* inset the thumb so it reads as a thin pill */
+  border-radius: 999px;
+  min-height: 48px;
+}
+::-webkit-scrollbar-thumb:hover  { background: var(--ink-3); }
+::-webkit-scrollbar-thumb:active { background: var(--accent); }
+::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+::-webkit-scrollbar-corner { background: var(--bg); }
+
+/* Firefox (no ::-webkit-scrollbar support) */
+@supports not selector(::-webkit-scrollbar) {
+  html { scrollbar-width: thin; scrollbar-color: var(--line-2) var(--bg); }
+}
+
 /* ── 3. SHARED TEXT PIECES ── */
 .link-arrow {
   display: inline-flex; align-items: baseline; gap: 0.35em;
@@ -456,6 +476,8 @@ section[id] { scroll-margin-top: var(--nav-h); }
 .cert-score span { font-size: 0.55em; color: var(--ink-3); }
 .cert-title { margin-top: 0.35rem; font-weight: 500; line-height: 1.35; color: var(--ink); }
 .cert-meta { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-3); }
+.cert-verify { align-self: flex-start; margin-top: 0.6rem; font-size: 0.85rem; }
+.cert-verify:hover span { transform: translate(2px, -2px); }
 
 /* ── 11. PROJECTS ── */
 .work { border-top: 1px solid var(--ink); }
